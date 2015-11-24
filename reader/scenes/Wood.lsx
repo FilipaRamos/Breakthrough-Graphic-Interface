@@ -1,0 +1,611 @@
+<SCENE>
+
+<!-- SYMBOL SIGNIFICANCE -->
+    <!-- 
+    ii: integer value
+    ff: float value
+    ss: string value
+    cc: character "x" or "y" or "z"
+    tt: "0" or "1" with Boolean significance 
+    -->
+
+ <!-- INITIALIZE THE SCENE -->
+    <!-- translation and rotation of the scene - defines the main plane -->
+
+<INITIALS>
+    <frustum near="0.1" far="500"/>                      <!-- frustum planes-->
+    <translation x="0" y="0" z="0" />                 <!-- initial translate -->
+    <rotation axis="x" angle="0" />                  <!-- initial rotation 1 -->
+    <rotation axis="y" angle="0" />                  <!-- initial rotation 2 -->
+    <rotation axis="z" angle="0" />                  <!-- initial rotation 3 -->
+    <scale sx="1" sy="1" sz="1" />                  <!-- initial scaling -->
+    <reference length="1" />                          <!-- axis length; "0" means no axis-->
+</INITIALS>
+
+ <!-- INITIALIZE THE ILUMINATION -->
+     <!-- ambient lightning and background color (def black) -->
+
+<ILLUMINATION>
+    <ambient r="0.8" g="0.8" b="0.8" a="1" />            <!-- global ambient -->
+    <background r="0" g="0" b="0" a="1" />            <!-- background color -->
+</ILLUMINATION>
+
+ <!-- INITIALIZE THE LIGHTS -->
+     <!-- enable and set position of the lights/ ambient, diffuse and specular lightning -->
+
+<LIGHTS>
+    <LIGHT id="light0">                                    <!-- light identifier -->
+        <enable value="1" />                         <!-- enable/disable -->
+        <position x="8.0" y="6.0" z="13.0" w="1.0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
+        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
+        <specular r="1.0" g="1.0" b="0" a="1.0" />       <!-- specular component -->
+    </LIGHT>
+
+     <LIGHT id="light1">                                    <!-- light identifier -->
+        <enable value="0" />                         <!-- enable/disable -->
+        <position x="12.5" y="6.0" z="13.0" w="1.0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
+        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
+        <specular r="0.0" g="0.0" b="0" a="0.0" />       <!-- specular component -->
+    </LIGHT>
+
+     <LIGHT id="light2">                                    <!-- light identifier -->
+        <enable value="1" />                         <!-- enable/disable -->
+        <position x="12.5" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
+        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
+        <specular r="1.0" g="1.0" b="1.0" a="1.0" />       <!-- specular component -->
+    </LIGHT>
+
+     <LIGHT id="light3">                                    <!-- light identifier -->
+        <enable value="1" />                         <!-- enable/disable -->
+        <position x="8.0" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
+        <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
+        <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
+        <specular r="0.0" g="0.0" b="0" a="0.0" />       <!-- specular component -->
+    </LIGHT>
+
+</LIGHTS>
+
+<!-- INITIALIZE THE TEXTURES -->
+    <!-- set an id for the texture, append the file path to the texture, set factor -->
+
+<TEXTURES>
+
+    <!-- EMPTY TILE -->
+    <TEXTURE id="EmptyTile">
+        <file path="images/tiles/Wood/Empty/empty.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <!-- BLACK TILES -->
+    <TEXTURE id="BlackCopas">
+        <file path="images/tiles/Wood/Black/copas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="BlackEspadas">
+        <file path="images/tiles/Wood/Black/espadas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="BlackExclamation">
+        <file path="images/tiles/Wood/Black/excl.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+    
+    <TEXTURE id="BlackOuros">
+        <file path="images/tiles/Wood/Black/ouros.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="BlackPaus">
+        <file path="images/tiles/Wood/Black/paus.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <!-- BLUE TILES -->
+   <TEXTURE id="BlueCopas">
+        <file path="images/tiles/Wood/Blue/copas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="BlueEspadas">
+        <file path="images/tiles/Wood/Blue/espadas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="BlueExclamation">
+        <file path="images/tiles/Wood/Blue/excl.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+    
+    <TEXTURE id="BlueOuros">
+        <file path="images/tiles/Wood/Blue/ouros.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="BluePaus">
+        <file path="images/tiles/Wood/Blue/paus.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <!-- GREEN TILES -->
+   <TEXTURE id="GreenCopas">
+        <file path="images/tiles/Wood/Green/copas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="GreenEspadas">
+        <file path="images/tiles/Wood/Green/espadas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="GreenExclamation">
+        <file path="images/tiles/Wood/Green/excl.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+    
+    <TEXTURE id="GreenOuros">
+        <file path="images/tiles/Wood/Green/ouros.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="GreenPaus">
+        <file path="images/tiles/Wood/Green/paus.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <!-- RED TILES -->
+   <TEXTURE id="RedCopas">
+        <file path="images/tiles/Wood/Red/copas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="RedEspadas">
+        <file path="images/tiles/Wood/Red/espadas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="RedExclamation">
+        <file path="images/tiles/Wood/Red/excl.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+    
+    <TEXTURE id="RedOuros">
+        <file path="images/tiles/Wood/Red/ouros.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="RedPaus">
+        <file path="images/tiles/Wood/Red/paus.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+     <!-- YELLOW TILES -->
+   <TEXTURE id="YellowCopas">
+        <file path="images/tiles/Wood/Yellow/copas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="YellowEspadas">
+        <file path="images/tiles/Wood/Yellow/espadas.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="YellowExclamation">
+        <file path="images/tiles/Wood/Yellow/excl.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+    
+    <TEXTURE id="YellowOuros">
+        <file path="images/tiles/Wood/Yellow/ouros.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="YellowPaus">
+        <file path="images/tiles/Wood/Yellow/paus.png" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <!-- FUNDO -->
+    <TEXTURE id="fundo">
+        <file path="images/sw.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+</TEXTURES>
+
+<!-- INITIALIZE THE MATERIALS -->
+    <!-- attribute id to material, set shininess value and specular, diffuse and ambient reflection, attribute emission component -->
+
+<MATERIALS>
+
+    <MATERIAL id="materialA">                                  
+        <shininess value="120" />
+        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="0.3" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL>
+
+      <MATERIAL id="materialDefault">                                  
+        <shininess value="120" />
+        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0" g="0" b="0" a="0" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL>
+
+     <MATERIAL id="firematerial">                                  
+        <shininess value="120" />
+        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="0.3" />         <!-- ambient reflection -->
+        <emission r="1" g="1" b="1" a="1" />        <!-- emission component -->
+     </MATERIAL>
+
+    <MATERIAL id="materialB">                                  
+        <shininess value="120" />
+        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL>   
+
+    <MATERIAL id="blackMaterial">                                  
+        <shininess value="120" />
+        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
+        <diffuse r="0" g="0" b="0" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL> 
+
+    <MATERIAL id="greenMaterial">                                  
+        <shininess value="120" />
+        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
+        <diffuse r="0" g="1" b="0" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL>
+
+</MATERIALS>
+
+<!-- informacao de animacao -->
+<animations>
+<!-- pode não existir qualquer nó “animation” se a cena não tiver animações -->
+<!-- span é o tempo, em segundos, que a animação deve demorar * -->
+<!-- nesta versão do formato LSX, type pode ter o valor “linear” ou "circular" -->
+    <animation id="AniLin" span="5" type="linear">
+        <controlpoint xx="5" yy="0" zz="0" />
+        <controlpoint xx="0" yy="0" zz="0" />
+        <!--<controlpoint xx="0" yy="0.5" zz="0" />-->
+    </animation>
+    <animation id="AniRot" span="5" type="circular" center="0 0 0" radius="0.5" startang="0" rotang="180" />
+</animations>
+
+<!-- INITIALIZE THE LEAVES -->
+    <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
+
+<LEAVES>
+    <LEAF id="rect" type="rectangle" args="-0.5 0.5 0.5 -0.5" />      <!-- 2D coordinates for left-top and right-bottom vertices. -->
+    <LEAF id="cyl" type="cylinder" args="1 0.5 0 9 50" />    <!-- height, bottom radius, top radius, sections along height, parts per section -->
+    <LEAF id="cylinder" type="cylinder" args="1 0.5 0.5 9 50" />
+    <LEAF id="sph" type="sphere" args="0.5 50 50" />            <!-- radius, parts along radius, parts per section -->
+    <LEAF id="tri" type="triangle" args="-0.5 -0.5 0  0.5 -0.5 0  0 0.5 0" />   <!-- coordinates of each vertex -->
+    <LEAF id="plane" type="plane" parts="20"/>
+   <LEAF id="patch" type="patch" order="1" partsU="20" partsV="20">
+        <controlpoint x= "-0.5" y="0.0" z="0.5" />
+        <controlpoint x= "-0.5" y="0.0" z="-0.5" />
+        <controlpoint x= "0.5" y="0.0" z="0.5" />
+        <controlpoint x= "0.5" y="0.0" z="-0.5" />
+    </LEAF>
+    <LEAF id="vehicle" type="vehicle"/> 
+    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
+</LEAVES>
+
+<!-- INITIALIZE THE NODES -->
+
+<NODES>
+
+    <ROOT id="fundo" />     <!-- identifier of root node of the scene graph; this node     -->
+                         <!--   must be defined in one of the following NODE declarations -->
+
+    <NODE id="fundo">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="sw" />    
+        <DESCENDANTS>
+        </DESCENDANTS>
+
+    </NODE>
+
+    <!-- EMPTY TILE -->
+    <NODE id="emptyTile">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="EmptyTile" />      
+        <SCALE sx="1" sy="1" sz="1" />
+        <DESCENDANTS>
+        </DESCENDANTS>
+
+    </NODE>
+    
+    <!-- COPAS -->
+   <NODE id="Copas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS>
+            <DESCENDANT id="BlackCopas" /> 
+            <DESCENDANT id="BlueCopas"  />
+            <DESCENDANT id="GreenCopas"  />
+            <DESCENDANT id="RedCopas"  />
+            <DESCENDANT id="YellowCopas"  />
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlackCopas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlackCopas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlueCopas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlueCopas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="GreenCopas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="GreenCopas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="RedCopas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="RedCopas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="YellowCopas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="YellowCopas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <!-- ESPADAS -->
+    <NODE id="Espadas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <SCALE sx="1" sy="1" sz="1" />
+        <DESCENDANTS>
+            <DESCENDANT id="BlackEspadas" /> 
+            <DESCENDANT id="BlueEspadas" /> 
+            <DESCENDANT id="GreenEspadas" /> 
+            <DESCENDANT id="RedEspadas" /> 
+            <DESCENDANT id="YellowEspadas" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlackEspadas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlackEspadas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlueEspadas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlueEspadas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="GreenEspadas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="GreenEspadas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="RedEspadas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="RedEspadas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="YellowEspadas">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="YellowEspadas" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <!-- EXCLAMATION -->
+    <NODE id="Exclamations">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <SCALE sx="1" sy="1" sz="1" />
+        <DESCENDANTS>
+            <DESCENDANT id="BlackExclamation" /> 
+            <DESCENDANT id="BlueExclamation" /> 
+            <DESCENDANT id="GreenExclamation" /> 
+            <DESCENDANT id="RedExclamation" /> 
+            <DESCENDANT id="YellowExclamation" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlackExclamation">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlackExclamations" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlueExclamation">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlueExclamations" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="GreenExclamation">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="GreenExclamations" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="RedExclamation">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="RedExclamations" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="YellowExclamation">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="YellowExclamations" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <!-- OUROS -->
+    <NODE id="Ouros">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <SCALE sx="1" sy="1" sz="1" />
+        <DESCENDANTS>
+            <DESCENDANT id="BlackOuros" /> 
+            <DESCENDANT id="BlueOuros" /> 
+            <DESCENDANT id="GreenOuros" /> 
+            <DESCENDANT id="RedOuros" /> 
+            <DESCENDANT id="YellowOuros" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlackOuros">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlackOuros" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlueOuros">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlueOuros" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="GreenOuros">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="GreenOuros" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="RedOuros">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="RedOuros" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="YellowOuros">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="YellowOuros" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <!-- PAUS -->
+    <NODE id="Paus">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <SCALE sx="1" sy="1" sz="1" />
+        <DESCENDANTS>
+            <DESCENDANT id="BlackPaus" /> 
+            <DESCENDANT id="BluePaus" /> 
+            <DESCENDANT id="GreenPaus" /> 
+            <DESCENDANT id="RedPaus" /> 
+            <DESCENDANT id="YellowPaus" /> 
+        </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BlackPaus">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BlackPaus" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="BluePaus">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="BluePaus" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="GreenPaus">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="GreenPaus" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="RedPaus">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="RedPaus" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+    <NODE id="YellowPaus">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="YellowPaus" />
+        <SCALE sx="1" sy="1" sz="1" />  
+        <DESCENDANTS> </DESCENDANTS>
+
+    </NODE>
+
+</NODES>
+
+</SCENE>
+ 
