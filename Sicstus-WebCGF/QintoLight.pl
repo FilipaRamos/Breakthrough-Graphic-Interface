@@ -458,4 +458,5 @@ humanHuman :-  createBoard(60,60,B), makeDeck(Deck), mixingElemtsDeck(Deck, NewD
 
 
 
+initialBoard(N,B) :- createBoard(N,N,B).
 
