@@ -102,7 +102,7 @@ print_header_line(_).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Require your Prolog Files here
-:-['QintoLight.pl'].
+:-['Breakthru.pl'].
 
 
 parse_input(handshake, handshake).
@@ -112,4 +112,4 @@ parse_input(quit, goodbye).
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
 	
-parse_input(initialBoard(N), Res):- createBoard(N,N,Res).
+
