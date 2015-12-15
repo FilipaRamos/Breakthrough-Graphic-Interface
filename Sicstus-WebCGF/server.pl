@@ -113,3 +113,5 @@ test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
 	
 
+parse_input(initial, Res) :- initial_board(Res).
+	
