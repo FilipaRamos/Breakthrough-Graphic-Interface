@@ -1,8 +1,7 @@
-function Piece(scene, type, position) {
+function Piece(scene, type) {
 	CGFobject.call(this,scene);
 
   this.type = type;
-  this.position = position;
   this.scene = scene;
 
 };
@@ -31,9 +30,5 @@ Piece.prototype.display = function () {
   else
     return "error on the ship's type";
 
-  // translate the piece to its location
-  this.scene.translate(this.position[0], this.position[1], this.position[2]);
-
   this.scene.popMatrix();
-
 };
