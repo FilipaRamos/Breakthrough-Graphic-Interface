@@ -58,7 +58,7 @@ MySphere.prototype.initBuffers = function () {
     	   		/** y = rsin(theta)sin(phi) */
     	   		var y = this.radius*Math.sin(theta)*Math.sin(phi); //y = rsin(theta)sin(phi)
        			/** z = cos(theta) */
-       			var z =  Math.cos(theta); // z
+       			var z =  /*this.radius**/Math.cos(theta); // z
 
 			/** push the vertices and the normals */
             	this.vertices.push(x,y,z);
