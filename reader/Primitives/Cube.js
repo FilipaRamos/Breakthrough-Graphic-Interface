@@ -1,7 +1,7 @@
 function Cube(scene) {
-	CGFobject.call(this,scene);
-
-	this.initBuffers();
+	 CGFobject.call(this, scene);
+	 
+    this.initBuffers();
 };
 
 Cube.prototype = Object.create(CGFobject.prototype);
@@ -122,7 +122,7 @@ Cube.prototype.initBuffers = function () {
                 -1,0,0
           ]
 
-         this.texCoord = [
+         this.texCoords = [
                 0,1,
                 1,1,
                 1,0,

@@ -54,7 +54,7 @@ XMLscene.prototype.init = function (application) {
     //this.patch = new Patch(this, 20, 1, [[-0.5, 0.0, 0.5, 1], [-0.5, 0.0, -0.5, 1], [0.5, 0.0, 0.5, 1], [0.5, 0.0, -0.5, 1]]);
 	//this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
 	//this.eva = new Evaluator(this, 3, 2, 10, 15, [[-5,5,4,1],[-5,2,4.5,1],[-5,-1,4,1], [][][] , [][][], [][][]]);
-	this.cube = new Cube(this);
+	this.board = new Board(this);
 	
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
@@ -64,14 +64,6 @@ XMLscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 	this.enableTextures(true);
 	this.axis=new CGFaxis(this);
-
-
-
-	this.clockAppearance = new CGFappearance(this);
-	this.clockAppearance.loadTexture('texture/floor.jpg');
-	this.clockAppearance.setSpecular(0, 0, 0, 1);
-	this.clockAppearance.setShininess(10);
-	this.clockAppearance.setDiffuse(0.4,0.4, 0.4, 1);
 
 	this.setUpdatePeriod(10);
 	
@@ -195,8 +187,7 @@ XMLscene.prototype.display = function () {
 	//this.t.display();
 	//this.plane.display();
 	// this.patch.display();
-	this.clockAppearance.apply();
-	this.cube.display();
+	this.board.display();
 
 
 	
