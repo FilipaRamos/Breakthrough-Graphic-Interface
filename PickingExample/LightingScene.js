@@ -1,4 +1,3 @@
-
 function LightingScene() {
     CGFscene.call(this);
     this.texture = null;
