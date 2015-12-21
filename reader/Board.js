@@ -27,26 +27,12 @@ function Board(scene) {
 
   for(i=0; i<11; i++){
     for(j=0; j<11; j++){
-          var celula = new Cube(scene);
-          var piece = new Piece(scene, "silver");
-          var piece2 = new Piece(scene, "golden");
-		  var piece3 = new Piece(scene, "flagship");
-          
-       	if(this.board[i][j] === 1) {
-         	row[j] = (piece);
-         }
-         else if(this.board[i][j] === 2) {
-         	row[j] = (piece2);
-         }
-         else if(this.board[i][j] === 5) {
-         	row[j] = (piece3);
-         }
-         else if(this.board[i][j] === 0){
-         	row[j] = undefined;
-         }
+          var celula = new Celula(scene, this.board[i][j], false, false);
+          var piece = new Cube(scene); 
+      	row[j] =  celula;
       }
       this.celulas[i] = row;
-      this.floor.push(celula);
+      this.floor.push(piece);
       row = [];
   }
  
@@ -79,12 +65,12 @@ for(i=0; i<11; i++){
 }
  
  this.scene.translate(0,1,-11*1.2);
- 
+
  for(i=0; i<11; i++){
     for(j=0; j<11; j++){
     	this.scene.translate(1.2,0,0);
-		if(this.celulas[i][j] !== undefined){
-			this.celulas[i][j].display();
+		if(this.celulas[i][j].primitive !== undefined){
+			this.celulas[i][j].primitive.display();
         }
     }
     this.scene.translate(-11*1.2,0,1.2);
