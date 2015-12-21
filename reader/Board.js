@@ -27,13 +27,13 @@ function Board(scene) {
 
   for(i=0; i<11; i++){
     for(j=0; j<11; j++){
-          var celula = new Celula(scene, this.board[i][j], false, false);
-          var piece = new Cube(scene); 
-      	row[j] =  celula;
-      }
-      this.celulas[i] = row;
-      this.floor.push(piece);
-      row = [];
+      var celula = new Celula(scene, this.board[i][j], false, false);
+      var piece = new Cube(scene); 
+      row[j] =  celula;
+    }
+    this.celulas[i] = row;
+    this.floor.push(piece);
+    row = [];
   }
  
 	this.textura = new CGFtexture(this.scene,"texture/nave.jpg");
@@ -55,9 +55,10 @@ Board.prototype.display = function()
 this.scene.pushMatrix();
 
 for(i=0; i<11; i++){
-    for(j=0; j<11; j++){
-    	this.scene.translate(1.2,0,0);
-    	this.textura.bind();	 
+  for(j=0; j<11; j++){
+    this.scene.translate(1.2,0,0);
+    this.textura.bind();	
+    this.scene.registerForPick(j+1, this.floor[j]); 
 		this.floor[j].display();
 		
     }
