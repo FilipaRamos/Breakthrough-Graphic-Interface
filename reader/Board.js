@@ -58,8 +58,7 @@ for(i=0; i<11; i++){
   for(j=0; j<11; j++){
     this.scene.translate(1.2,0,0);
     this.textura.bind();	
-    this.scene.registerForPick(j+1, this.floor[j]); 
-		this.floor[j].display();
+	this.floor[j].display();
 		
     }
     this.scene.translate(-11*1.2,0,1.2);
@@ -70,13 +69,14 @@ for(i=0; i<11; i++){
  for(i=0; i<11; i++){
     for(j=0; j<11; j++){
     	this.scene.translate(1.2,0,0);
+    	this.scene.registerForPick(j+1, this.celulas[i][j]); 
 		if(this.celulas[i][j].primitive !== undefined){
 			this.celulas[i][j].primitive.display();
         }
     }
     this.scene.translate(-11*1.2,0,1.2);
 }
-  
+ 
 
   this.scene.popMatrix();
 

@@ -193,7 +193,7 @@ XMLscene.prototype.display = function () {
 			this.lights[i].update();
 		}
 
-	this.picking();
+	this.logPicking();
 
 	//Draw objects
 	//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
@@ -340,9 +340,4 @@ XMLscene.prototype.logPicking = function(){
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
 	}
-}
-
-
-XMLscene.prototype.picking = function(){
-	this.logPicking();
 }
