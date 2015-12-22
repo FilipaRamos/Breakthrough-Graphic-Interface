@@ -120,7 +120,7 @@ MySceneGraph.prototype.parseInitials= function(rootElement) {
 
 	var frustum = elems[0].getElementsByTagName('frustum');
 	
-	console.log("Frustum: " + frustum);
+	//console.log("Frustum: " + frustum);
 	
 	if (frustum == null)
 		return "frustum element missing";
@@ -151,7 +151,7 @@ MySceneGraph.prototype.parseInitials= function(rootElement) {
 										  this.reader.getFloat(trnslt, 'y'), 
 										  this.reader.getFloat(trnslt, 'z'));
 
-	console.log(this.reader.getFloat(trnslt, 'x') + ' ' + this.reader.getFloat(trnslt, 'y') + ' ' + this.reader.getFloat(trnslt, 'z'));
+	//console.log(this.reader.getFloat(trnslt, 'x') + ' ' + this.reader.getFloat(trnslt, 'y') + ' ' + this.reader.getFloat(trnslt, 'z'));
 
 	/*this.scene.translate(this.reader.getFloat(trnslt, 'x'), 
                          this.reader.getFloat(trnslt, 'y'),  
@@ -177,7 +177,7 @@ MySceneGraph.prototype.parseInitials= function(rootElement) {
     
     mat4.rotateX(this.scene.matrixInitial, this.scene.matrixInitial, (this.reader.getFloat(rotList[0], 'angle')*Math.PI)/180);
 
-	console.log("Rotation em X de: " + (this.reader.getFloat(rotList[0], 'angle')));
+	//console.log("Rotation em X de: " + (this.reader.getFloat(rotList[0], 'angle')));
 	
 
 	if(this.reader.getString(rotList[1], 'axis') != "y")
@@ -217,8 +217,8 @@ MySceneGraph.prototype.parseInitials= function(rootElement) {
 					 this.reader.getFloat(scale[0], 'sy'),
 					 this.reader.getFloat(scale[0], 'sz'));*/
 
-	console.log("SCALE :  sx " + this.reader.getFloat(scale[0], 'sx') + " sy " + this.reader.getFloat(scale[0], 'sy')+ " sz "+
-					 this.reader.getFloat(scale[0], 'sz'));
+	//console.log("SCALE :  sx " + this.reader.getFloat(scale[0], 'sx') + " sy " + this.reader.getFloat(scale[0], 'sy')+ " sz "+
+	//				 this.reader.getFloat(scale[0], 'sz'));
 	
 
 	mat4.scale(this.scene.matrixInitial, this.scene.matrixInitial, initialScale);
@@ -230,9 +230,9 @@ MySceneGraph.prototype.parseInitials= function(rootElement) {
 	if (reference.length != 1)
 		return "number of reference elements wrong. Number was " + reference.length;
 	
-	console.log("Axis Length before: " + this.scene.axis.length);
+	//console.log("Axis Length before: " + this.scene.axis.length);
 	this.scene.axis.length = reference[0].attributes.getNamedItem("length").value;
-	console.log("Axis Length after: " + this.scene.axis.length);
+	//console.log("Axis Length after: " + this.scene.axis.length);
 }
 
 /**
@@ -509,7 +509,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 	if (leaf == null)
 		return "Leaf element is missing.";
 
-	console.log("Leaf Length: " + leaf.length);
+	//console.log("Leaf Length: " + leaf.length);
 	
 	for(var i = 0; i<leaf.length ; i++){
 		
@@ -546,7 +546,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 
 		if(type == "plane"){
 			parts = this.reader.getInteger(leaf[i], 'parts',true);
-			console.log('PARTS : ' + parts);
+			//console.log('PARTS : ' + parts);
 		}
 
 		if(type == "patch"){
@@ -609,7 +609,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 	var root_id = this.reader.getString(root[0], 'id');
 	
 	this.scene.tree.root = root_id;
-	console.log("Root id: " + root_id);
+	//console.log("Root id: " + root_id);
 
 	var node = nodes[0].getElementsByTagName('NODE');
 
@@ -623,7 +623,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 
 		var node_id = this.reader.getString(node[i], 'id');
 
-		console.log("NODE ID: " + node_id);
+		//console.log("NODE ID: " + node_id);
 	
 		if(node_id == null)
 			return "Node ID null."
@@ -632,13 +632,13 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 
 		var material_id = this.reader.getString(material[0], 'id');
 
-		console.log("Material " + material_id);
+		//console.log("Material " + material_id);
 
 		var texture = node[i].getElementsByTagName('TEXTURE');
 
 		var texture_id = this.reader.getString(texture[0], 'id');
 
-			console.log("Texture " + texture_id);
+			//console.log("Texture " + texture_id);
 
 		var animation = node[i].getElementsByTagName('animationref');
 		var animations = []
@@ -672,7 +672,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 											  this.reader.getFloat(e, 'y'),  
 											  this.reader.getFloat(e, 'z'));
 
-				console.log("Translation : " + "x " + this.reader.getFloat(e, 'x') + " y " +  this.reader.getFloat(e, 'y') + " z " +  this.reader.getFloat(e, 'z'));
+				//console.log("Translation : " + "x " + this.reader.getFloat(e, 'x') + " y " +  this.reader.getFloat(e, 'y') + " z " +  this.reader.getFloat(e, 'z'));
 				
 				mat4.translate(transMatrix, transMatrix, translation);
 
@@ -684,7 +684,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 										this.reader.getFloat(e, 'sy'),
 										this.reader.getFloat(e, 'sz'));
 
-				console.log("Scale : " + "sx " + this.reader.getFloat(e, 'sx') + " sy " +  this.reader.getFloat(e, 'sy') + " sz " +  this.reader.getFloat(e, 'sz'));
+				//console.log("Scale : " + "sx " + this.reader.getFloat(e, 'sx') + " sy " +  this.reader.getFloat(e, 'sy') + " sz " +  this.reader.getFloat(e, 'sz'));
 
 				mat4.scale(transMatrix, transMatrix, scale);
 			}
@@ -730,7 +730,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 
 			var des_id = this.reader.getString(des_nodes[k], 'id');
 
-			console.log("Descendentes : " + des_id);
+			//console.log("Descendentes : " + des_id);
 					
 			mynode.addDescendant(des_id);		
 		}
@@ -761,15 +761,15 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 	for(var i = 0; i < animationList.length; i++){ // percorrer todas as animações encontradas
 
 		var id = this.reader.getString(animationList[i], 'id');
-		console.log("Id = " + id);
+		//console.log("Id = " + id);
 		var span = this.reader.getFloat(animationList[i], 'span');
-		console.log("Span = " + span);
+		//console.log("Span = " + span);
 		var type = this.reader.getString(animationList[i], 'type');
-		console.log("Type = " + type);
+		//console.log("Type = " + type);
 
 		if(type == 'linear'){ // linear animations
 
-			console.log("LINEAR ANIMATION!!!");
+			//console.log("LINEAR ANIMATION!!!");
 
 			var ctrlPoints = [];
 
@@ -785,12 +785,12 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 				ctrlPoints.push(y);
 				ctrlPoints.push(z);
 
-				console.log("point: (" + x + ", " + y + ", " + z + ")");
+				//console.log("point: (" + x + ", " + y + ", " + z + ")");
 			}
 
 			var id = new LinearAnimation(this.scene, id, span, ctrlPoints);
 
-			console.log("ctrlPoints FINAL!! ->> " + ctrlPoints);
+			//console.log("ctrlPoints FINAL!! ->> " + ctrlPoints);
 
 		}
 
@@ -803,13 +803,13 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			var radius = this.reader.getFloat(animationList[i], 'radius');
 
-			console.log("C = " + center + " r = " + radius);
+			//console.log("C = " + center + " r = " + radius);
 
 			var startang = this.reader.getFloat(animationList[i], 'startang');
 
 			var rotang = this.reader.getFloat(animationList[i], 'rotang');
 
-			console.log("A0 = " + startang + " Ar = " + rotang);
+			//console.log("A0 = " + startang + " Ar = " + rotang);
 
 			var id = new CircularAnimation(this.scene, id, span, center, radius, startang, rotang);
 		}
