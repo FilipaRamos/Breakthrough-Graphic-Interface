@@ -28,7 +28,6 @@ function MyMaterial(scene,id, shininess, specular, diffuse, ambient, emission){
 	var b = this.ambient.b;
 	var a = this.ambient.a;
 
-	console.log("Ambient : " + r + " , "+ g + " , "+ b  +" , " + a);
 
 	this.setAmbient(r,g,b,a);
 
@@ -37,7 +36,7 @@ function MyMaterial(scene,id, shininess, specular, diffuse, ambient, emission){
 	g = this.diffuse.g;
 	b = this.diffuse.b;
 	a = this.diffuse.a;
-	console.log("Diffuse : " + r + " , "+ g + " , "+ b  +" , " + a);
+	
 
 	this.setDiffuse(r,g,b,a);
 	
@@ -47,7 +46,6 @@ function MyMaterial(scene,id, shininess, specular, diffuse, ambient, emission){
 	b = this.specular.b;
 	a = this.specular.a;
 
-	console.log("Specular : " + r + " , "+ g + " , "+ b  +" , " + a);
 	this.setSpecular(r,g,b,a);
 
 	/** divides the rgba components of the emission */
@@ -56,7 +54,6 @@ function MyMaterial(scene,id, shininess, specular, diffuse, ambient, emission){
 	b = this.emission.b;
 	a = this.emission.a;
 
-console.log("Emission : " + r + " , "+ g + " , "+ b  +" , " + a);
 	this.setEmission(r,g,b,a);
 
 };

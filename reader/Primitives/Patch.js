@@ -35,12 +35,12 @@ var index=0;
 for(var k=0; k < (this.degree + 1); k++){      
    for(var h=0; h < (this.degree + 1); h++){
             sVertexes[h] = (controlVertex[index]);
-            console.log('Control Vertix: ' + controlVertex[index]);
+            //console.log('Control Vertix: ' + controlVertex[index]);
             index++;
      }
        controlvertexes.push(sVertexes);   
        sVertexes = [];     
-       console.log('Control textures' + controlvertexes);
+      // console.log('Control textures' + controlvertexes);
 }
 
     var nurbsSurface = new CGFnurbsSurface(this.degree,this.degree,knotU,knotV,controlvertexes);

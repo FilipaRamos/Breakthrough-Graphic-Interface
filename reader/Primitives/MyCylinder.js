@@ -10,7 +10,6 @@
  */
  function MyCylinder(scene,height, bottom_radius, top_radius, stacks, slices) {
   CGFobject.call(this,scene); 
-  console.log("My Cylinder parametros: " + height + " " + bottom_radius + " " + top_radius + " " + stacks+ " "+ slices);
   this.slices=slices;
   this.stacks=stacks;
   this.height = height;
