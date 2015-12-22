@@ -57,7 +57,8 @@ XMLscene.prototype.init = function (application) {
     //this.patch = new Patch(this, 20, 1, [[-0.5, 0.0, 0.5, 1], [-0.5, 0.0, -0.5, 1], [0.5, 0.0, 0.5, 1], [0.5, 0.0, -0.5, 1]]);
 	//this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
 	//this.eva = new Evaluator(this, 3, 2, 10, 15, [[-5,5,4,1],[-5,2,4.5,1],[-5,-1,4,1], [][][] , [][][], [][][]]);
-	this.board = new Board(this);
+	//this.board = new Board(this);
+	this.game = new Game(this);
 	//this.boat = new Boat(this);
 	//this.cube = new Cube(this);
 	//this.piece = new Piece(this, "silver");
@@ -97,7 +98,8 @@ XMLscene.prototype.initLights = function () {
 * @constructor
 */
 XMLscene.prototype.initCameras = function () {
-    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+    this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(5, 30, 30), vec3.fromValues(5, 0, 5));
+
 };
 
 /**
@@ -202,8 +204,9 @@ XMLscene.prototype.display = function () {
 	//this.t.display();
 	//this.plane.display();
 	// this.patch.display();
-	this.board.display();
+	//this.board.display();
 	//this.boat.display();
+	this.game.display();
 
 	//this.pushMatrix();
 

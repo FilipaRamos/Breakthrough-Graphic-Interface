@@ -16,4 +16,4 @@ function Celula(scene, type, highted, selected) {
     };
 
 
-Celula.prototype.constructor = MyLeave;
+Celula.prototype.constructor = Celula;
