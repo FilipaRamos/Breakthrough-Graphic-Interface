@@ -36,7 +36,7 @@ function Board(scene) {
     row = [];
   }
  
-	this.textura = new CGFtexture(this.scene,"texture/nave.jpg");
+	this.textura = new CGFtexture(this.scene,"texture/wood_board.jpg");
 
 
 };

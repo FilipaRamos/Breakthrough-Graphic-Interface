@@ -1,3 +1,6 @@
+function Connection() {
+}
+
 Connection.prototype.getPrologRequest = function(requestString, onSuccess){
     var requestPort = port || 8081
     var request = new XMLHttpRequest();
@@ -18,20 +21,36 @@ Connection.prototype.makeRequest = function(request){
 }
 
 //Handle the Reply
+/*
 Connection.prototype.handleReply = function(data){
     data.target.response;
 }
+*/
 
-
-Connection.prototype.initBoard = function(size, callback){
+Connection.prototype.initBoard = function(callback){
     var self = this;
     this.getPrologRequest("initial", function(data) {
-        var tabuleiro = self.tabPrologToJavascript(data.target.response);
+        var tabuleiro = self.boardPrologToJs(data.target.response);
         if (typeof callback === "function") {
             callback(tabuleiro);
         }
     });
 }
+
+Connection.prototype.boardPrologToJs = function(string){
+    
+    var i, j;
+    var tabuleiro;
+    /*
+        string = " [[0,0,0,0,0,0,0,0,0,0,0],[0,0,0,1,1,1,1,1,0,0,0],[0,0,0,0,0,0,0,0,0,0,0],[0,1,0,0,2,2,2,0,0,1,0], ...]";
+    */
+    var retorno = JSON.parse("[" + string + "]");
+
+    tabuleiro = retorno;   
+
+
+}
+
 
 /*
 

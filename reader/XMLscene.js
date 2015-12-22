@@ -58,6 +58,7 @@ XMLscene.prototype.init = function (application) {
 	//this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
 	//this.eva = new Evaluator(this, 3, 2, 10, 15, [[-5,5,4,1],[-5,2,4.5,1],[-5,-1,4,1], [][][] , [][][], [][][]]);
 	this.board = new Board(this);
+	//this.boat = new Boat(this);
 	//this.cube = new Cube(this);
 	//this.piece = new Piece(this, "silver");
 	//this.anotherPiece = new Piece(this, "golden");
@@ -202,6 +203,7 @@ XMLscene.prototype.display = function () {
 	//this.plane.display();
 	// this.patch.display();
 	this.board.display();
+	//this.boat.display();
 
 	//this.pushMatrix();
 
