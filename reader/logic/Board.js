@@ -54,8 +54,7 @@ Board.prototype.initCelulas = function() {
  * draw the vehicle
  * @constructor
  */
-Board.prototype.display = function() 
-{
+Board.prototype.display = function() {
     var i;
     var j;
     var k=0;
@@ -99,5 +98,4 @@ Board.prototype.display = function()
     
     this.scene.popMatrix();
 
-}
-;
+};

@@ -29,7 +29,6 @@ XMLscene.prototype.init = function (application) {
     this.textures = [];
 	this.animations = [];
 
-	//this.lights = [];
 	this.onOff = [false,false,false,false,false,false,false,false];
 	this.luzesid = [];
 	
@@ -53,20 +52,8 @@ XMLscene.prototype.init = function (application) {
 	this.materialDefault.setSpecular(0.0, 0.0, 0.0, 1);	
 	this.materialDefault.setShininess(120);
 
-    //this.cyl = new MyCylinder(this,1,0.5,0,9,50);
-    //this.tri = new MyTriangle(this,-0.5,-0.5,0,0.5,-0.5,0,0,0.5,0);
-    //this.spe = new MySphere(this, 0.5,50,50);
-    //this.plane = new Plane(this, 20);
-    //this.patch = new Patch(this, 20, 1, [[-0.5, 0.0, 0.5, 1], [-0.5, 0.0, -0.5, 1], [0.5, 0.0, 0.5, 1], [0.5, 0.0, -0.5, 1]]);
-	//this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
-	//this.eva = new Evaluator(this, 3, 2, 10, 15, [[-5,5,4,1],[-5,2,4.5,1],[-5,-1,4,1], [][][] , [][][], [][][]]);
-	//this.board = new Board(this);
 	this.game = new Game(this);
-	//this.boat = new Boat(this);
-	//this.cube = new Cube(this);
-	//this.piece = new Piece(this, "silver");
-	//this.anotherPiece = new Piece(this, "golden");
-	//this.flagPiece = new Piece(this, "flagship");
+	//this.menu = new Menu(this);
 	
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
@@ -76,7 +63,6 @@ XMLscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 	this.enableTextures(true);
 	this.axis=new CGFaxis(this);
-
 
 	this.silverTexture = new CGFtexture(this,"images/ship.jpg");
  	this.goldenTexture = new CGFtexture(this,"images/goldenShip.png");
@@ -174,15 +160,7 @@ XMLscene.prototype.display = function () {
 	
 	this.setDefaultAppearance();
 	
-	// ---- END Background, camera and axis setup
-
-	// it is important that things depending on the proper loading of the graph
-	// only get executed after the graph has loaded correctly.
-	// This is one possible way to do it
-		
-	
-	if (this.graph.loadedOk)
-	{
+	if (this.graph.loadedOk){
 
 		// Draw axis
 		if(this.axis.length != 0)
@@ -202,27 +180,11 @@ XMLscene.prototype.display = function () {
 	this.logPicking();
 	this.clearPickRegistration();
 
-	//Draw objects
-	//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
-	//this.cyl.display();
-	//this.t.display();
-	//this.plane.display();
-	// this.patch.display();
-	//this.board.display();
-	//this.boat.display();
 	this.game.display();
+	}
 
-	//this.pushMatrix();
+	//this.menu.display(); 
 
-	//this.piece.display();
-	/*this.translate(0,2,0);
-	this.anotherPiece.display();
-	this.translate(0,2,0);
-	this.flagPiece.display();	
-	this.popMatrix();*/
-
-	};	
-    //this.shader.unbind();
 };
 
 /**
@@ -315,7 +277,6 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 		for(var i = 0; i < node.descendants.length; i++){
 			this.pushMatrix();
 			//Adicionar animações
-			//this.multMatrix(matrixAnimation);
 			this.multMatrix(node.transformation);
 
 			this.displayNode(node.descendants[i], nextTextureID, nextMaterialID);
