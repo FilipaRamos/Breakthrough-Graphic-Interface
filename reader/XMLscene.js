@@ -154,8 +154,6 @@ XMLscene.prototype.display = function () {
 	// Apply transformations corresponding to the camera position relative to the origin
 	this.applyViewMatrix();
 
-	
-
 	//Draw objects
 	
 	this.setDefaultAppearance();
