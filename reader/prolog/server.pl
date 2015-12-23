@@ -102,7 +102,7 @@ print_header_line(_).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Require your Prolog Files here
-:-['Breakthru.pl'].
+:- include('Breakthru.pl').
 
 
 parse_input(handshake, handshake).
@@ -117,4 +117,4 @@ parse_input(initial, Res) :- initial_board(Res).
 parse_input(movePiece(Board,X,Y,XF,YF,NewBoard2), Res) :- movePiece(Board,X,Y,XF,YF,Res).
 
 
-parse_input(getMoves(Board,Player,CostLeft),List):- listAllPossibleMoves(Board,Player,CostLeft,List).
+parse_input(getMoves(Board,Player,CostLeft),[InitList, EndList, CostList]):- listAllPossibleMoves(Board,Player,CostLeft,List), parsingListOfPlays(List, InitList, EndList, CostList).
