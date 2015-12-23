@@ -250,6 +250,11 @@ motherShipPositionValue(Board,Value):-whereM(Board,X,Y), Value is sqrt((abs(X-6)
 
 listAllPossibleMoves(Board,Player,CostLeft,List):-findall(X-Y-XF-YF-CostToSpend,allPossibleMoves(Board,Player,CostLeft,X,Y,XF,YF,CostToSpend),List).
 
+parsingListOfPlays([],[],[],[]).
+
+parsingListOfPlays([X-Y-XF-YF-CostToSpend|List],[[X,Y]|InitList],[[XF,YF]|EndList],[CostToSpend|CostList]):-parsingListOfPlays(List,InitList,EndList,CostList).
+
+
 %testMoves(Board,Player,CostLeft,XIndex,YIndex,XFIndex,YFIndex,CostToSpend). Tests if the Move can be done
 
 testMoves(Board,Player,CostLeft,XIndex,YIndex,XFIndex,YFIndex,CostToSpend):-	canUseThisPiece(Board,XIndex,YIndex,Player,CostLeft,NewCost),

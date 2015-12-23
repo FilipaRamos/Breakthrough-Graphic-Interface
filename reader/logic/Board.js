@@ -67,7 +67,8 @@ Board.prototype.display = function()
             this.scene.translate(1.2, 0, 0);
             if(this.floor[i][j].selected)
                 this.textura1.bind();
-            else this.textura.bind();
+            else 
+                this.textura.bind();
             this.scene.registerForPick(k, this.floor[i][j]);
             this.floor[i][j].display();
             k++;

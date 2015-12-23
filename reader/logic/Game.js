@@ -2,6 +2,7 @@ function Game(scene) {
     this.connection = new Connection();
     this.scene = scene;
     this.tabuleiro = new Board(scene);
+    this.costLeft = 2;
 
     this.player = 0;
 
@@ -18,12 +19,12 @@ Game.prototype.init = function() {
     });
 }
 
-Game.prototype.validMove = function(){
+Game.prototype.getMoves = function(){
     var self = this;
-    this.connection.initBoard(function(arr) {
+    this.connection.getMoves(this.tabuleiro.board,this.player,this.costLeft,function(arr){
         // arr lista de 3 elementos
-        self.tabuleiro.board=board;
-        self.tabuleiro.display();
+       
+        console.log(arr);
     });
 }
 

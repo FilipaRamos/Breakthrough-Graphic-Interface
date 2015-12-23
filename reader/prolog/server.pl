@@ -117,4 +117,4 @@ parse_input(initial, Res) :- initial_board(Res).
 parse_input(movePiece(Board,X,Y,XF,YF,NewBoard2), Res) :- movePiece(Board,X,Y,XF,YF,Res).
 
 
-parse_input(getPlays(Board,Player,CostLeft),[InitList,EndList,CostList]):- listAllPossibleMoves(Board,Player,CostLeft,List), parsingListOfPlays(List,InitList,EndList,CostList).
+parse_input(getMoves(Board,Player,CostLeft),List):- listAllPossibleMoves(Board,Player,CostLeft,List).
