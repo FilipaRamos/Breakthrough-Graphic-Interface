@@ -39,7 +39,10 @@ XMLscene.prototype.init = function (application) {
 	this.gui = new dat.GUI();
 
   	this.luzes=this.gui.addFolder("ON/OFF");
+  	this.undo = this.gui.addFolder("UNDO");
 	this.luzes.open();
+
+	this.undo.add(this.onOff, 4,this.onOff[4]).name("undo move");
 
 	this.matrixInitial = mat4.create();
 	
