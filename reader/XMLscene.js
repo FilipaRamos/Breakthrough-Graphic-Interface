@@ -200,6 +200,7 @@ XMLscene.prototype.display = function () {
 		}
 
 	this.logPicking();
+	this.clearPickRegistration();
 
 	//Draw objects
 	//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
@@ -341,7 +342,8 @@ XMLscene.prototype.logPicking = function(){
 			for (var i=0; i< this.pickResults.length; i++) {
 				var obj = this.pickResults[i][0];
 				if (obj){
-					var customId = this.pickResults[i][1];				
+					var customId = this.pickResults[i][1];	
+					obj.selected = true;			
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 				}
 			}

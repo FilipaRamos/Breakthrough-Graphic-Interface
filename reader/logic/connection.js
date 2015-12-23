@@ -27,6 +27,17 @@ Connection.prototype.initBoard = function(callback){
     });
 }
 
+Connection.prototype.validMove = function( board, player, costLeft, callback){
+    var self = this;
+    //[InitList,EndList,CostList]
+    this.getPrologRequest("getPlays(" + board + player + costLeft + ")", function(data) {
+        var arr =  JSON.parse(data.target.response);
+        if (typeof callback === "function") {
+            callback(arr);
+        }
+    });
+}
+
 Connection.prototype.boardFromProlog = function(string){
     
     var i, j;
