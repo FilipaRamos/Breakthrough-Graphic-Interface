@@ -39,6 +39,20 @@ Connection.prototype.getMoves = function(board, player, costLeft, callback){
     });
 }
 
+
+Connection.prototype.movePiece = function(board, x, y, xf, yf, callback){
+    var self = this;
+    //movePiece(Board,X,Y,XF,YF,NewBoard2)
+    //[InitList,EndList,CostList]
+    var board=JSON.stringify(board);
+    this.getPrologRequest("movePiece(" + board + "," + x + "," + y + "," + xf + "," + yf + ")", function(data) {
+        var newBoard =  JSON.parse(data.target.response);
+        if (typeof callback === "function") {
+            callback(newBoard);
+        }
+    });
+}
+
 Connection.prototype.boardFromProlog = function(string){
     
     var i, j;

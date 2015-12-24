@@ -24,7 +24,7 @@ Board.prototype.constructor = Board;
 Board.prototype.initFloor = function() {
     
     var row = [];
-
+    
     for (var i = 0; i < 11; i++) {
         for (var j = 0; j < 11; j++) {
             var piece = new Cube(this.scene,false,false);
@@ -42,6 +42,13 @@ Board.prototype.initCelulas = function() {
     for (i = 0; i < 11; i++) {
         for (j = 0; j < 11; j++) {
             var celula = new Celula(this.scene,this.board[i][j],false,false);
+            if (this.board[i][j] == 1)
+                celula.player = 1;
+            else if (this.board[i][j] == 2 || this.board[i][j] == 5) {
+                celula.player = 0;
+            }
+            
+            celula.posicao = [i, j];
             row[j] = celula;
         }
         this.celulas[i] = row;
@@ -57,19 +64,20 @@ Board.prototype.initCelulas = function() {
 Board.prototype.display = function() {
     var i;
     var j;
-    var k=0;
+    var k = 1;
     
     this.scene.pushMatrix();
     
     for (i = 0; i < 11; i++) {
         for (j = 0; j < 11; j++) {
             this.scene.translate(1.2, 0, 0);
-            if(this.floor[i][j].selected)
+            if (this.floor[i][j].selected)
                 this.textura1.bind();
-            if(this.floor[i][j].highted)
-               this.textura1.bind();
-            else 
+            if (this.floor[i][j].highlighted)
+                this.textura1.bind();
+            else
                 this.textura.bind();
+            this.floor[i][j].posicao = [i, j];
             this.scene.registerForPick(k, this.floor[i][j]);
             this.floor[i][j].display();
             k++;
@@ -80,8 +88,8 @@ Board.prototype.display = function() {
     
     this.scene.translate(0, 1, -11 * 1.2);
     
-    k=500;
-
+    k = 500;
+    
     if (this.celulas[0] !== undefined) {
         for (i = 0; i < 11; i++) {
             for (j = 0; j < 11; j++) {
@@ -92,7 +100,7 @@ Board.prototype.display = function() {
                 }
                 k++;
             }
-
+            
             this.scene.translate(-11 * 1.2, 0, 1.2);
         }
     }
@@ -100,4 +108,5 @@ Board.prototype.display = function() {
     
     this.scene.popMatrix();
 
-};
+}
+;

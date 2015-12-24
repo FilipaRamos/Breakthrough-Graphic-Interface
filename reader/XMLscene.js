@@ -69,6 +69,9 @@ XMLscene.prototype.init = function (application) {
  	this.falgShipTexture = new CGFtexture(this, "images/flagShip.png");
 
 	this.setUpdatePeriod(10);
+
+	this.oldX;
+	this.oldY;
 	
 };
 
@@ -303,14 +306,31 @@ XMLscene.prototype.logPicking = function(){
 			for (var i=0; i< this.pickResults.length; i++) {
 				var obj = this.pickResults[i][0];
 				if (obj){
-					var customId = this.pickResults[i][1];	
-					obj.selected = true;
-					//if(obj.primitive === "Piece")		
-						this.game.getMoves(Math.floor(customId/11), customId%11);	
+					var customId = this.pickResults[i][1]-1;	
+					//if(obj.primitive === "Piece")	
+						//this.game.getMoves(Math.floor(customId/11), customId%11);	
+	
+					/*	this.game.getMoves(obj.posicao[0], obj.posicao[1]);
+						if(obj.highlighted){
+							this.game.movePiece(this.oldX, this.oldY, obj.posicao[0], obj.posicao[1]);
+						}
+						this.oldX = obj.posicao[0];
+						this.oldY = obj.posicao[1];
+					*/
+					this.game.clickEvent(customId,obj);
+					
 					console.log("Picked object: " + obj + ", with pick id " + customId);
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
 		}		
 	}
+}
+
+XMLscene.prototype.sartPiking = function(obj){
+	obj.selected = true;
+}
+
+XMLscene.prototype.resartPiking = function(obj){
+	obj.selected = false;
 }

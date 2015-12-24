@@ -1,8 +1,9 @@
 function Piece(scene, type) {
 
   CGFobject.call(this, scene);
-  this.onePiece = new MySphere(scene, 0.5, 50, 25);   
-
+  this.onePiece = new MyBoat(scene) /*(scene, 0.5, 50, 25)*/;   
+  
+  
   this.type = type;
   this.scene = scene;
 
@@ -31,6 +32,8 @@ Piece.prototype.display = function () {
  //   return "error on the ship's type";
 
  // create a sphere which will be the piece
+  this.scene.scale(1,0.5,0.5);
+  this.scene.rotate(Math.PI/2, 0,1,0);
   this.onePiece.display(); 
   
   this.scene.popMatrix();

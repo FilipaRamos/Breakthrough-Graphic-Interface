@@ -1,8 +1,8 @@
 function Cube(scene, type, highted, selected) {
         CGFobject.call(this, scene);
-          this.highted = highted;
+          this.highlighted = highted;
           this.selected = selected;	
-	 
+	 this.posicao = [];
     this.initBuffers();
 };
 
