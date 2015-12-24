@@ -37,11 +37,15 @@ XMLscene.prototype.init = function (application) {
 	this.interface = new CGFinterface(this,application);
 	this.gui = new dat.GUI();
 
-  	this.luzes=this.gui.addFolder("ON/OFF");
-  	this.undo = this.gui.addFolder("UNDO");
-	this.luzes.open();
+	//this.gui.add(this, 'undo').name("Undo");
 
-	this.undo.add(this.onOff, 4,this.onOff[4]).name("undo move");
+  	this.luzes=this.gui.addFolder("ON/OFF");
+  	this.theme = this.gui.addFolder("THEME");
+	this.luzes.open();
+	this.theme.open();
+
+	this.theme.add(this.onOff, 5,this.onOff[5]).name("sea wonder :)");
+	this.theme.add(this.onOff, 6, this.onOff[6]).name("star wars!!");
 
 	this.matrixInitial = mat4.create();
 	
@@ -69,6 +73,12 @@ XMLscene.prototype.init = function (application) {
  	this.falgShipTexture = new CGFtexture(this, "images/flagShip.png");
 
 	this.setUpdatePeriod(10);
+
+	this.undo = function(){
+ 		 if(this.game){
+   			this.game.undo();
+  		}
+ 	}
 	
 };
 
