@@ -19,6 +19,12 @@ XMLscene.prototype.init = function (application) {
     // para apagar o log do picking
     this.clearPickRegistration();
 
+    this.undo = function(){
+ 		 if(this.game){
+   			this.game.undo();
+  		}
+ 	}
+
     this.initCameras();
 
     this.initLights();
@@ -37,7 +43,7 @@ XMLscene.prototype.init = function (application) {
 	this.interface = new CGFinterface(this,application);
 	this.gui = new dat.GUI();
 
-	//this.gui.add(this, 'undo').name("Undo");
+	this.gui.add(this, 'undo').name("Undo");
 
   	this.luzes=this.gui.addFolder("ON/OFF");
   	this.theme = this.gui.addFolder("THEME");
@@ -73,12 +79,6 @@ XMLscene.prototype.init = function (application) {
  	this.falgShipTexture = new CGFtexture(this, "images/flagShip.png");
 
 	this.setUpdatePeriod(10);
-
-	this.undo = function(){
- 		 if(this.game){
-   			this.game.undo();
-  		}
- 	}
 	
 };
 
