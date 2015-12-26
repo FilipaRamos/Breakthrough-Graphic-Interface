@@ -80,8 +80,7 @@ XMLscene.prototype.init = function (application) {
 
 	this.setUpdatePeriod(10);
 
-	this.oldX;
-	this.oldY;
+	this.undo = function(){ this.game.undo(); };
 	
 };
 
