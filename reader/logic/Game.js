@@ -3,13 +3,17 @@ function Game(scene) {
     this.scene = scene;
     this.initTabuleiro = new Board(scene);
     this.newTabuleiro = new Board(scene);
-    this.costLeft = 2;
+    this.newPiece;
+   
+    
     this.state = "start";
     this.selectedObj;
-    
-    this.jogadas = [];
+    this.costLeft = 2;
+    this.history = [];
+   
     this.player = 0;
     this.possibleMoves = [];
+    this.movesCost = [];
     
     this.init();
 }
@@ -21,6 +25,7 @@ Game.prototype.init = function() {
     var self = this;
     this.connection.initBoard(function(board) {
         self.initTabuleiro.board = board;
+        self.history.push(board);
         self.initTabuleiro.initCelulas();
     });
 }
@@ -31,19 +36,21 @@ Game.prototype.getMoves = function(posX, posY) {
         // arr lista de 3 elementos
         console.log("posX " + posX);
         console.log("posY " + posY);
+        console.log(arr);
         var initList = arr[0];
         for (var i = 0; i < initList.length; i++) {
-            if (posX === (initList[i][0] - 1) && posY === (initList[i][1] - 1)) {
+            if (posX == (initList[i][0] - 1) && posY == (initList[i][1] - 1)) {
                 console.log(arr[0][i][0] - 1);
                 self.possibleMoves.push([arr[1][i][0] - 1, arr[1][i][1] - 1]);
+                self.movesCost.push(arr[2][i]);
             }
         }
         
         for (i = 0; i < self.possibleMoves.length; i++) {
-            self.initTabuleiro.floor[self.possibleMoves[i][0]][self.possibleMoves[i][1]].highlighted = true;
+            self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = true;
         }
 
-        self.initTabuleiro.floor[self.selectedObj.posicao[0]][self.selectedObj.posicao[1]].highlighted = true;
+        self.initTabuleiro.celulas[self.selectedObj.posX][self.selectedObj.posY].highlighted = true;
     
     });
 }
@@ -55,19 +62,49 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
     console.log("final: " + posXFinal + 1 + " y " + posYFinal + 1);
     this.connection.movePiece(this.initTabuleiro.board, posX + 1, posY + 1, posXFinal + 1, posYFinal + 1, function(newBoard) {
         // arr lista de 3 elementos
-        console.log(newBoard);
+        console.log("NewBoard" + newBoard);
         self.initTabuleiro.board = newBoard;
         self.initTabuleiro.initCelulas();
+        self.history.push(newBoard);
         
         for (i = 0; i < self.possibleMoves.length; i++) {
-            self.initTabuleiro.floor[self.possibleMoves[i][0]][self.possibleMoves[i][1]].highlighted = false;
+            self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = false;
+            if(self.possibleMoves[i][0] == posXFinal && self.possibleMoves[i][1] == posYFinal)
+            {
+                self.costLeft -= self.movesCost[i];
+                console.log("cost left " + self.costLeft);
+            }
         }
-        self.initTabuleiro.floor[self.selectedObj.posicao[0]][self.selectedObj.posicao[1]].highlighted = false;
+        self.initTabuleiro.celulas[self.selectedObj.posX][self.selectedObj.posY].highlighted = false;
 
         self.possibleMoves = [];
     });
 
 }
+
+Game.prototype.undo = function(){
+    if (this.history.length > 1) {
+        var diff = this.history[this.history.length - 2];
+        this.initTabuleiro.board = diff;
+        this.initTabuleiro.initCelulas();
+        this.display();
+        this.history.pop();
+    }
+    return this.initTabuleiro.board;
+}
+
+Game.prototype.continueGame = function() {
+    var self = this;
+    this.connection.continueGame(this.initTabuleiro.board, function(res) {
+        if(!res){
+            return false;
+        }
+        else {
+            return true;
+        }
+    });
+}
+
 
 Game.prototype.display = function() {
     
@@ -79,10 +116,11 @@ Game.prototype.display = function() {
 
 Game.prototype.deselect = function(){
      for (i = 0; i < this.possibleMoves.length; i++) {
-           this.initTabuleiro.floor[this.possibleMoves[i][0]][this.possibleMoves[i][1]].highlighted = false;
+           this.initTabuleiro.floor[this.possibleMoves[i][1]][this.possibleMoves[i][0]].highlighted = false;
       }
 
-      this.initTabuleiro.floor[this.selectedObj.posicao[0]][this.selectedObj.posicao[1]].highlighted = false;
+     this.initTabuleiro.celulas[this.selectedObj.posX][this.selectedObj.posY].highlighted = false;
+      this.possibleMoves = [];
 }
 
 Game.prototype.clickEvent = function(id, obj) {
@@ -90,12 +128,13 @@ Game.prototype.clickEvent = function(id, obj) {
     if (this.state == "start") {
         if (id > 500 && obj.player == this.player) {
             this.selectedObj = obj;
-            this.getMoves(obj.posicao[0], obj.posicao[1]);
-            this.state = "selected";
+            this.selectedObj.selected = true;
+            this.getMoves(obj.posX, obj.posY);
+            this.state = "select";
         }
     } 
     else 
-    if (this.state == "selected") 
+    if (this.state == "select") 
     {
         if (this.selectedObj == obj) {
             this.deselect();
@@ -103,20 +142,37 @@ Game.prototype.clickEvent = function(id, obj) {
         } 
         else {
             if (obj.highlighted) {
-                this.movePiece(this.selectedObj.posicao[1], this.selectedObj.posicao[0], obj.posicao[1], obj.posicao[0]);
-                this.state = "move";
+                this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
+                this.state = "analyse";
             }
            }
       
     }
     
     else
-    if (this.state == "move") {
-          this.state = "analyse";
-    }
-    
-    if (this.state == "analyse") {
-        return;
-    }
+     if (this.state == "analyse") {
+       if(this.costLeft == 0){
+           if(this.player == 1)
+                this.player = 0;
+           else this.player = 1;
+           this.costLeft = 2;
+           this.state = "start";
+       }
+       else if(this.continueGame()){
+            this.state = "end";
+            console.log("END GAME!");
+            return;
+       }
+       
+       else{
+          if (id > 500 && obj.player == this.player) {
+            this.selectedObj = obj;
+            this.selectedObj.selected = true;
+            this.getMoves(obj.posX, obj.posY);
+            this.state = "select";
+        }
+       }
 
+    }
+   
 }

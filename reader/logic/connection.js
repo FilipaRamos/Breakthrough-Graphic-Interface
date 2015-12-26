@@ -53,6 +53,17 @@ Connection.prototype.movePiece = function(board, x, y, xf, yf, callback){
     });
 }
 
+Connection.prototype.continueGame = function(board, callback){
+    var self = this;
+    var board=JSON.stringify(board);
+    this.getPrologRequest("continueGame(" + board + ")", function(data) {
+        var res =  JSON.parse(data.target.response);
+        if (typeof callback === "function") {
+            callback(res);
+        }
+    });
+}
+
 Connection.prototype.boardFromProlog = function(string){
     
     var i, j;

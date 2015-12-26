@@ -1,9 +1,11 @@
-function Celula(scene, type, highted, selected) {
+function Celula(scene, type, highted, selected, posicaoX, posicaoY) {
   this.type = type; 
   this.highlighted = highted;
   this.selected = selected;
   this.primitive={};
-  this.posicao = [];
+  this.posX = posicaoX;
+  this.posY = posicaoY;
+  
   this.player;
    
   if(this.type === 0)

@@ -25,12 +25,12 @@ Board.prototype.initFloor = function() {
     
     var row = [];
     
-    for (var i = 0; i < 11; i++) {
-        for (var j = 0; j < 11; j++) {
-            var piece = new Cube(this.scene,false,false);
-            row[j] = piece;
+    for (var y = 0; y < 11; y++) {
+        for (var x = 0; x < 11; x++) {
+            var piece = new Cube(this.scene,false,false,x,y);
+            row[x] = piece;
         }
-        this.floor[i] = row;
+        this.floor[y] = row;
         row = [];
     }
 
@@ -39,19 +39,17 @@ Board.prototype.initFloor = function() {
 Board.prototype.initCelulas = function() {
     var row = [];
     
-    for (i = 0; i < 11; i++) {
-        for (j = 0; j < 11; j++) {
-            var celula = new Celula(this.scene,this.board[i][j],false,false);
-            if (this.board[i][j] == 1)
-                celula.player = 1;
-            else if (this.board[i][j] == 2 || this.board[i][j] == 5) {
-                celula.player = 0;
+    for (y = 0; y < 11; y++) {
+        for (x = 0; x < 11; x++) {
+            var piece = new Celula(this.scene,this.board[y][x],false,false, x, y);
+            if (this.board[y][x] == 1)
+                piece.player = 1;
+            else if (this.board[y][x] == 2 || this.board[y][x] == 5) {
+                piece.player = 0;
             }
-            
-            celula.posicao = [i, j];
-            row[j] = celula;
+            row[x] = piece;
         }
-        this.celulas[i] = row;
+        this.celulas[y] = row;
         row = [];
     }
 
@@ -77,7 +75,6 @@ Board.prototype.display = function() {
                 this.textura1.bind();
             else
                 this.textura.bind();
-            this.floor[i][j].posicao = [i, j];
             this.scene.registerForPick(k, this.floor[i][j]);
             this.floor[i][j].display();
             k++;
