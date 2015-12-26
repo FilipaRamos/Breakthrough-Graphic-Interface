@@ -2,6 +2,7 @@ function Celula(scene, type, highted, selected, posicaoX, posicaoY) {
   this.type = type; 
   this.highlighted = highted;
   this.selected = selected;
+  this.animation;
   this.primitive={};
   this.posX = posicaoX;
   this.posY = posicaoY;

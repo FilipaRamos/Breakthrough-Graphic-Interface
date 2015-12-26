@@ -2,7 +2,7 @@ function Piece(scene, type) {
 
   CGFobject.call(this, scene);
   this.onePiece = new MyBoat(scene) /*(scene, 0.5, 50, 25)*/;   
-    
+  
   this.type = type;
   this.scene = scene;
 

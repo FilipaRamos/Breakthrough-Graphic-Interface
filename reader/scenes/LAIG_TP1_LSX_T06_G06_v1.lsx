@@ -220,9 +220,9 @@
         <MATERIAL id="null" />    
         <TEXTURE id="null" />    
         <DESCENDANTS>
-            <DESCENDANT id="planet" /> 
+          <!--  <DESCENDANT id="planet" /> 
             <DESCENDANT id="battleship" />
-          <!-- <DESCENDANT id="mesa" /> 
+           <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
             <DESCENDANT id="paredeEsquerda" /> 
             <DESCENDANT id="chao" />
