@@ -62,8 +62,9 @@ XMLscene.prototype.init = function (application) {
 	this.materialDefault.setSpecular(0.0, 0.0, 0.0, 1);	
 	this.materialDefault.setShininess(120);
 
-	this.game = new Game(this);
+	//this.game = new Game(this);
 	//this.menu = new Menu(this);
+	this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
 	
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
@@ -190,10 +191,11 @@ XMLscene.prototype.display = function () {
 	this.logPicking();
 	this.clearPickRegistration();
 
-	this.game.display();
+	//this.game.display();
 	}
 
 	//this.menu.display(); 
+	this.seaBoard.display();
 
 };
 

@@ -19,7 +19,7 @@
     <rotation axis="y" angle="0" />                  <!-- initial rotation 2 -->
     <rotation axis="z" angle="0" />                  <!-- initial rotation 3 -->
     <scale sx="1" sy="1" sz="1" />                  <!-- initial scaling -->
-    <reference length="0" />                          <!-- axis length; "0" means no axis-->
+    <reference length="1" />                          <!-- axis length; "0" means no axis-->
 </INITIALS>
 
  <!-- INITIALIZE THE ILUMINATION -->
@@ -36,7 +36,7 @@
 <LIGHTS>
     <LIGHT id="light0">                                    <!-- light identifier -->
         <enable value="1" />                         <!-- enable/disable -->
-        <position x="3.0" y="6.0" z="3.0" w="1.0" />       <!-- light position -->
+        <position x="8.0" y="6.0" z="13.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="1.0" g="1.0" b="0" a="1.0" />       <!-- specular component -->
@@ -44,7 +44,7 @@
 
      <LIGHT id="light1">                                    <!-- light identifier -->
         <enable value="0" />                         <!-- enable/disable -->
-        <position x="8.5" y="6.0" z="3.0" w="1.0" />       <!-- light position -->
+        <position x="12.5" y="6.0" z="13.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="0.0" g="0.0" b="0" a="0.0" />       <!-- specular component -->
@@ -52,7 +52,7 @@
 
      <LIGHT id="light2">                                    <!-- light identifier -->
         <enable value="1" />                         <!-- enable/disable -->
-        <position x="8.5" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
+        <position x="12.5" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />       <!-- specular component -->
@@ -60,7 +60,7 @@
 
      <LIGHT id="light3">                                    <!-- light identifier -->
         <enable value="1" />                         <!-- enable/disable -->
-        <position x="3.0" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
+        <position x="8.0" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="0.0" g="0.0" b="0" a="0.0" />       <!-- specular component -->
@@ -250,7 +250,7 @@
     <NODE id="planet">      
         <MATERIAL id="null" />    
         <TEXTURE id="null" />      
-        <SCALE sx="5" sy="5" sz="5" />
+        <SCALE sx="1" sy="1" sz="1" />
         <DESCENDANTS>
             <DESCENDANT id="terrain" /> 
         </DESCENDANTS>
