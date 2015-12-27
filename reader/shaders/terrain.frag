@@ -15,7 +15,5 @@ void main() {
     }
     else 
         gl_FragColor = texture2D(sandMsk, vTextureCoord);
-        
-
     
 }

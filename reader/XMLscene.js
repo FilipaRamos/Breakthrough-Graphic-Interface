@@ -25,6 +25,30 @@ XMLscene.prototype.init = function (application) {
   		}
  	}
 
+ 	// modo humano vs humano
+ 	this.hh = function(){
+ 		if(this.game){
+ 			console.log("H&H");
+ 			// chamar o humano vs humano
+ 		}
+ 	}
+
+ 	// modo humano vs bot
+ 	this.hb = function(){
+ 		if(this.game){
+ 			console.log("H&B");
+ 			// chamar o humano vs bot
+ 		}
+ 	}
+
+ 	// modo bot vs bot
+ 	this.bb = function(){
+ 		if(this.game){
+ 			console.log("B&B");
+ 			// chamar o bot vs bot
+ 		}
+ 	}
+
     this.initCameras();
 
     this.initLights();
@@ -47,11 +71,18 @@ XMLscene.prototype.init = function (application) {
 
   	this.luzes=this.gui.addFolder("ON/OFF");
   	this.theme = this.gui.addFolder("THEME");
+  	this.gameMode = this.gui.addFolder("GAME MODE");
+
 	this.luzes.open();
 	this.theme.open();
+	this.gameMode.open();
 
 	this.theme.add(this.onOff, 5,this.onOff[5]).name("sea wonder :)");
 	this.theme.add(this.onOff, 6, this.onOff[6]).name("star wars!!");
+
+	this.gameMode.add(this, 'hh').name("Human/Human");
+	this.gameMode.add(this, 'hb').name("Human/Bot");
+	this.gameMode.add(this, 'bb').name("Bot/Bot");
 
 	this.matrixInitial = mat4.create();
 	
@@ -62,11 +93,17 @@ XMLscene.prototype.init = function (application) {
 	this.materialDefault.setShininess(120);
 
 	this.game = new Game(this);
-	this.menu = new Menu(this);
-	//this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
+	this.menu = new menu(this);
+
+	console.log("INITTTTTTTTTT");
+
+	//this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
 	
+	console.log("terrain done!");
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
+	console.log("AQUI UMA TEXTURRA ZINHAAAA");
+	console.log(this.test);
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
@@ -81,10 +118,13 @@ XMLscene.prototype.init = function (application) {
 	this.appearance.setSpecular(0.0, 0.0, 0.0, 1);	
 	this.appearance.setShininess(120);
 
+	console.log("LETRAS TEXTURA");
+
 	// font texture: 16 x 16 characters
 	// http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
 	this.fontTexture = new CGFtexture(this, "textures/oolite-font.png");
 	this.appearance.setTexture(this.fontTexture);
+	console.log(this.appearance);
 
 	// plano onde estão as letras
 	this.logo = new Letters(this);
@@ -95,9 +135,13 @@ XMLscene.prototype.init = function (application) {
 	// set number of rows and columns in font texture
 	this.textShader.setUniformsValues({'dims': [16, 16]});
 
+	console.log("TEXTURAS DAS SHIPS");
 	this.silverTexture = new CGFtexture(this,"images/sea/ship.jpg");
+	console.log(this.silverTexture);
  	this.goldenTexture = new CGFtexture(this,"images/sea/goldenShip.png");
+ 	console.log(this.goldenTexture);
  	this.falgShipTexture = new CGFtexture(this, "images/sea/flagShip.png");
+ 	console.log(this.falgShipTexture);
 
 	this.setUpdatePeriod(10);
 	
@@ -225,12 +269,15 @@ XMLscene.prototype.display = function () {
 * @constructor
 * @param nodeID - the id of the node to be displayed
 */
+/*
 XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 	
 	var node = null;
 	var nextTextureID, nextMaterialID;
 	var matrixAnimation = mat4.create();
 	mat4.identity(matrixAnimation);
+
+	console.log("DISPLAY NODES");
 
 	//encontrar o node ou leave com esse id e depois chamar a funcao de novo
 
@@ -262,6 +309,8 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 		for(var l = 0; l < this.textures.length ; l++){
 			if(this.textures[l].id === textID)
 				var texture = this.textures[l];
+			console.log("NODES TEXTURES");
+			console.log(texture);
 		}
 
 		if(material !== undefined){
@@ -317,9 +366,10 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 
 		}
 	}
-
+	console.log("TEXTURES LIST FROM LSX");
+	console.log(this.textures);
 };
-
+*/
 
 XMLscene.prototype.update = function(currTime) {
     if (this.time === -1) {

@@ -98,7 +98,7 @@ MyVehicle.prototype.displayCreator = function(){
     this.scene.translate(0,0,-2);
     this.displayCabel();
     this.scene.popMatrix();
-}
+};
 
 /**
 * Creates the body display, as in, creates the main body of the ship.

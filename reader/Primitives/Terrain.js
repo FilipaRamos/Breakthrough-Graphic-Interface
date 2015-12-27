@@ -12,10 +12,15 @@ function Terrain(scene, texture, heightmap, sand) {
     
     this.shader = new CGFshader(this.scene.gl,"shaders/terrain.vert","shaders/terrain.frag");
     this.plane = new Plane(this.scene,128);
-       
-    this.colorMap = new CGFtexture(this.scene,texture);
-    this.hMap = new CGFtexture(this.scene,heightmap);
-    this.sandMsk = new  CGFtexture(this.scene,sand);
+
+    console.log("TEEEEERRRRRRRRRAAAAAAAIIIIIIIIINNNNNNNNN");
+
+    this.colorMap = new CGFtexture(this.scene, texture);
+    console.log(this.colorMap);
+    this.hMap = new CGFtexture(this.scene, heightmap);
+    console.log(this.hMap);
+    this.sandMsk = new  CGFtexture(this.scene, sand);
+    console.log(this.sandMsk);
 
     this.altura = 0.5;
     
@@ -44,7 +49,6 @@ Terrain.prototype.display = function() {
     this.plane.display();
     
     this.scene.setActiveShader(this.scene.defaultShader);
-
 }
 
 /**

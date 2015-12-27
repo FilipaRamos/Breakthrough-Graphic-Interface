@@ -13,7 +13,7 @@ function MyBoat(scene){
     this.sail1=new MyTriangle(scene,0,1.5,0,-0.5,0,0,0,0,0.2)
     this.sail2=new MyTriangle(scene,0,1.5,0,0,0,0.2,0.5,0,0)
     
-}
+};
 
 MyBoat.prototype = Object.create(CGFobject.prototype);
 MyBoat.prototype.constructor = MyBoat;
@@ -32,8 +32,8 @@ MyBoat.prototype.display = function (){
     
     this.scene.pushMatrix()
     this.scene.rotate(Math.PI,0,1,0);
-    
-        this.base1.display();
+
+    this.base1.display();
     this.base1back.display();
     this.base21.display();
     this.base22.display();
@@ -45,7 +45,7 @@ MyBoat.prototype.display = function (){
     this.sail2.display();
     this.scene.popMatrix();
 
-}
+};
 
 MyBoat.prototype.updateTexCoords = function(s, t){	
 };

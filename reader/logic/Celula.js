@@ -18,7 +18,6 @@ function Celula(scene, type, highted, selected, posicaoX, posicaoY) {
   else if(this.type === 5)
     this.primitive = new Piece(scene, "flagship");
  
-    };
-
+};
 
 Celula.prototype.constructor = Celula;

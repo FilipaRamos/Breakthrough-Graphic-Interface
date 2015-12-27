@@ -29,8 +29,7 @@ Plane.prototype.constructor = Plane;
  * @constructor
  */
 
-Plane.prototype.display = function () 
-{
+Plane.prototype.display = function () {
     this.scene.pushMatrix();
 	this.surfaces.display();
 	this.scene.popMatrix();

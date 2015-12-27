@@ -18,8 +18,6 @@ void main(){
 
     vec4 offset = vec4(0.0,0.0,0.0,0.0);
     vTextureCoord = aTextureCoord;
-
-    /*texture2D(sandMsk,aTextureCoord).r*/
     
     if(texture2D(sandMsk,aTextureCoord).r < 0.2)
          offset = vec4(aVertexPosition.x, aVertexPosition.y + texture2D(hMap,aTextureCoord).r *0.30 , aVertexPosition.z, 1.0);

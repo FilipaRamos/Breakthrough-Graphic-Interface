@@ -17,10 +17,12 @@ function Board(scene) {
 
     
     this.textura = new CGFtexture(this.scene,"texture/wood_board.jpg");
+    console.log("WOOD TEXTURE");
+    console.log(this.textura);
     this.textura1 = new CGFtexture(this.scene,"texture/wood_board_highlighted.jpg");
-
-}
-;
+    console.log("HIGHLIGHTED TEXTURE");
+    console.log(this.textura1);
+};
 
 Board.prototype.constructor = Board;
 
@@ -53,7 +55,7 @@ Board.prototype.initCelulas = function() {
     
     for (y = 0; y < 11; y++) {
         for (x = 0; x < 11; x++) {
-            var piece = new Celula(this.scene,this.board[y][x],false,false,x,y);
+            var piece = new Celula(this.scene, this.board[y][x], false, false, x, y);
             if (this.board[y][x] == 1)
                 piece.player = 1;
             else if (this.board[y][x] == 2 || this.board[y][x] == 5) {

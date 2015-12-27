@@ -1,17 +1,17 @@
-function Menu(scene) {
+function menu(scene) {
 
   CGFobject.call(this, scene);
 
 };
 
-Menu.prototype = Object.create(CGFobject.prototype);
-Menu.prototype.constructor = Menu;
+menu.prototype = Object.create(CGFobject.prototype);
+menu.prototype.constructor = menu;
 
 /*
 * Create a piece through the sphere primitive
 * @method
 */
-Menu.prototype.display = function () {
+menu.prototype.display = function () {
  	
 	this.option1 = new Cube(this.scene, false, false);
 	this.scene.registerForPick(1, this.option1);

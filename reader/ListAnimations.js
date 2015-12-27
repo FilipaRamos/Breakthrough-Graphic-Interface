@@ -55,7 +55,4 @@ ListAnimations.prototype.update = function (currTime){
      if(this.index != -1)
       this.animations[this.index].update(currTime - this.dec);     
 
-
-
-
 }
