@@ -37,6 +37,21 @@ XMLscene.prototype.init = function (application) {
 
 	this.onOff = [false,false,false,false,false,false,false,false];
 	this.luzesid = [];
+
+	// PARA AS LETRAS
+	// font texture: 16 x 16 characters
+	// http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
+	this.fontTexture = new CGFtexture(this, "textures/oolite-font.png");
+	this.appearance.setTexture(this.fontTexture);
+
+	// plano onde estão as letras
+	this.plane=new Plane(this);
+
+	// instatiate text shader
+	this.textShader=new CGFshader(this.gl, "shaders/font.vert", "shaders/font.frag");
+
+	// set number of rows and columns in font texture
+	this.textShader.setUniformsValues({'dims': [16, 16]});
 	
 	this.time = -1;
 
@@ -191,11 +206,11 @@ XMLscene.prototype.display = function () {
 	this.logPicking();
 	this.clearPickRegistration();
 
-	//this.game.display();
+	this.game.display();
 	}
 
 	//this.menu.display(); 
-	this.seaBoard.display();
+	//this.seaBoard.display();
 
 };
 
