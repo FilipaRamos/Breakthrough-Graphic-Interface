@@ -252,13 +252,13 @@ XMLscene.prototype.display = function () {
 		this.logPicking();
 		this.clearPickRegistration();
 
-		this.game.display();
+		//this.game.display();
 		//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
 	}
 
 
 
-	//this.menu.display(); 
+	this.menu.display(); 
 	this.setActiveShaderSimple(this.defaultShader);
 	//this.seaBoard.display();
 

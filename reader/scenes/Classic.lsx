@@ -74,146 +74,31 @@
 <TEXTURES>
 
     <!-- EMPTY TILE -->
-    <TEXTURE id="EmptyTile">
-        <file path="images/tiles/Classic/Empty/empty.png" />                             <!-- path to file -->
+    <TEXTURE id="woodBoard">
+        <file path="texture/wood_board.jpg" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE> 
 
     <!-- BLACK TILES -->
-    <TEXTURE id="BlackCopas">
-        <file path="images/tiles/Classic/Black/copas.png" />                             <!-- path to file -->
+    <TEXTURE id="highlightedBoard">
+        <file path="texture/wood_board_highlighted.jpg" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
 
-    <TEXTURE id="BlackEspadas">
-        <file path="images/tiles/Classic/Black/espadas.png" />                             <!-- path to file -->
+    <TEXTURE id="silver">
+        <file path="images/sea/ship.jpg" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
 
-    <TEXTURE id="BlackExclamation">
-        <file path="images/tiles/Classic/Black/excl.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-    
-    <TEXTURE id="BlackOuros">
-        <file path="images/tiles/Classic/Black/ouros.png" />                             <!-- path to file -->
+    <TEXTURE id="golden">
+        <file path="images/sea/goldenShip.png" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
 
-    <TEXTURE id="BlackPaus">
-        <file path="images/tiles/Classic/Black/paus.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <!-- BLUE TILES -->
-   <TEXTURE id="BlueCopas">
-        <file path="images/tiles/Classic/Blue/copas.png" />                             <!-- path to file -->
+    <TEXTURE id="flagship">
+        <file path="images/sea/flagShip.png" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
     </TEXTURE>
-
-    <TEXTURE id="BlueEspadas">
-        <file path="images/tiles/Classic/Blue/espadas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="BlueExclamation">
-        <file path="images/tiles/Classic/Blue/excl.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-    
-    <TEXTURE id="BlueOuros">
-        <file path="images/tiles/Classic/Blue/ouros.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="BluePaus">
-        <file path="images/tiles/Classic/Blue/paus.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <!-- GREEN TILES -->
-   <TEXTURE id="GreenCopas">
-        <file path="images/tiles/Classic/Green/copas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="GreenEspadas">
-        <file path="images/tiles/Classic/Green/espadas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="GreenExclamation">
-        <file path="images/tiles/Classic/Green/excl.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-    
-    <TEXTURE id="GreenOuros">
-        <file path="images/tiles/Classic/Green/ouros.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="GreenPaus">
-        <file path="images/tiles/Classic/Green/paus.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <!-- RED TILES -->
-   <TEXTURE id="RedCopas">
-        <file path="images/tiles/Classic/Red/copas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="RedEspadas">
-        <file path="images/tiles/Classic/Red/espadas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="RedExclamation">
-        <file path="images/tiles/Classic/Red/excl.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-    
-    <TEXTURE id="RedOuros">
-        <file path="images/tiles/Classic/Red/ouros.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="RedPaus">
-        <file path="images/tiles/Classic/Red/paus.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-     <!-- YELLOW TILES -->
-   <TEXTURE id="YellowCopas">
-        <file path="images/tiles/Classic/Yellow/copas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="YellowEspadas">
-        <file path="images/tiles/Classic/Yellow/espadas.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="YellowExclamation">
-        <file path="images/tiles/Classic/Yellow/excl.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-    
-    <TEXTURE id="YellowOuros">
-        <file path="images/tiles/Classic/Yellow/ouros.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="YellowPaus">
-        <file path="images/tiles/Classic/Yellow/paus.png" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <!-- FUNDO -->
-    <TEXTURE id="fundo">
-        <file path="images/sw.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
 
 </TEXTURES>
 
@@ -303,306 +188,50 @@
     </LEAF>
     <LEAF id="vehicle" type="vehicle"/> 
     <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
+    <LEAF id="boardTile" type="board" />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
 
 <NODES>
 
-    <ROOT id="fundo" />     <!-- identifier of root node of the scene graph; this node     -->
+    <ROOT id="game" />     <!-- identifier of root node of the scene graph; this node     -->
                          <!--   must be defined in one of the following NODE declarations -->
 
-    <NODE id="fundo">      
+    <NODE id="board">      
         <MATERIAL id="null" />    
-        <TEXTURE id="sw" />    
+        <TEXTURE id="woodBoard" />    
         <DESCENDANTS>
+            <DESCENDANT id="pieceSilver" />
+            <DESCENDANT id="pieceGolden" />
+            <DESCENDANT id="pieceFlag" />
         </DESCENDANTS>
 
     </NODE>
 
-    <!-- EMPTY TILE -->
-    <NODE id="emptyTile">      
+    <NODE id="pieceSilver">      
         <MATERIAL id="null" />    
-        <TEXTURE id="EmptyTile" />      
+        <TEXTURE id="silver" />      
         <SCALE sx="1" sy="1" sz="1" />
         <DESCENDANTS>
         </DESCENDANTS>
 
     </NODE>
     
-    <!-- COPAS -->
-   <NODE id="Copas">      
+   <NODE id="pieceGolden">      
         <MATERIAL id="null" />    
-        <TEXTURE id="null" />
+        <TEXTURE id="golden" />
         <SCALE sx="1" sy="1" sz="1" />  
         <DESCENDANTS>
-            <DESCENDANT id="BlackCopas" /> 
-            <DESCENDANT id="BlueCopas"  />
-            <DESCENDANT id="GreenCopas"  />
-            <DESCENDANT id="RedCopas"  />
-            <DESCENDANT id="YellowCopas"  />
         </DESCENDANTS>
-
     </NODE>
 
-    <NODE id="BlackCopas">      
+   <NODE id="pieceFlag">      
         <MATERIAL id="null" />    
-        <TEXTURE id="BlackCopas" />
+        <TEXTURE id="flagship" />
         <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlueCopas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlueCopas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="GreenCopas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="GreenCopas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="RedCopas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="RedCopas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="YellowCopas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="YellowCopas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <!-- ESPADAS -->
-    <NODE id="Espadas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />      
-        <SCALE sx="1" sy="1" sz="1" />
         <DESCENDANTS>
-            <DESCENDANT id="BlackEspadas" /> 
-            <DESCENDANT id="BlueEspadas" /> 
-            <DESCENDANT id="GreenEspadas" /> 
-            <DESCENDANT id="RedEspadas" /> 
-            <DESCENDANT id="YellowEspadas" /> 
         </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlackEspadas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlackEspadas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlueEspadas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlueEspadas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="GreenEspadas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="GreenEspadas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="RedEspadas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="RedEspadas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="YellowEspadas">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="YellowEspadas" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <!-- EXCLAMATION -->
-    <NODE id="Exclamations">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />      
-        <SCALE sx="1" sy="1" sz="1" />
-        <DESCENDANTS>
-            <DESCENDANT id="BlackExclamation" /> 
-            <DESCENDANT id="BlueExclamation" /> 
-            <DESCENDANT id="GreenExclamation" /> 
-            <DESCENDANT id="RedExclamation" /> 
-            <DESCENDANT id="YellowExclamation" /> 
-        </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlackExclamation">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlackExclamations" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlueExclamation">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlueExclamations" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="GreenExclamation">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="GreenExclamations" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="RedExclamation">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="RedExclamations" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="YellowExclamation">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="YellowExclamations" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <!-- OUROS -->
-    <NODE id="Ouros">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />      
-        <SCALE sx="1" sy="1" sz="1" />
-        <DESCENDANTS>
-            <DESCENDANT id="BlackOuros" /> 
-            <DESCENDANT id="BlueOuros" /> 
-            <DESCENDANT id="GreenOuros" /> 
-            <DESCENDANT id="RedOuros" /> 
-            <DESCENDANT id="YellowOuros" /> 
-        </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlackOuros">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlackOuros" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlueOuros">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlueOuros" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="GreenOuros">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="GreenOuros" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="RedOuros">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="RedOuros" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="YellowOuros">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="YellowOuros" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <!-- PAUS -->
-    <NODE id="Paus">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="null" />      
-        <SCALE sx="1" sy="1" sz="1" />
-        <DESCENDANTS>
-            <DESCENDANT id="BlackPaus" /> 
-            <DESCENDANT id="BluePaus" /> 
-            <DESCENDANT id="GreenPaus" /> 
-            <DESCENDANT id="RedPaus" /> 
-            <DESCENDANT id="YellowPaus" /> 
-        </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BlackPaus">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BlackPaus" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="BluePaus">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="BluePaus" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="GreenPaus">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="GreenPaus" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="RedPaus">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="RedPaus" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
-    </NODE>
-
-    <NODE id="YellowPaus">      
-        <MATERIAL id="null" />    
-        <TEXTURE id="YellowPaus" />
-        <SCALE sx="1" sy="1" sz="1" />  
-        <DESCENDANTS> </DESCENDANTS>
-
     </NODE>
 
 </NODES>
