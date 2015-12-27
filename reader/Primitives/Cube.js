@@ -4,6 +4,7 @@ function Cube(scene, highted, selected, posicaoX, posicaoY) {
     this.selected = selected;
     this.posX = posicaoX;
     this.posY = posicaoY;
+
     this.initBuffers();
 }
 ;

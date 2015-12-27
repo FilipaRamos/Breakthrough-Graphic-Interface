@@ -14,6 +14,7 @@ function Game(scene) {
     this.player = 0;
     this.possibleMoves = [];
     this.movesCost = [];
+    this.animations = [];
     
     this.init();
 }
