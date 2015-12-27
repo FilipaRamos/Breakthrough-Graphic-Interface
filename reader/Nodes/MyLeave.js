@@ -7,7 +7,7 @@
 * @param type - the type of the leave
 * @param coords - the coordinates of the leave
 */
-function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPoints, texture, heightmap) {
+function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPoints, texture, heightmap, kind) {
      this.id = id;
      this.type = type; 
      this.coords = coords;
@@ -37,6 +37,9 @@ function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPo
         
         else if(this.type == "terrain")
             this.primitive = new Terrain(scene, texture, heightmap);
+
+        else if(this.type == "piece")
+            this.scene.pieceType = kind;
        
     };
 

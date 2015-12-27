@@ -188,7 +188,8 @@
     </LEAF>
     <LEAF id="vehicle" type="vehicle"/> 
     <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
-    <LEAF id="boardTile" type="board" />
+    <LEAF id="onePiece" type="piece" kind="boat"/>
+    <LEAF id="oneTile" type="tile"  />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
@@ -200,38 +201,43 @@
 
     <NODE id="board">      
         <MATERIAL id="null" />    
-        <TEXTURE id="woodBoard" />    
+        <TEXTURE id="null" />    
         <DESCENDANTS>
-            <DESCENDANT id="pieceSilver" />
-            <DESCENDANT id="pieceGolden" />
-            <DESCENDANT id="pieceFlag" />
+            <DESCENDANT id="piece" />
+            <DESCENDANT id="tile" />
+            <DESCENDANT id="tileHigh" />
         </DESCENDANTS>
 
     </NODE>
 
-    <NODE id="pieceSilver">      
+    <NODE id="piece">      
         <MATERIAL id="null" />    
-        <TEXTURE id="silver" />      
+        <TEXTURE id="null" />      
         <SCALE sx="1" sy="1" sz="1" />
         <DESCENDANTS>
+            <DESCENDANT id="onePiece" />
         </DESCENDANTS>
 
     </NODE>
-    
-   <NODE id="pieceGolden">      
+
+    <NODE id="tile">      
         <MATERIAL id="null" />    
-        <TEXTURE id="golden" />
-        <SCALE sx="1" sy="1" sz="1" />  
+        <TEXTURE id="wood_board" />      
+        <SCALE sx="1" sy="1" sz="1" />
         <DESCENDANTS>
+            <DESCENDANT id="oneTile" />
         </DESCENDANTS>
+
     </NODE>
 
-   <NODE id="pieceFlag">      
+    <NODE id="tileHigh">      
         <MATERIAL id="null" />    
-        <TEXTURE id="flagship" />
-        <SCALE sx="1" sy="1" sz="1" />  
+        <TEXTURE id="wood_board_highlighted" />      
+        <SCALE sx="1" sy="1" sz="1" />
         <DESCENDANTS>
+            <DESCENDANT id="oneTile" />
         </DESCENDANTS>
+
     </NODE>
 
 </NODES>

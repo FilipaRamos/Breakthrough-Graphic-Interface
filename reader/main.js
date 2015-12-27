@@ -40,7 +40,7 @@ main=function(){
 	/** or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor) */
 	
 	
-	var filename=getUrlVars()['file'] || "LAIG_TP1_LSX_T06_G06_v1.lsx";
+	var filename = getUrlVars()['file'] || "seaTheme.lsx";
 
 	/** create and load graph, and associate it to scene. */
 	/** Check console for loading errors. */

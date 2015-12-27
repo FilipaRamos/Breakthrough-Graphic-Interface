@@ -130,5 +130,5 @@ Board.prototype.display = function() {
     this.scene.pushMatrix();
     this.piece.display();
     this.scene.popMatrix();*/
-
+    
 };

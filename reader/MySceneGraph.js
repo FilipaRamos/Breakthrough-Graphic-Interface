@@ -424,7 +424,10 @@ MySceneGraph.prototype.parseTextures= function(rootElement) {
 
 		this.scene.textures.push(texture);
 	}
-	console.log("finished textures");
+
+	console.log(this.scene.textures);
+
+	console.log("finished READING textures");
 
 };
 
@@ -498,7 +501,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 	var leaves = rootElement.getElementsByTagName('LEAVES');
 	
 	if (leaves == null)
-		return "Laves element is missing.";
+		return "Leaves element is missing.";
 	if (leaves.length != 1)
 		return "either zero or more than one Leaves element found.";		
 
@@ -521,15 +524,17 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 			return "type element null.";
 
 		var  args = [];
-		if(type != "plane" && type != "patch" && type != "vehicle" && type != "terrain"){
-	  	 args = this.reader.getString(leaf[i], 'args',true);
+
+		if(type != "plane" && type != "patch" && type != "vehicle" && type != "terrain" && type != "boat" && type != "tile"){
+	  	 	
+	  	 	args = this.reader.getString(leaf[i], 'args',true);
 
 			if(args == null)
 					return "args element null.";
 
 			var coordLeaves = [];
 			
-				coordLeaves = args.split(/\s+/g);  // FEITO COM O DEUS!!! 
+			coordLeaves = args.split(/\s+/g);  // FEITO COM O DEUS!!! 
 		}
 
 		var parts = 0;
@@ -568,16 +573,19 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		var texture = "" ;
 		var heightmap = "";
 
+		var piece = "";
+
 		if(type == "terrain"){
-
-				texture = this.reader.getString(leaf[i], 'texture');
-				heightmap = this.reader.getString(leaf[i], 'heightmap');
-
+			texture = this.reader.getString(leaf[i], 'texture');
+			heightmap = this.reader.getString(leaf[i], 'heightmap');
 		}
-			
 
-		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints,texture, heightmap);
+		if(type == "piece")
+			piece = this.reader.getString(leaf[i], 'kind');
+			
+		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints, texture, heightmap, kind);
 		this.scene.tree.leaves.push(l);	
+		}
 
 	}
 };

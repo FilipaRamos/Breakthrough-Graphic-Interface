@@ -13,14 +13,9 @@ function Terrain(scene, texture, heightmap, sand) {
     this.shader = new CGFshader(this.scene.gl,"shaders/terrain.vert","shaders/terrain.frag");
     this.plane = new Plane(this.scene,128);
 
-    console.log("TEEEEERRRRRRRRRAAAAAAAIIIIIIIIINNNNNNNNN");
-
     this.colorMap = new CGFtexture(this.scene, texture);
-    console.log(this.colorMap);
     this.hMap = new CGFtexture(this.scene, heightmap);
-    console.log(this.hMap);
     this.sandMsk = new  CGFtexture(this.scene, sand);
-    console.log(this.sandMsk);
 
     this.altura = 0.5;
     
@@ -55,5 +50,4 @@ Terrain.prototype.display = function() {
 * updating texture coordinates
 * @constructor
 */
-Terrain.prototype.updateTextCoords = function(s, t) {}
-;
+Terrain.prototype.updateTextCoords = function(s, t) {};

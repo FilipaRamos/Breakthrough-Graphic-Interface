@@ -16,6 +16,9 @@ XMLscene.prototype.constructor = XMLscene;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 
+    // só para guardar o tipo de peça que é
+    this.pieceType = "";
+
     // para apagar o log do picking
     this.clearPickRegistration();
 
@@ -181,8 +184,7 @@ XMLscene.prototype.setDefaultAppearance = function () {
 * As loading is asynchronous, this may be called already after the application has started the run loop
 * @constructor
 */
-XMLscene.prototype.onGraphLoaded = function () 
-{
+XMLscene.prototype.onGraphLoaded = function () {
 	for(var j=0; j < this.luzesid.length; j++){
 		this.luzes.add(this.onOff, j,this.onOff[j]).name(this.luzesid[j]);
 	}
@@ -252,13 +254,13 @@ XMLscene.prototype.display = function () {
 		this.logPicking();
 		this.clearPickRegistration();
 
-		//this.game.display();
+		this.game.display();
 		//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
 	}
 
 
 
-	this.menu.display(); 
+	//this.menu.display(); 
 	this.setActiveShaderSimple(this.defaultShader);
 	//this.seaBoard.display();
 
@@ -269,7 +271,6 @@ XMLscene.prototype.display = function () {
 * @constructor
 * @param nodeID - the id of the node to be displayed
 */
-/*
 XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 	
 	var node = null;
@@ -366,10 +367,7 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 
 		}
 	}
-	console.log("TEXTURES LIST FROM LSX");
-	console.log(this.textures);
 };
-*/
 
 XMLscene.prototype.update = function(currTime) {
     if (this.time === -1) {
