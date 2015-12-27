@@ -206,7 +206,7 @@
         <controlpoint x= "0.5" y="0.0" z="-0.5" />
     </LEAF>
     <LEAF id="vehicle" type="vehicle"/> 
-    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
+    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/s_alturas.jpg" />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->

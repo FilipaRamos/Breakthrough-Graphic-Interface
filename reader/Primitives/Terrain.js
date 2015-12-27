@@ -28,7 +28,7 @@ function Terrain(scene, texture, heightmap, sand) {
 };
 
 Terrain.prototype = Object.create(CGFobject.prototype);
-Terrain.prototype.constructor = MskTerrain;
+Terrain.prototype.constructor = Terrain;
 
 /**
  * draw terrain
