@@ -76,50 +76,21 @@
   <TEXTURE id="wallAppearance">
         <file path="texture/wall.jpg" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
+   </TEXTURE>
 
 
-    <TEXTURE id="tableAppearance">
-        <file path="texture/wood.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
+   <TEXTURE id="tableAppearance">
+       <file path="texture/wood.jpg" />                             <!-- path to file -->
+       <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+   </TEXTURE>
 
-    <TEXTURE id="floorAppearance">
+   <TEXTURE id="floorAppearance">
         <file path="texture/floor.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
+       <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
     
-    <TEXTURE id="bancoAppearance">
-        <file path="texture/floor.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="costasAppearance">
-        <file path="texture/wood.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <TEXTURE id="rockAppearance">
-        <file path="texture/fireplace.jpe" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <TEXTURE id="fireAppearance">
-        <file path="texture/fire.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
-
-    <TEXTURE id="trunkAppearance">
-        <file path="texture/trunk.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
-    <TEXTURE id="treeAppearance">
-        <file path="texture/tree.jpg" />                             <!-- path to file -->
-        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE>
-
 </TEXTURES>
+
 
 <!-- INITIALIZE THE MATERIALS -->
     <!-- attribute id to material, set shininess value and specular, diffuse and ambient reflection, attribute emission component -->
@@ -139,38 +110,6 @@
         <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
         <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
         <ambient r="0" g="0" b="0" a="0" />         <!-- ambient reflection -->
-        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
-     </MATERIAL>
-
-     <MATERIAL id="firematerial">                                  
-        <shininess value="120" />
-        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
-        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
-        <ambient r="0.3" g="0.3" b="0.3" a="0.3" />         <!-- ambient reflection -->
-        <emission r="1" g="1" b="1" a="1" />        <!-- emission component -->
-     </MATERIAL>
-
-    <MATERIAL id="materialB">                                  
-        <shininess value="120" />
-        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
-        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
-        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
-        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
-     </MATERIAL>   
-
-    <MATERIAL id="blackMaterial">                                  
-        <shininess value="120" />
-        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
-        <diffuse r="0" g="0" b="0" a="1" />         <!-- diffuse reflection -->
-        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
-        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
-     </MATERIAL> 
-
-    <MATERIAL id="greenMaterial">                                  
-        <shininess value="120" />
-        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
-        <diffuse r="0" g="1" b="0" a="1" />         <!-- diffuse reflection -->
-        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
         <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
      </MATERIAL>
 

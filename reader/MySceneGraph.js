@@ -424,6 +424,7 @@ MySceneGraph.prototype.parseTextures= function(rootElement) {
 
 		this.scene.textures.push(texture);
 	}
+	console.log("finished textures");
 
 };
 
@@ -438,7 +439,7 @@ MySceneGraph.prototype.parseMaterials= function(rootElement) {
 	if (material == null)
 		return "Materials element is missing.";
 	if (material.length != 1)
-		return "either zero or more than one Textures element found.";
+		return "either zero or more than one Materials element found.";
 
 	var tempListMaterials = material[0].getElementsByTagName('MATERIAL');
 
@@ -486,8 +487,6 @@ MySceneGraph.prototype.parseMaterials= function(rootElement) {
 	var material = new MyMaterial (this.scene,id, shininessValue, specular, diffuse, ambient, emission);
 
 	this.scene.materials.push(material);
-
-
 	}
 };
 

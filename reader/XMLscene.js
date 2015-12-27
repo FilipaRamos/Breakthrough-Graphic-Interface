@@ -19,7 +19,7 @@ XMLscene.prototype.init = function (application) {
     // para apagar o log do picking
     this.clearPickRegistration();
 
-    this.undo = function(){
+   	this.undo = function(){
  		 if(this.game){
    			this.game.undo();
   		}
@@ -37,21 +37,6 @@ XMLscene.prototype.init = function (application) {
 
 	this.onOff = [false,false,false,false,false,false,false,false];
 	this.luzesid = [];
-
-	// PARA AS LETRAS
-	// font texture: 16 x 16 characters
-	// http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
-	this.fontTexture = new CGFtexture(this, "textures/oolite-font.png");
-	this.appearance.setTexture(this.fontTexture);
-
-	// plano onde estão as letras
-	this.plane=new Plane(this);
-
-	// instatiate text shader
-	this.textShader=new CGFshader(this.gl, "shaders/font.vert", "shaders/font.frag");
-
-	// set number of rows and columns in font texture
-	this.textShader.setUniformsValues({'dims': [16, 16]});
 	
 	this.time = -1;
 
@@ -70,7 +55,6 @@ XMLscene.prototype.init = function (application) {
 
 	this.matrixInitial = mat4.create();
 	
-	
 	this.materialDefault = new CGFappearance(this);
 	this.materialDefault.setAmbient(0.3, 0.3, 0.3, 1);
 	this.materialDefault.setDiffuse(0.7, 0.7, 0.7, 1);
@@ -78,7 +62,7 @@ XMLscene.prototype.init = function (application) {
 	this.materialDefault.setShininess(120);
 
 	this.game = new Game(this);
-	//this.menu = new Menu(this);
+	this.menu = new Menu(this);
 	//this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
 	
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -90,13 +74,32 @@ XMLscene.prototype.init = function (application) {
 	this.enableTextures(true);
 	this.axis=new CGFaxis(this);
 
+	// PARA AS LETRAS
+	this.appearance = new CGFappearance(this);
+	this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
+	this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
+	this.appearance.setSpecular(0.0, 0.0, 0.0, 1);	
+	this.appearance.setShininess(120);
+
+	// font texture: 16 x 16 characters
+	// http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
+	this.fontTexture = new CGFtexture(this, "textures/oolite-font.png");
+	this.appearance.setTexture(this.fontTexture);
+
+	// plano onde estão as letras
+	this.logo = new Letters(this);
+
+	// instatiate text shader
+	this.textShader=new CGFshader(this.gl, "shaders/font.vert", "shaders/font.frag");
+
+	// set number of rows and columns in font texture
+	this.textShader.setUniformsValues({'dims': [16, 16]});
+
 	this.silverTexture = new CGFtexture(this,"images/sea/ship.jpg");
  	this.goldenTexture = new CGFtexture(this,"images/sea/goldenShip.png");
  	this.falgShipTexture = new CGFtexture(this, "images/sea/flagShip.png");
 
 	this.setUpdatePeriod(10);
-
-	this.undo = function(){ this.game.undo(); };
 	
 };
 
@@ -116,7 +119,6 @@ XMLscene.prototype.initLights = function () {
 */
 XMLscene.prototype.initCameras = function () {
     this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(5, 30, 30), vec3.fromValues(5, 0, 5));
-
 };
 
 /**
@@ -210,6 +212,7 @@ XMLscene.prototype.display = function () {
 	}
 
 	//this.menu.display(); 
+	this.setActiveShaderSimple(this.defaultShader);
 	//this.seaBoard.display();
 
 };
