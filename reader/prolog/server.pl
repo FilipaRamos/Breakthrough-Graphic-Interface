@@ -120,3 +120,5 @@ parse_input(movePiece(Board,X,Y,XF,YF,NewBoard2), Res) :- movePiece(Board,X,Y,XF
 parse_input(getMoves(Board,Player,CostLeft),[InitList, EndList, CostList]):- listAllPossibleMoves(Board,Player,CostLeft,List), parsingListOfPlays(List, InitList, EndList, CostList).
 
 parse_input(movePiece(Board,X,Y,XF,YF), Res):- movePiece(Board,X,Y,XF,YF,Res).
+
+parse_input(continueGame(Board), true) :- continueGame(Board).

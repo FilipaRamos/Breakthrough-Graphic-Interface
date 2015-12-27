@@ -66,7 +66,21 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
         console.log("NewBoard" + newBoard);
         self.initTabuleiro.board = newBoard;
         self.initTabuleiro.initCelulas();
-        self.history.push(newBoard);
+        
+        /*self.history.push(newBoard);
+
+        var centerPlaneY = Math.abs(Math.floor((posYFinal - posY)/2));
+        var centerPlaneX = Math.abs(Math.floor((posXFinal - posX)/2));
+        var center = [centerPlaneX, 0 , centerPlaneY];
+        var radius;
+        if(centerPlaneX != 0)
+            radius = centerPlaneX;
+        else radius = centerPlaneY;
+        var startang = 0;
+        var rotang = 180;*/
+       // self.selectedObj.animation = new CircularAnimation(self.scene, 2, 10, center, radius, startang, rotang);
+        //self.initTabuleiro.animations.push(self.selectedObj.animation);
+
         
         for (i = 0; i < self.possibleMoves.length; i++) {
             self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = false;
@@ -108,8 +122,8 @@ Game.prototype.continueGame = function() {
 
 
 Game.prototype.display = function() {
-    
-    this.scene.pushMatrix();
+
+    this.scene.pushMatrix();       
     this.initTabuleiro.display();
     this.scene.popMatrix();
 

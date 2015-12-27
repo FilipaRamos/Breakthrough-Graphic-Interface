@@ -205,11 +205,14 @@ XMLscene.prototype.display = function () {
 			this.lights[i].update();
 		}
 
-	this.logPicking();
-	this.clearPickRegistration();
+		this.logPicking();
+		this.clearPickRegistration();
 
-	this.game.display();
+		this.game.display();
+		//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
 	}
+
+
 
 	//this.menu.display(); 
 	this.setActiveShaderSimple(this.defaultShader);
