@@ -10,7 +10,9 @@ function Board(scene) {
     this.board = [];
     this.scene = scene;
     
+
      this.initFloor();
+
     
     this.textura = new CGFtexture(this.scene,"texture/wood_board.jpg");
     this.textura1 = new CGFtexture(this.scene,"texture/wood_board_highlighted.jpg");
@@ -71,7 +73,7 @@ Board.prototype.display = function() {
     var i;
     var j;
     var k = 1;
-    
+
     this.scene.pushMatrix();
     
     for (i = 0; i < 11; i++) {
@@ -112,6 +114,7 @@ Board.prototype.display = function() {
     
     
     this.scene.popMatrix();
+
     
     
     /*var piece = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
@@ -119,5 +122,4 @@ Board.prototype.display = function() {
     this.piece.display();
     this.scene.popMatrix();*/
 
-}
-;
+};
