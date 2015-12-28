@@ -7,7 +7,7 @@
 * @param type - the type of the leave
 * @param coords - the coordinates of the leave
 */
-function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPoints, texture, heightmap, kind) {
+function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPoints, texture, heightmap)  {
      this.id = id;
      this.type = type; 
      this.coords = coords;

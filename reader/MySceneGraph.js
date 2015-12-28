@@ -525,9 +525,8 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 
 		var  args = [];
 
-		if(type != "plane" && type != "patch" && type != "vehicle" && type != "terrain" && type != "boat" && type != "tile"){
-	  	 	
-	  	 	args = this.reader.getString(leaf[i], 'args',true);
+		if(type != "plane" && type != "patch" && type != "vehicle" && type != "terrain"){		 
+ 	  	 args = this.reader.getString(leaf[i], 'args',true);
 
 			if(args == null)
 					return "args element null.";
@@ -576,14 +575,11 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		var piece = "";
 
 		if(type == "terrain"){
-			texture = this.reader.getString(leaf[i], 'texture');
-			heightmap = this.reader.getString(leaf[i], 'heightmap');
-		}
-
-		if(type == "piece")
-			piece = this.reader.getString(leaf[i], 'kind');
+ 	
+ 			texture = this.reader.getString(leaf[i], 'texture');		
+ 			heightmap = this.reader.getString(leaf[i], 'heightmap');
 			
-		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints, texture, heightmap, kind);
+		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints,texture, heightmap);
 		this.scene.tree.leaves.push(l);	
 		}
 

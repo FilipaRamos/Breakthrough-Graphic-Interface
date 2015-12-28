@@ -1,16 +1,10 @@
-function Piece(scene, texture, piece) {
-
-  CGFobject.call(this, scene);
-
-  if(piece == "boat"){
-    this.onePiece = new MyBoat(scene); /*(scene, 0.5, 50, 25)*/
-  }
-  else if(piece == "ship")
-    this.onePiece = new MyVehicle(scene);
-
-  this.texture = texture;
-  this.scene = scene;
-
+function Piece(scene, type) {		
+  		  
+    CGFobject.call(this, scene);	
+    this.onePiece = new MyBoat(scene); /*(scene, 0.5, 50, 25)*/		
+    this.type = type;
+    this.scene = scene;
+    
 };
 
 Piece.prototype = Object.create(CGFobject.prototype);
@@ -24,11 +18,11 @@ Piece.prototype.display = function () {
   this.scene.pushMatrix();
   
   // apply the texture
-  if (this.texture === "silver") // silver ship
+  if (this.type === "silver") // silver ship
    this.scene.silverTexture.bind();
-  else if (this.texture === "golden") // golden ship
+  else if (this.type === "golden") // golden ship
     this.scene.goldenTexture.bind();
-  else if (this.texture === "flagship") // the flagship
+  else if (this.type === "flagship") // the flagship
     this.scene.falgShipTexture.bind();
 
  // create a sphere which will be the piece

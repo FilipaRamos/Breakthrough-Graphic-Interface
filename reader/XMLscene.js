@@ -98,15 +98,11 @@ XMLscene.prototype.init = function (application) {
 	this.game = new Game(this);
 	this.menu = new menu(this);
 
-	console.log("INITTTTTTTTTT");
 
 	//this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
 	
-	console.log("terrain done!");
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
-	console.log("AQUI UMA TEXTURRA ZINHAAAA");
-	console.log(this.test);
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
 	this.gl.enable(this.gl.CULL_FACE);
@@ -138,7 +134,7 @@ XMLscene.prototype.init = function (application) {
 	// set number of rows and columns in font texture
 	this.textShader.setUniformsValues({'dims': [16, 16]});
 
-	console.log("TEXTURAS DAS SHIPS");
+
 	this.silverTexture = new CGFtexture(this,"images/sea/ship.jpg");
 	console.log(this.silverTexture);
  	this.goldenTexture = new CGFtexture(this,"images/sea/goldenShip.png");
