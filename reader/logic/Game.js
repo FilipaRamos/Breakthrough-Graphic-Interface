@@ -9,8 +9,9 @@ function Game(scene) {
     this.state = "start";
     this.selectedObj;
     this.costLeft = 2;
-    this.history = [];
-   
+    this.history = new MyHistory();
+    this.boardHistory  = [];
+
     this.player = 0;
     this.possibleMoves = [];
     this.movesCost = [];
@@ -26,7 +27,7 @@ Game.prototype.init = function() {
     var self = this;
     this.connection.initBoard(function(board) {
         self.initTabuleiro.board = board;
-        self.history.push(board);
+        self.history.boardHistory.push(board);
         self.initTabuleiro.initCelulas();
     });
 }
@@ -56,30 +57,37 @@ Game.prototype.getMoves = function(posX, posY) {
     });
 }
 
+Game.prototype.applyDifferences = function(newBoard){
+
+    var diff = this.history.findDiferences(newBoard);
+    console.log(diff);
+
+    var newpiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
+    newpiece.posX = diff["move"]["new"][0];
+    newpiece.posY = diff["move"]["new"][1];
+    newpiece.highlighted=false;
+    this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = 0;
+    this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = newpiece;
+
+
+    this.initTabuleiro.initCelulas();
+
+    var animMove=new PieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"]);
+    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation=animMove;
+    //como é que o numero 2 vai ter uma animation?
+    console.log("cenas");
+   
+}
+
 Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
     //movePiece(Board,X,Y,XF,YF,NewBoard2)
     var self = this;
     console.log("inicial: " + posX + 1 + " y " + posY + 1);
     console.log("final: " + posXFinal + 1 + " y " + posYFinal + 1);
     this.connection.movePiece(this.initTabuleiro.board, posX + 1, posY + 1, posXFinal + 1, posYFinal + 1, function(newBoard) {
-        // arr lista de 3 elementos
-        console.log("NewBoard" + newBoard);
-        self.initTabuleiro.board = newBoard;
-        self.initTabuleiro.initCelulas();
         
-        self.history.push(newBoard);
-
-        var centerPlaneY = Math.abs(Math.floor((posYFinal - posY)/2));
-        var centerPlaneX = Math.abs(Math.floor((posXFinal - posX)/2));
-        var center = [0, centerPlaneX , centerPlaneY];
-        var radius;
-        if(centerPlaneX != 0)
-            radius = centerPlaneX;
-        else radius = centerPlaneY;
-        var startang = 0;
-        var rotang = 180;
-        self.selectedObj.animation = new CircularAnimation(self.scene, 2, 10, center, radius, startang, rotang);
-        self.initTabuleiro.animations.push(self.selectedObj.animation);
+        self.applyDifferences(newBoard);
+        self.history.boardHistory.push(newBoard);
 
         
         for (i = 0; i < self.possibleMoves.length; i++) {
@@ -91,7 +99,6 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
             }
         }
         self.initTabuleiro.celulas[self.selectedObj.posX][self.selectedObj.posY].highlighted = false;
-
         self.possibleMoves = [];
     });
 
@@ -123,7 +130,7 @@ Game.prototype.continueGame = function() {
 
 Game.prototype.display = function() {
 
-    this.scene.pushMatrix();       
+    this.scene.pushMatrix();    
     this.initTabuleiro.display();
     this.scene.popMatrix();
 

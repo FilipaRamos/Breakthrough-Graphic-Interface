@@ -106,10 +106,11 @@ Board.prototype.display = function() {
             for (j = 0; j < 11; j++) {
                 this.scene.translate(1.2, 0, 0);
                 this.scene.registerForPick(k, this.celulas[i][j]);
-                
-                if (this.celulas[i][j].animation !== undefined && this.celulas[i][j].primitive !== undefined) {
-                      this.celulas[i][j].animation.update(this.scene.currTime);
-                 }
+                if (this.celulas[i][j].primitive !== undefined && this.celulas[i][j].animation !== undefined) {
+                    this.celulas[i][j].animation.update(this.scene.currTime);
+
+                }
+               
                 if (this.celulas[i][j].primitive !== undefined) {
                     this.celulas[i][j].primitive.display();
 
