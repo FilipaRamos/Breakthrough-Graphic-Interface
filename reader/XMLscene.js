@@ -142,7 +142,7 @@ XMLscene.prototype.init = function (application) {
  	this.falgShipTexture = new CGFtexture(this, "images/sea/flagShip.png");
  	console.log(this.falgShipTexture);
 
-	this.setUpdatePeriod(10);
+	this.setUpdatePeriod(50);
 	
 };
 

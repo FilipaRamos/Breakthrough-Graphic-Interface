@@ -1,24 +1,16 @@
 function PieceAnimation(scene, posInit, posFinal) {
     
-    var centerPlaneY = Math.abs(Math.floor((posFinal[1] - posInit[1]) / 2));
-    var centerPlaneX = Math.abs(Math.floor((posFinal[0] - posInit[0]) / 2));
+    this.diffPlaneY = Math.abs((posFinal[1] - posInit[1]));
+    this.diffPlaneX = Math.abs((posFinal[0] - posInit[0]));
     
-    var radius;
-    if (centerPlaneX != 0)
-        this.radius = centerPlaneX;
-    else
-        radius = centerPlaneY;
-        
-    if (centerPlaneX != 0)
-       this.center = [centerPlaneX, 0, centerPlaneY];
-    else
-        radius = centerPlaneY;
-
-    this.startang = 0;
-    this.rotang = 180;
-    this.time = 2;
-
-    this.time /= 1000;
+    this.positions = [];
+    this.vecMovimento = [Math.abs(posFinal[0] - posInit[0]), Math.abs(posFinal[1] - posInit[1])];
+    //[xf-xi, yf- yi]
+    this.maxHight = 5;
+    
+    this.totalTime = 20;
+    
+    this.totalTime /= 1000;
     this.scene = scene;
 
 
@@ -26,20 +18,24 @@ function PieceAnimation(scene, posInit, posFinal) {
 
 PieceAnimation.prototype.constructor = PieceAnimation;
 
-PieceAnimation.prototype.update = function(currentTime){
-    currentTime/=1000;
-    this.scene.translate(this.center[0], this.center[1], this.center[2]);
+PieceAnimation.prototype.update = function(currentTime) {
+    
+    var time = currentTime / 1000;
+    
+    var t = time / this.totalTime;
+    
+    if (t > 0 && t < 1) {
+        
+        var des = -4 * this.maxHight * t * t + 4 * this.maxHight * t;
 
-	var time = currentTime / 1000;
+        this.scene.translate(this.vecMovimento[0] * t, des, this.vecMovimento[1] * t);
+    
+    }
+    else{
+       var des = -4 * this.maxHight + 4 * this.maxHight ;
 
-    if (time > this.time)
-     return;
-
-    var move = currentTime / this.time;
-
-    var ang =  - (this.startang + this.rotang * move);
-
-    this.scene.rotate(ang, 0, 1, 0);
-    this.scene.translate(this.radius, 0, 0);
+        this.scene.translate(this.vecMovimento[0] , des, this.vecMovimento[1]);
+    
+    }
 
 }

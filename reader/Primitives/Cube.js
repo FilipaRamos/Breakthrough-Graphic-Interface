@@ -1,13 +1,9 @@
-function Cube(scene, highted, selected, posicaoX, posicaoY) {
+function Cube(scene) {
     CGFobject.call(this, scene);
-    this.highlighted = highted;
-    this.selected = selected;
-    this.posX = posicaoX;
-    this.posY = posicaoY;
-
+   
+    
     this.initBuffers();
-}
-;
+};
 
 Cube.prototype = Object.create(CGFobject.prototype);
 Cube.prototype.constructor = Cube;
@@ -15,45 +11,6 @@ Cube.prototype.constructor = Cube;
 
 Cube.prototype.initBuffers = function() {
     this.vertices = [
-    /*
-        //back face
-            -0.5, -0.5, -0.5, //0
-            0.5, -0.5, -0.5,  //1
-            -0.5, 0.5, -0.5,  //2
-            0.5, 0.5, -0.5,   //3  
-
-        //front face
-            -0.5,-0.5, 0.5,   //4
-            0.5, -0.5, 0.5,   //5
-            -0.5, 0.5, 0.5,   //6
-            0.5, 0.5, 0.5,    //7     
-
-        //right face
-           0.5, -0.5, 0.5,   //8
-           0.5, -0.5, -0.5,  //9
-           0.5, 0.5, 0.5,   //10
-           0.5, 0.5, -0.5,  //11
-        
-        //left face
-         -0.5,-0.5, 0.5,   //12
-         -0.5, -0.5, -0.5, //13
-         -0.5, 0.5, 0.5,   //14
-         -0.5, 0.5, -0.5,  //15
-
-        //up face
-
-            -0.5, 0.5, 0.5,   //16
-            0.5, 0.5, 0.5,    //17  
-            -0.5, 0.5, -0.5,  //18
-            0.5, 0.5, -0.5,   //19 
-
-        //bottom face
-
-            -0.5,-0.5, 0.5,   //20
-            0.5, -0.5, 0.5,   //21
-            -0.5, -0.5, -0.5, //22
-            0.5, -0.5, -0.5,  //23
-*/
     // Front face
     -0.5, -0.5, 0.5, 
     0.5, -0.5, 0.5, 
@@ -165,3 +122,5 @@ Cube.prototype.initBuffers = function() {
 */
 Cube.prototype.updateTextCoords = function(s, t) {}
 ;
+
+

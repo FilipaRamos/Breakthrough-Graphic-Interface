@@ -4,20 +4,24 @@ function Game(scene) {
     this.initTabuleiro = new Board(scene);
     this.newTabuleiro = new Board(scene);
     this.newPiece;
-   
+    
     
     this.state = "start";
     this.selectedObj;
     this.costLeft = 2;
     this.history = new MyHistory();
-    this.boardHistory  = [];
-
+    this.boardHistory = [];
+    
     this.player = 0;
     this.possibleMoves = [];
     this.movesCost = [];
     this.animations = [];
     
     this.init();
+
+
+    this.newPosX;
+    this.newPosY;
 }
 ;
 
@@ -51,32 +55,36 @@ Game.prototype.getMoves = function(posX, posY) {
         for (i = 0; i < self.possibleMoves.length; i++) {
             self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = true;
         }
-
+        
         self.initTabuleiro.celulas[self.selectedObj.posX][self.selectedObj.posY].highlighted = true;
     
     });
 }
 
-Game.prototype.applyDifferences = function(newBoard){
-
+Game.prototype.applyDifferences = function(newBoard) {
+    
     var diff = this.history.findDiferences(newBoard);
-    console.log(diff);
-
+    
     var newpiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
     newpiece.posX = diff["move"]["new"][0];
     newpiece.posY = diff["move"]["new"][1];
-    newpiece.highlighted=false;
+
+    this.newPosX = diff["move"]["new"][0];
+    this.newPosY = diff["move"]["new"][1];
+
+    newpiece.highlighted = false;
     this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = 0;
     this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = newpiece;
-
-
-    this.initTabuleiro.initCelulas();
-
-    var animMove=new PieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"]);
-    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation=animMove;
-    //como é que o numero 2 vai ter uma animation?
-    console.log("cenas");
-   
+    
+     this.initTabuleiro.initCelulas();
+    
+    
+    var animMove = new PieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"]);
+    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+  
+    this.animations.push(aniMove);
+    
+ 
 }
 
 Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
@@ -88,11 +96,11 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
         
         self.applyDifferences(newBoard);
         self.history.boardHistory.push(newBoard);
-
+        
         
         for (i = 0; i < self.possibleMoves.length; i++) {
             self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = false;
-            if(self.possibleMoves[i][0] == posXFinal && self.possibleMoves[i][1] == posYFinal)
+            if (self.possibleMoves[i][0] == posXFinal && self.possibleMoves[i][1] == posYFinal) 
             {
                 self.costLeft -= self.movesCost[i];
                 console.log("cost left " + self.costLeft);
@@ -104,23 +112,23 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
 
 }
 
-Game.prototype.undo = function(){
-    if (this.history.length > 1) {
-        var diff = this.history[this.history.length - 2];
-        this.initTabuleiro.board = diff;
-        this.initTabuleiro.initCelulas();
-        this.display();
-        this.history.pop();
-    }
-    return this.initTabuleiro.board;
+Game.prototype.undo = function() {
+    
+    this.initTabuleiro.board = this.history.undo;
+
+    
+    this.initTabuleiro.initCelulas();
+    
+    this.display();
+
 }
 
 Game.prototype.continueGame = function() {
     var self = this;
     this.connection.continueGame(this.initTabuleiro.board, function(res) {
-        if(!res){
+        if (!res) {
             return false;
-        }
+        } 
         else {
             return true;
         }
@@ -129,20 +137,22 @@ Game.prototype.continueGame = function() {
 
 
 Game.prototype.display = function() {
-
-    this.scene.pushMatrix();    
+    
+    this.scene.pushMatrix();
+ //   if( this.selectedObj !== undefined &&   this.newPosY !== undefined &&  this.newPosX !== undefined)
+  //  this.initTabuleiro.celulas[ this.newPosY][ this.newPosX].animation.update(this.scene.currTime);
     this.initTabuleiro.display();
     this.scene.popMatrix();
 
 }
 
-Game.prototype.deselect = function(){
-     for (i = 0; i < this.possibleMoves.length; i++) {
-           this.initTabuleiro.floor[this.possibleMoves[i][1]][this.possibleMoves[i][0]].highlighted = false;
-      }
-
-     this.initTabuleiro.celulas[this.selectedObj.posX][this.selectedObj.posY].highlighted = false;
-      this.possibleMoves = [];
+Game.prototype.deselect = function() {
+    for (i = 0; i < this.possibleMoves.length; i++) {
+        this.initTabuleiro.floor[this.possibleMoves[i][1]][this.possibleMoves[i][0]].highlighted = false;
+    }
+    
+    this.initTabuleiro.celulas[this.selectedObj.posX][this.selectedObj.posY].highlighted = false;
+    this.possibleMoves = [];
 }
 
 Game.prototype.clickEvent = function(id, obj) {
@@ -167,34 +177,35 @@ Game.prototype.clickEvent = function(id, obj) {
                 this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
                 this.state = "analyse";
             }
-           }
-      
-    }
+        }
     
-    else
-     if (this.state == "analyse") {
-       if(this.costLeft == 0){
-           if(this.player == 1)
+    } 
+    
+    else 
+    if (this.state == "analyse") {
+        if (this.costLeft == 0) {
+            if (this.player == 1)
                 this.player = 0;
-           else this.player = 1;
-           this.costLeft = 2;
-           this.state = "start";
-       }
-       else if(this.continueGame()){
+            else
+                this.player = 1;
+            this.costLeft = 2;
+            this.state = "start";
+        } 
+        else if (this.continueGame()) {
             this.state = "end";
             console.log("END GAME!");
             return;
-       }
-       
-       else{
-          if (id > 500 && obj.player == this.player) {
-            this.selectedObj = obj;
-            this.selectedObj.selected = true;
-            this.getMoves(obj.posX, obj.posY);
-            this.state = "select";
+        } 
+        
+        else {
+            if (id > 500 && obj.player == this.player) {
+                this.selectedObj = obj;
+                this.selectedObj.selected = true;
+                this.getMoves(obj.posX, obj.posY);
+                this.state = "select";
+            }
         }
-       }
-
+    
     }
-   
+
 }
