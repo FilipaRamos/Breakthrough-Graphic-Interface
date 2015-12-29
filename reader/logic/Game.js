@@ -83,6 +83,8 @@ Game.prototype.applyDifferences = function(newBoard) {
     this.animations.push(animMove);
 
 
+
+
 }
 
 Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
