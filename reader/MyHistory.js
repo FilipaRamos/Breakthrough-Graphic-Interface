@@ -61,7 +61,7 @@ MyHistory.prototype.findDiferences = function(newTab) {
 
 MyHistory.prototype.undo = function() {
     if (this.boardHistory.length > 1) {
-        var diff = this.diff(this.boardHistory[this.boardHistory.length - 2]);
+        var diff = this.findDiferences(this.boardHistory[this.boardHistory.length - 2]);
         this.pop();
     }
     return diff;

@@ -5,7 +5,6 @@ function Game(scene) {
     this.newTabuleiro = new Board(scene);
     this.newPiece;
     
-    
     this.state = "start";
     this.selectedObj;
     this.costLeft = 2;
@@ -18,14 +17,14 @@ function Game(scene) {
     this.animations = [];
     
     this.init();
-
-
-    this.newPosX;
-    this.newPosY;
+    
+    this.time = -1;
+   
 }
 ;
 
 Game.prototype.constructor = Game;
+
 
 Game.prototype.init = function() {
     var self = this;
@@ -63,28 +62,29 @@ Game.prototype.getMoves = function(posX, posY) {
 
 Game.prototype.applyDifferences = function(newBoard) {
     
-    var diff = this.history.findDiferences(newBoard);
+     var diff = this.history.findDiferences(newBoard);
     
     var newpiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
     newpiece.posX = diff["move"]["new"][0];
     newpiece.posY = diff["move"]["new"][1];
-
+    
     this.newPosX = diff["move"]["new"][0];
     this.newPosY = diff["move"]["new"][1];
-
+    
     newpiece.highlighted = false;
     this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = 0;
     this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = newpiece;
     
-     this.initTabuleiro.initCelulas();
+    this.initTabuleiro.initCelulas();
     
-    
+    var anim = new AnimationGroup();
     var animMove = new PieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"]);
     this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
-  
-    this.animations.push(aniMove);
+    anim.animation.push(animMove);
     
- 
+    this.animations.push(anim);
+
+
 }
 
 Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
@@ -96,7 +96,6 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
         
         self.applyDifferences(newBoard);
         self.history.boardHistory.push(newBoard);
-        
         
         for (i = 0; i < self.possibleMoves.length; i++) {
             self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = false;
@@ -113,13 +112,13 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
 }
 
 Game.prototype.undo = function() {
+    console.log(this.history.boardHistory);
+    var diff = this.history.undo();
     
-    this.initTabuleiro.board = this.history.undo;
-
-    
-    this.initTabuleiro.initCelulas();
-    
-    this.display();
+    if (diff !== undefined) {
+        console.log(this.history.boardHistory);
+        console.log(diff);
+    }
 
 }
 
@@ -139,11 +138,15 @@ Game.prototype.continueGame = function() {
 Game.prototype.display = function() {
     
     this.scene.pushMatrix();
- //   if( this.selectedObj !== undefined &&   this.newPosY !== undefined &&  this.newPosX !== undefined)
-  //  this.initTabuleiro.celulas[ this.newPosY][ this.newPosX].animation.update(this.scene.currTime);
+    if (this.animations.length != 0) {
+        for (var i = 0; i < this.animations.length; i++) {
+            this.animations[i].update;
+        }
+    }
     this.initTabuleiro.display();
     this.scene.popMatrix();
-
+    
+    this.animations = [];
 }
 
 Game.prototype.deselect = function() {
@@ -176,6 +179,10 @@ Game.prototype.clickEvent = function(id, obj) {
             if (obj.highlighted) {
                 this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
                 this.state = "analyse";
+            } 
+            else {
+                this.deselect();
+                this.state = "start";
             }
         }
     

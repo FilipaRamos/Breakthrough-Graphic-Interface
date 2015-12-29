@@ -1,7 +1,5 @@
 function LinearAnimation(scene, id, time, ctrlPoints){
 
- 	CGFappearance.call(this,scene);
-
     this.id = id;
     this.time = time;
     this.ctrlPoints = ctrlPoints; //relative to animation's position 
@@ -21,8 +19,6 @@ function LinearAnimation(scene, id, time, ctrlPoints){
     this.angle = 0;
    
 }
-
-LinearAnimation.prototype = Object.create(CGFappearance.prototype);
 
 /*
 * Calcula as distâncias entre os pontos de controlo e guarda-as no vetor this.distance

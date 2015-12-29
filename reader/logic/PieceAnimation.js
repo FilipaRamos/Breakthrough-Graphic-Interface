@@ -1,17 +1,18 @@
 function PieceAnimation(scene, posInit, posFinal) {
     
-    this.diffPlaneY = Math.abs((posFinal[1] - posInit[1]));
-    this.diffPlaneX = Math.abs((posFinal[0] - posInit[0]));
+    this.posFinal = posFinal;
+    this.posInit = posInit;
     
-    this.positions = [];
-    this.vecMovimento = [Math.abs(posFinal[0] - posInit[0]), Math.abs(posFinal[1] - posInit[1])];
+    this.vecMovimento = [posFinal[0]*1.2 - posInit[0]*1.2 , posFinal[1]*1.2  - posInit[1]*1.2];
     //[xf-xi, yf- yi]
-    this.maxHight = 5;
+    this.maxHight = 2;
     
     this.totalTime = 20;
     
     this.totalTime /= 1000;
     this.scene = scene;
+    
+    this.done = false;
 
 
 }
@@ -27,14 +28,16 @@ PieceAnimation.prototype.update = function(currentTime) {
     if (t > 0 && t < 1) {
         
         var des = -4 * this.maxHight * t * t + 4 * this.maxHight * t;
-
-        this.scene.translate(this.vecMovimento[0] * t, des, this.vecMovimento[1] * t);
+        
+        this.scene.translate(this.posInit[0]*1.2 + this.vecMovimento[0] * t, des + 0.5 , this.posFinal[1] * 1.2);
     
-    }
-    else{
-       var des = -4 * this.maxHight + 4 * this.maxHight ;
-
-        this.scene.translate(this.vecMovimento[0] , des, this.vecMovimento[1]);
+    } 
+    else {
+        var des = -4 * this.maxHight + 4 * this.maxHight;
+        
+        this.scene.translate( this.posInit[0]*1.2 + this.vecMovimento[0] , des + 0.5 , this.posFinal[1] * 1.2);
+        
+        this.done = true;
     
     }
 

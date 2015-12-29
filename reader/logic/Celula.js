@@ -30,6 +30,7 @@ function Celula(scene, type, highted, selected, posicaoX, posicaoY) {
         this.type = "flagship"
     }
 
+
 }
 ;
 
@@ -50,12 +51,20 @@ Celula.prototype.display = function() {
     else if (this.type === "flagship")
         
         this.scene.falgShipTexture.bind();
-        
-    this.scene.translate(this.posX * 1.2, 0.5, this.posY * 1.2);
-    this.scene.scale(1, 0.5, 0.5);
-    this.scene.rotate(Math.PI / 2, 0, 1, 0);
-     
+   
+    if (this.animation !== undefined && !this.animation.done) {
+        this.animation.update(this.scene.game.currTime);
+        this.scene.scale(1, 0.5, 0.5);
+        this.scene.rotate(Math.PI / 2, 0, 1, 0);
+    } 
+    
+    else {
+        this.scene.translate(this.posX * 1.2, 0.5, this.posY * 1.2);
+        this.scene.scale(1, 0.5, 0.5);
+        this.scene.rotate(Math.PI / 2, 0, 1, 0);
+    }
     this.primitive.display();
+    
     
     this.scene.popMatrix();
 }

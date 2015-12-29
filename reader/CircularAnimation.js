@@ -1,7 +1,5 @@
 function CircularAnimation(scene, id, time, center, radius, startang, rotang){
 
- 	CGFappearance.call(this,scene);
-
     this.id = id;
     this.time = time;
     this.center = center;
@@ -13,8 +11,6 @@ function CircularAnimation(scene, id, time, center, radius, startang, rotang){
     this.time /= 1000;
 
 }
-
-CircularAnimation.prototype = Object.create(CGFappearance.prototype);
 
 CircularAnimation.prototype.constructor = CircularAnimation;
 
