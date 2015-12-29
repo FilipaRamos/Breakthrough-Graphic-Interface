@@ -77,12 +77,10 @@ Game.prototype.applyDifferences = function(newBoard) {
     
     this.initTabuleiro.initCelulas();
     
-    var anim = new AnimationGroup();
     var animMove = new PieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"]);
     this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
-    anim.animation.push(animMove);
     
-    this.animations.push(anim);
+    this.animations.push(animMove);
 
 
 }
