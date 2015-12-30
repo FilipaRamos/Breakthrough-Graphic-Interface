@@ -146,6 +146,7 @@ XMLscene.prototype.init = function(application) {
     console.log(this.falgShipTexture);
     
     this.setUpdatePeriod(50);
+    this.setPickEnabled(true);
 
 }
 ;

@@ -53,6 +53,7 @@ Celula.prototype.display = function() {
         this.scene.falgShipTexture.bind();
    
     if (this.animation !== undefined && !this.animation.done) {
+        this.scene.setPickEnabled(false);
         this.animation.update(this.scene.game.currTime);
         this.scene.scale(1, 0.5, 0.5);
         this.scene.rotate(Math.PI / 2, 0, 1, 0);

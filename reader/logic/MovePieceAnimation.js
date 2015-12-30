@@ -1,4 +1,4 @@
-function PieceAnimation(scene, posInit, posFinal, initTime) {
+function MovePieceAnimation(scene, posInit, posFinal, initTime) {
     
     this.posFinal = posFinal;
     this.posInit = posInit;
@@ -8,7 +8,7 @@ function PieceAnimation(scene, posInit, posFinal, initTime) {
     //[xf-xi, yf- yi]
     this.maxHight = 5;
     
-    this.totalTime = 20;
+    this.totalTime = 10;
     this.t0;
     
     this.totalTime /= 1000;
@@ -18,9 +18,9 @@ function PieceAnimation(scene, posInit, posFinal, initTime) {
 
 }
 
-PieceAnimation.prototype.constructor = PieceAnimation;
+MovePieceAnimation.prototype.constructor = MovePieceAnimation;
 
-PieceAnimation.prototype.update = function(currentTime) {
+MovePieceAnimation.prototype.update = function(currentTime) {
     
     var time = (currentTime/1000 - this.initTime);
     
@@ -30,7 +30,7 @@ PieceAnimation.prototype.update = function(currentTime) {
          
         var des = -4 * this.maxHight * t * t + 4 * this.maxHight * t;
         
-        this.scene.translate(this.posInit[0] * 1.2 + this.vecMovimento[0] * 1.2 * t, des + 0.5 , this.posFinal[1] *1.2 + this.vecMovimento[1] * 1.2 * t);
+        this.scene.translate(this.posInit[0] * 1.2 + this.vecMovimento[0] * 1.2 * t, des + 0.5 , this.posInit[1] *1.2 + this.vecMovimento[1] * 1.2 * t);
     
    } 
     else {
@@ -39,6 +39,8 @@ PieceAnimation.prototype.update = function(currentTime) {
         this.scene.translate( this.posInit[0] + this.vecMovimento[0] , des  , this.posFinal[1]);
         
         this.done = true;
+
+        this.scene.setPickEnabled(true);
     
     }
 
