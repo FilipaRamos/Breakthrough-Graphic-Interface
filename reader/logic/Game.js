@@ -7,6 +7,7 @@ function Game(scene) {
     
     this.state = "start";
     this.mode;
+    this.level;
     this.selectedObj;
     this.costLeft = 2;
     this.history = new MyHistory();
@@ -92,6 +93,8 @@ Game.prototype.applyDifferences = function(newBoard) {
         this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
     } 
     else {
+        var animMove = new MovePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
+        this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]].animation = animMove;
     
     }
     
@@ -150,6 +153,37 @@ Game.prototype.continueGame = function() {
     });
 }
 
+Game.prototype.playRandom = function() {
+    var self = this;
+    this.connection.playRandom(this.initTabuleiro.board, this.player, this.costLeft, function(res) {
+        console.log(res);
+        
+        //res[0] -> newBoard;
+        //res[1] -> newCostLeft;
+        
+        self.history.push(res[0]);
+        self.applyDifferences(res[0]);
+        self.costLeft = res[1];
+    
+    
+    });
+}
+
+Game.prototype.playHard = function() {
+    var self = this;
+    this.connection.playHard(this.initTabuleiro.board, this.player, this.costLeft, function(res) {
+        console.log(res);
+        
+        //res[0] -> newBoard;
+        //res[1] -> newCostLeft;
+        
+        self.history.push(res[0]);
+        self.applyDifferences(res[0]);
+        self.costLeft = res[1];
+    
+    
+    });
+}
 
 Game.prototype.display = function() {
     
@@ -234,5 +268,31 @@ Game.prototype.clickEvent = function(id, obj) {
             }
         
         }
+    }
+    
+    if (this.mode == "MachineMachine") {
+        
+        if (this.level == "random")
+            this.playRandom();
+        else
+            this.playHard();
+        
+        if (this.costLeft == 0) {
+            
+            if (this.player == 1)
+                this.player = 0;
+            else
+                this.player = 1;
+            
+            this.costLeft = 2;
+        } 
+        else if (this.continueGame()) {
+            console.log("The player who won was: " + this.player);
+            console.log("END GAME!");
+            return;
+        }
+    
+    
+    
     }
 }

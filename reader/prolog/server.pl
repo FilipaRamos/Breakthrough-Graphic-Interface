@@ -123,6 +123,6 @@ parse_input(movePiece(Board,X,Y,XF,YF), Res):- movePiece(Board,X,Y,XF,YF,Res).
 
 parse_input(continueGame(Board), true) :- continueGame(Board).
 
-parse_input(playBest(Board,Player,CostLeft),[NewBoard,CostToSpend]):-getBestMove(Board,Player,X,Y,XF,YF,CostLeft,CostToSpend),movePiece(Board,X,Y,XF,YF,NewBoard).
+parse_input(hardMode(Board,Player,CostLeft),[NewBoard,CostToSpend]):-getBestMove(Board,Player,X,Y,XF,YF,CostLeft,CostToSpend),movePiece(Board,X,Y,XF,YF,NewBoard).
 
-parse_input(playRandom(Board,Player,CostLeft),[NewBoard,CostToSpend]):-getRandomMove(Board,Player,CostLeft,X,Y,XF,YF,CostToSpend),movePiece(Board,X,Y,XF,YF,NewBoard).
+parse_input(randomMode(Board,Player,CostLeft),[NewBoard,CostToSpend]):-getRandomMove(Board,Player,CostLeft,X,Y,XF,YF,CostToSpend),movePiece(Board,X,Y,XF,YF,NewBoard).

@@ -64,6 +64,31 @@ Connection.prototype.continueGame = function(board, callback){
     });
 }
 
+
+Connection.prototype.playRandom = function(board, player, costLeft, callback){
+    var self = this;
+    var board=JSON.stringify(board);
+    this.getPrologRequest("randomMode(" + board + ',' + player + ',' +  costLeft + ")", function(data) {
+        //array de dois elementos um com newBoard e CosttoSpend
+        var res =  JSON.parse(data.target.response);
+        if (typeof callback === "function") {
+            callback(res);
+        }
+    });
+}
+
+Connection.prototype.playHard = function(board, player, costLeft, callback){
+    var self = this;
+    var board=JSON.stringify(board);
+    this.getPrologRequest("hardMode(" + board + ',' + player + ',' +  costLeft + ")", function(data) {
+        //array de dois elementos um com newBoard e CosttoSpend
+        var res =  JSON.parse(data.target.response);
+        if (typeof callback === "function") {
+            callback(res);
+        }
+    });
+}
+
 Connection.prototype.boardFromProlog = function(string){
     
     var i, j;

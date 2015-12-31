@@ -48,7 +48,7 @@ XMLscene.prototype.init = function(application) {
     this.bb = function() {
         if (this.game) {
             console.log("B&B");
-            // chamar o bot vs bot
+            this.game.mode = "MachineMachine";
         }
     }
     
@@ -80,10 +80,21 @@ XMLscene.prototype.init = function(application) {
     this.level.open();
     this.gameMode.open();
     
-    this.levelList = [true,false];
+    this.levelList = [false, true];
     
-    this.level.add(this.levelList, 0,  true).name('random');
-    this.level.add(this.levelList, 1, false).name('hard');
+    this.level.add(this.levelList, 0, false).name('random');
+    this.level.add(this.levelList, 1, true).name('hard');
+    
+    if (this.game) {
+        if (this.levelList[0])
+            this.game.level = "random";
+
+        else
+            this.game.level = "hard";
+
+ 
+
+    }
     
     this.theme = 'Sea';
     
