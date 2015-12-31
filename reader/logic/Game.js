@@ -6,6 +6,7 @@ function Game(scene) {
     this.newPiece;
     
     this.state = "start";
+    this.mode;
     this.selectedObj;
     this.costLeft = 2;
     this.history = new MyHistory();
@@ -19,7 +20,7 @@ function Game(scene) {
     this.init();
     
     this.time = -1;
-   
+
 }
 ;
 
@@ -30,9 +31,10 @@ Game.prototype.init = function() {
     var self = this;
     this.connection.initBoard(function(board) {
         self.initTabuleiro.board = board;
-        self.history.boardHistory.push(board);
+        self.history.push(board);
         self.initTabuleiro.initCelulas();
     });
+
 }
 
 Game.prototype.getMoves = function(posX, posY) {
@@ -62,26 +64,36 @@ Game.prototype.getMoves = function(posX, posY) {
 
 Game.prototype.applyDifferences = function(newBoard) {
     
-     var diff = this.history.findDiferences(newBoard);
+    var diff = this.history.findDiferences(newBoard);
     
+    if (diff["move"]["new"].length == 0) {
+        var oldPiece = this.initTabuleiro.celulas[diff["capture"]["old"][1]][diff["capture"]["old"][0]];
+    }
     var newpiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
     newpiece.posX = diff["move"]["new"][0];
     newpiece.posY = diff["move"]["new"][1];
     
-    this.newPosX = diff["move"]["new"][0];
-    this.newPosY = diff["move"]["new"][1];
     
     newpiece.highlighted = false;
+    
     this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = 0;
-    this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = newpiece;
+    
+    if (diff["move"]["new"].length == 0) {
+        this.initTabuleiro.board[diff["capture"]["new"][1]][diff["capture"]["new"][0]] = newpiece;
+    } 
+    else
+        this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = newpiece;
     
     this.initTabuleiro.initCelulas();
     
-    //var animMove = new MovePieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"], this.scene.game.currTime/1000);
-
-        var animMove = new CapturePieceAnimation(this.scene,diff["move"]["new"], this.scene.game.currTime/1000);
-
-    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+    
+    if (diff["move"]["new"].length != 0) {
+        var animMove = new MovePieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"],this.scene.game.currTime / 1000);
+        this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+    } 
+    else {
+    
+    }
     
     this.animations.push(animMove);
 
@@ -97,8 +109,9 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
     console.log("final: " + posXFinal + 1 + " y " + posYFinal + 1);
     this.connection.movePiece(this.initTabuleiro.board, posX + 1, posY + 1, posXFinal + 1, posYFinal + 1, function(newBoard) {
         
+        
+        self.history.push(newBoard);
         self.applyDifferences(newBoard);
-        self.history.boardHistory.push(newBoard);
         
         for (i = 0; i < self.possibleMoves.length; i++) {
             self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = false;
@@ -163,59 +176,63 @@ Game.prototype.deselect = function() {
 
 Game.prototype.clickEvent = function(id, obj) {
     
-    if (this.state == "start") {
-        if (id > 500 && obj.player == this.player) {
-            this.selectedObj = obj;
-            this.selectedObj.selected = true;
-            this.getMoves(obj.posX, obj.posY);
-            this.state = "select";
-        }
-    } 
-    else 
-    if (this.state == "select") 
-    {
-        if (this.selectedObj == obj) {
-            this.deselect();
-            this.state = "start";
-        } 
-        else {
-            if (obj.highlighted) {
-                this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
-                this.state = "analyse";
-            } 
-            else {
-                this.deselect();
-                this.state = "start";
-            }
-        }
-    
-    } 
-    
-    else 
-    if (this.state == "analyse") {
-        if (this.costLeft == 0) {
-            if (this.player == 1)
-                this.player = 0;
-            else
-                this.player = 1;
-            this.costLeft = 2;
-            this.state = "start";
-        } 
-        else if (this.continueGame()) {
-            this.state = "end";
-            console.log("END GAME!");
-            return;
-        } 
+    if (this.mode == "HumanHuman") {
         
-        else {
+        
+        if (this.state == "start") {
             if (id > 500 && obj.player == this.player) {
                 this.selectedObj = obj;
                 this.selectedObj.selected = true;
                 this.getMoves(obj.posX, obj.posY);
                 this.state = "select";
             }
+        } 
+        else 
+        if (this.state == "select") 
+        {
+            if (this.selectedObj == obj) {
+                this.deselect();
+                this.state = "start";
+            } 
+            else {
+                if (obj.highlighted) {
+                    this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
+                    this.state = "analyse";
+                } 
+                else {
+                    this.deselect();
+                    this.state = "start";
+                }
+            }
+        
+        } 
+        
+        else 
+        if (this.state == "analyse") {
+            if (this.costLeft == 0) {
+                if (this.player == 1)
+                    this.player = 0;
+                else
+                    this.player = 1;
+                this.costLeft = 2;
+                this.state = "start";
+            } 
+            else if (this.continueGame()) {
+                this.state = "end";
+                console.log("The player who won was: " + this.player);
+                console.log("END GAME!");
+                return;
+            } 
+            
+            else {
+                if (id > 500 && obj.player == this.player) {
+                    this.selectedObj = obj;
+                    this.selectedObj.selected = true;
+                    this.getMoves(obj.posX, obj.posY);
+                    this.state = "select";
+                }
+            }
+        
         }
-    
     }
-
 }

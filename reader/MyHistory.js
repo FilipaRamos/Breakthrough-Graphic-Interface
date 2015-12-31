@@ -26,12 +26,13 @@ MyHistory.prototype.top = function() {
 }
 
 MyHistory.prototype.findDiferences = function(newTab) {
-    var oldTab = this.top();
+    var oldTab = this.boardHistory[this.boardHistory.length - 2];
     var newPos = [];
     // 0 - X, 1 - Y
     var oldPos = [];
     // 0 - X, 1 - Y
-    var capture = [];
+    var oldCapture = [];
+    var newCapture = [];
     
     for (var y = 0; y < newTab.length; y++) {
         for (var x = 0; x < newTab.length; x++) {
@@ -43,8 +44,10 @@ MyHistory.prototype.findDiferences = function(newTab) {
                 newPiece = newTab[y][x];
                 newPos = [x, y];
             } 
-            else {
-                capture.push(x, y);
+            else if (oldTab[y][x] != newTab[y][x]) {
+                oldCapture.push(x, y, oldTab[y][x]);
+                newCapture.push(x, y, newTab[y][x]);
+
             }
         }
     }
@@ -54,7 +57,10 @@ MyHistory.prototype.findDiferences = function(newTab) {
             "new": newPos,
             "old": oldPos
         },
-        "capture": capture
+        "capture": {
+            "old" : oldCapture,
+            "new" : newCapture
+        }
     }
 
 }

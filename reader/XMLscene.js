@@ -32,7 +32,7 @@ XMLscene.prototype.init = function(application) {
     this.hh = function() {
         if (this.game) {
             console.log("H&H");
-            // chamar o humano vs humano
+            this.game.mode = "HumanHuman";
         }
     }
     
@@ -73,10 +73,17 @@ XMLscene.prototype.init = function(application) {
     
     this.luzes = this.gui.addFolder("ON/OFF");
     this.theme = this.gui.addFolder("THEME");
+    this.level = this.gui.addFolder("LEVEL");
     this.gameMode = this.gui.addFolder("GAME MODE");
     
     this.luzes.close();
+    this.level.open();
     this.gameMode.open();
+    
+    this.levelList = [true,false];
+    
+    this.level.add(this.levelList, 0,  true).name('random');
+    this.level.add(this.levelList, 1, false).name('hard');
     
     this.theme = 'Sea';
     
