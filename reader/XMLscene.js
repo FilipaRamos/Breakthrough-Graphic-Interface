@@ -80,12 +80,12 @@ XMLscene.prototype.init = function(application) {
     this.level.open();
     this.gameMode.open();
     
-    this.levelList = [false, true];
+    this.levelList = [true, false];
     
-    this.level.add(this.levelList, 0, false).name('random');
-    this.level.add(this.levelList, 1, true).name('hard');
+    this.level.add(this.levelList, 0, true).name('random');
+    this.level.add(this.levelList, 1, false).name('hard');
     
-    if (this.game) {
+ /*   if (this.game) {
         if (this.levelList[0])
             this.game.level = "random";
 
@@ -94,7 +94,9 @@ XMLscene.prototype.init = function(application) {
 
  
 
-    }
+    }*/
+
+    
     
     this.theme = 'Sea';
     
@@ -116,7 +118,7 @@ XMLscene.prototype.init = function(application) {
     
     this.game = new Game(this);
     this.menu = new menu(this);
-    
+     this.game.level = "random";
     
     //this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
     

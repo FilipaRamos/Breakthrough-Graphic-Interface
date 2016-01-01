@@ -271,13 +271,8 @@ Game.prototype.clickEvent = function(id, obj) {
     }
     
     if (this.mode == "MachineMachine") {
-        
-        if (this.level == "random")
-            this.playRandom();
-        else
-            this.playHard();
-        
-        if (this.costLeft == 0) {
+
+         if (this.costLeft == 0) {
             
             if (this.player == 1)
                 this.player = 0;
@@ -291,6 +286,14 @@ Game.prototype.clickEvent = function(id, obj) {
             console.log("END GAME!");
             return;
         }
+        
+        if (this.level == "random")
+            this.playRandom();
+        else
+            this.playHard();
+        
+       
+        
     
     
     

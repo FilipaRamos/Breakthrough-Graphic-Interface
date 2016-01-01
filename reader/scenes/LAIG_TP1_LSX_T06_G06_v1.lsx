@@ -138,14 +138,14 @@
     <LEAF id="sph" type="sphere" args="0.5 50 50" />            <!-- radius, parts along radius, parts per section -->
     <LEAF id="tri" type="triangle" args="-0.5 -0.5 0  0.5 -0.5 0  0 0.5 0" />   <!-- coordinates of each vertex -->
     <LEAF id="plane" type="plane" parts="20"/>
-   <LEAF id="patch" type="patch" order="1" partsU="20" partsV="20">
-        <controlpoint x= "-0.5" y="0.0" z="0.5" />
-        <controlpoint x= "-0.5" y="0.0" z="-0.5" />
-        <controlpoint x= "0.5" y="0.0" z="0.5" />
-        <controlpoint x= "0.5" y="0.0" z="-0.5" />
-    </LEAF>
-    <LEAF id="vehicle" type="vehicle"/> 
-    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/s_alturas.jpg" />
+    <LEAF id="patch" type="patch" order="1" partsU="20" partsV="20">
+            <controlpoint x= "-0.5" y="0.0" z="0.5" />
+            <controlpoint x= "-0.5" y="0.0" z="-0.5" />
+            <controlpoint x= "0.5" y="0.0" z="0.5" />
+            <controlpoint x= "0.5" y="0.0" z="-0.5" />
+        </LEAF>
+        <LEAF id="vehicle" type="vehicle"/> 
+        <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
