@@ -118,7 +118,7 @@ XMLscene.prototype.init = function(application) {
     
     this.game = new Game(this);
     this.menu = new menu(this);
-     this.game.level = "random";
+     this.game.level = "hard";
     
     //this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
     
