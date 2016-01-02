@@ -72,7 +72,6 @@ XMLscene.prototype.init = function(application) {
     this.gui.add(this, 'undo').name("Undo");
     
     this.luzes = this.gui.addFolder("ON/OFF");
-    this.theme = this.gui.addFolder("THEME");
     this.level = this.gui.addFolder("LEVEL");
     this.gameMode = this.gui.addFolder("GAME MODE");
     
@@ -146,8 +145,10 @@ XMLscene.prototype.init = function(application) {
     this.appearance.setTexture(this.fontTexture);
     console.log(this.appearance);
     
-    // plano onde estão as letras
+    // planos onde estão as letras
     this.logo = new Letters(this);
+    this.timer = new Letters(this);
+    this.player = new Letters(this);
     
     // instatiate text shader
     this.textShader = new CGFshader(this.gl,"shaders/font.vert","shaders/font.frag");
@@ -293,11 +294,12 @@ XMLscene.prototype.display = function() {
         //this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
     }
     
-    
-    
-    //this.menu.display(); 
+    this.setActiveShaderSimple(this.textShader);
+    this.appearance.apply();
+    //AQUI É FEITO O DISPLAY DE LETRAS!!
+    //this.timerDisplay.display(12);
+    //this.displayPlayer(2);
     this.setActiveShaderSimple(this.defaultShader);
-    //this.seaBoard.display();
 
 }
 ;
@@ -430,3 +432,40 @@ XMLscene.prototype.sartPiking = function(obj) {
 XMLscene.prototype.resartPiking = function(obj) {
     obj.selected = false;
 }
+
+XMLscene.prototype.displayPlayer = function(nrPlayer) {
+
+    this.pushMatrix();
+
+    this.scale(2,2,2);
+
+    this.activeShader.setUniformsValues({'charCoords': [0,5]});
+    this.player.display();
+
+    this.translate(1,0,0);
+    this.activeShader.setUniformsValues({'charCoords': [12,4]});
+    this.player.display();
+
+    this.translate(1,0,0);
+    this.activeShader.setUniformsValues({'charCoords': [1,4]});
+    this.player.display();
+
+    this.translate(1,0,0);
+    this.activeShader.setUniformsValues({'charCoords': [9,5]});
+    this.player.display();
+
+    this.translate(1,0,0);
+    this.activeShader.setUniformsValues({'charCoords': [5,4]});
+    this.player.display();
+
+    this.translate(1,0,0);
+    this.activeShader.setUniformsValues({'charCoords': [2,5]});
+    this.player.display();
+
+    this.translate(1,0,0);
+    this.activeShader.setUniformsValues({'charCoords': [nrPlayer,3]});
+    this.player.display();
+
+    this.popMatrix();
+
+};
