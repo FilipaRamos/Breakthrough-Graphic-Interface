@@ -13,7 +13,7 @@ function Game(scene) {
     this.history = new MyHistory();
     this.boardHistory = [];
     
-    this.player = 0;
+    this.player = 1;
     this.possibleMoves = [];
     this.movesCost = [];
     this.animations = [];
@@ -69,6 +69,7 @@ Game.prototype.applyDifferences = function(newBoard) {
     
     if (diff["move"]["new"].length == 0) {
         var oldPiece = this.initTabuleiro.celulas[diff["capture"]["old"][1]][diff["capture"]["old"][0]];
+        var newPiece = this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]];
     }
     var newpiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
     newpiece.posX = diff["move"]["new"][0];
@@ -94,7 +95,12 @@ Game.prototype.applyDifferences = function(newBoard) {
     } 
     else {
         var animMove = new MovePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
-        this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]].animation = animMove;
+        var captMove = new CapturePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
+        
+        this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+        oldPiece.captured = true;
+        oldPiece.animation = captMove;
+        this.initTabuleiro.captured.push(oldPiece);
     
     }
     
@@ -253,8 +259,7 @@ Game.prototype.clickEvent = function(id, obj) {
             } 
             else if (this.continueGame()) {
                 this.state = "end";
-                console.log("The player who won was: " + this.player);
-                console.log("END GAME!");
+                alert("The player who won was: \n" + this.player + " END!!");
                 return;
             } 
             
@@ -268,11 +273,11 @@ Game.prototype.clickEvent = function(id, obj) {
             }
         
         }
-    }
+    } 
     
-    if (this.mode == "MachineMachine") {
-
-         if (this.costLeft == 0) {
+    else if (this.mode == "MachineMachine") {
+        
+        if (this.costLeft == 0) {
             
             if (this.player == 1)
                 this.player = 0;
@@ -282,20 +287,116 @@ Game.prototype.clickEvent = function(id, obj) {
             this.costLeft = 2;
         } 
         else if (this.continueGame()) {
-            console.log("The player who won was: " + this.player);
-            console.log("END GAME!");
+            alert("The player who won was: \n" + this.player + " END!!");
             return;
+        } 
+        
+        else {
+            if (this.level == "random")
+                this.playRandom();
+            else
+                this.playHard();
         }
-        
-        if (this.level == "random")
-            this.playRandom();
-        else
-            this.playHard();
-        
-       
-        
+    } 
     
-    
-    
+    else if (this.mode == "HumanMachine") {
+        
+        if (this.state == "start") {
+            if (this.player == 0) {
+                if (id > 500 && obj.player == this.player) {
+                    this.selectedObj = obj;
+                    this.selectedObj.selected = true;
+                    this.getMoves(obj.posX, obj.posY);
+                    this.state = "select";
+                }
+            } 
+            else if (this.player == 1) {
+                //bot a jogar
+                
+                if (this.costLeft == 0) {
+                    this.player = 0;
+                    this.state = "start";
+                    this.costLeft = 2;
+                } 
+                else if (this.continueGame()) {
+                    alert("The player who won was: \n" + this.player + " END!!");
+                    return;
+                } 
+                
+                else {
+                    if (this.level == "random")
+                        this.playRandom();
+                    else
+                        this.playHard();
+                }
+            }
+        } 
+        else 
+        if (this.state == "select") 
+        {
+            if (this.selectedObj == obj) {
+                this.deselect();
+                this.state = "start";
+            } 
+            else {
+                if (obj.highlighted) {
+                    this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
+                    this.state = "analyse";
+                } 
+                else {
+                    this.deselect();
+                    this.state = "start";
+                }
+            }
+        
+        } 
+        
+        else 
+        if (this.state == "analyse") {
+            if (this.costLeft == 0) {
+                this.player = 1;
+                this.costLeft = 2;
+                this.state = "start";
+            } 
+            else if (this.continueGame()) {
+                this.state = "end";
+                alert("The player who won was: \n" + this.player + " END!!");
+                return;
+            } 
+            
+            else {
+                if (this.player == 0) {
+                    if (id > 500 && obj.player == this.player) {
+                        this.selectedObj = obj;
+                        this.selectedObj.selected = true;
+                        this.getMoves(obj.posX, obj.posY);
+                        this.state = "select";
+                    }
+                } 
+                else 
+                {
+                    if (this.player == 1) {
+                        //bot a jogar
+                        
+                        if (this.costLeft == 0) {
+                            
+                            this.player = 0;
+                            this.state = "start";
+                            this.costLeft = 2;
+                        } 
+                        else if (this.continueGame()) {
+                            alert("The player who won was: \n" + this.player + " END!!");
+                            return;
+                        } 
+                        else {
+                            if (this.level == "random")
+                                this.playRandom();
+                            else
+                                this.playHard();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

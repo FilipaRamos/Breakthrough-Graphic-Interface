@@ -8,17 +8,15 @@ function Board(scene) {
     this.celulas = [];
     this.floor = [];
     this.board = [];
+    this.captured = [];
     this.scene = scene;
     
     this.initFloor();
     
     
     this.textura = new CGFtexture(this.scene,"texture/wood_board.jpg");
-    console.log("WOOD TEXTURE");
-    console.log(this.textura);
+
     this.textura1 = new CGFtexture(this.scene,"texture/wood_board_highlighted.jpg");
-    console.log("HIGHLIGHTED TEXTURE");
-    console.log(this.textura1);
 }
 ;
 
@@ -87,6 +85,7 @@ Board.prototype.display = function() {
     
     
     k = 500;
+
     
     if (this.celulas[0] !== undefined) {
         for (i = 0; i < 11; i++) {
@@ -101,6 +100,10 @@ Board.prototype.display = function() {
         }
     }
     
+    for(var l = 0; l < this.captured.length; l++){
+        this.captured[l].display();
+        this.scene.translate(1.2,0,0);
+    }
     
     this.scene.popMatrix();
 

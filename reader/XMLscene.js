@@ -40,7 +40,8 @@ XMLscene.prototype.init = function(application) {
     this.hb = function() {
         if (this.game) {
             console.log("H&B");
-            // chamar o humano vs bot
+            this.game.state = "start";
+            this.game.mode = "HumanMachine";
         }
     }
     
