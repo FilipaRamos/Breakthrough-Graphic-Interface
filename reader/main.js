@@ -62,7 +62,6 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 'Letters.js', 'MyHistory.js', 'logic/CapturePieceAnimation.js', 'logic/AnimationGroup.js', 'logic/MovePieceAnimation.js', 'MyInterface.js', 
 'logic/CameraAnimation.js', 'timerDisplay.js',
 
-
 /**
 * Main function
 * From https://github.com/EvanHahn/ScriptInclude
