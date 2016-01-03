@@ -37,6 +37,10 @@ function Celula(scene, type, highted, selected, posicaoX, posicaoY) {
 
 Celula.prototype.constructor = Celula;
 
+/**
+* Display the pieces and call the animation for the pieces
+* @method
+*/
 Celula.prototype.display = function() {
     
     this.scene.pushMatrix();

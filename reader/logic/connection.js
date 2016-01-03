@@ -1,9 +1,17 @@
+/**
+* Constructor for the Connection
+* @constructor
+*/
 function Connection(){
 
 }
 
 Connection.prototype.constructor = Connection;
 
+/**
+* Request the connection with Prolog
+* @method
+*/
 Connection.prototype.getPrologRequest = function(requestString, onSuccess, onError, port){
     var requestPort = port || 8081
     var request = new XMLHttpRequest();
@@ -15,8 +23,10 @@ Connection.prototype.getPrologRequest = function(requestString, onSuccess, onErr
     request.send();
 }
 		
-
-
+/**
+* Initiate the board
+* @method
+*/
 Connection.prototype.initBoard = function(callback){
     var self = this;
     this.getPrologRequest("initial", function(data) {
@@ -27,6 +37,10 @@ Connection.prototype.initBoard = function(callback){
     });
 }
 
+/**
+* Get the possible moves for a piece
+* @method
+*/
 Connection.prototype.getMoves = function(board, player, costLeft, callback){
     var self = this;
     //[InitList,EndList,CostList]
@@ -39,7 +53,10 @@ Connection.prototype.getMoves = function(board, player, costLeft, callback){
     });
 }
 
-
+/**
+* Move a piece
+* @method
+*/
 Connection.prototype.movePiece = function(board, x, y, xf, yf, callback){
     var self = this;
     //movePiece(Board,X,Y,XF,YF,NewBoard2)
@@ -53,6 +70,10 @@ Connection.prototype.movePiece = function(board, x, y, xf, yf, callback){
     });
 }
 
+/**
+* Move forward with the game
+* @method
+*/
 Connection.prototype.continueGame = function(board, callback){
     var self = this;
     var board=JSON.stringify(board);
@@ -64,7 +85,10 @@ Connection.prototype.continueGame = function(board, callback){
     });
 }
 
-
+/**
+* Get the random level of difficulty
+* @method
+*/
 Connection.prototype.playRandom = function(board, player, costLeft, callback){
     var self = this;
     var board=JSON.stringify(board);
@@ -77,6 +101,10 @@ Connection.prototype.playRandom = function(board, player, costLeft, callback){
     });
 }
 
+/**
+* Get the hard level of difficulty
+* @method
+*/
 Connection.prototype.playHard = function(board, player, costLeft, callback){
     var self = this;
     var board=JSON.stringify(board);
@@ -89,6 +117,10 @@ Connection.prototype.playHard = function(board, player, costLeft, callback){
     });
 }
 
+/**
+* Return the board from prolog
+* @method
+*/
 Connection.prototype.boardFromProlog = function(string){
     
     var i, j;

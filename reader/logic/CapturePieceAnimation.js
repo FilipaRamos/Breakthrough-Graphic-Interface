@@ -1,3 +1,7 @@
+/**
+* Constructor for the animation for a piece that has been captured
+* @constructor
+*/
 function CapturePieceAnimation(scene, pos, initTime) {
     
     this.pos = pos;
@@ -17,6 +21,10 @@ function CapturePieceAnimation(scene, pos, initTime) {
 
 CapturePieceAnimation.prototype.constructor = CapturePieceAnimation;
 
+/**
+* Update the capture Animation
+* @method
+*/
 CapturePieceAnimation.prototype.update = function(currentTime) {
     
     var time = (currentTime/1000 - this.initTime);

@@ -1,3 +1,7 @@
+/**
+* timerDisplay constructor
+* @constructor
+*/
 function timerDisplay(scene) {
 
   CGFobject.call(this, scene);
@@ -9,8 +13,9 @@ timerDisplay.prototype = Object.create(CGFobject.prototype);
 timerDisplay.prototype.constructor = timerDisplay;
 
 /*
-* Create a piece through the sphere primitive
+* Display the time that is given
 * @method
+* @param time
 */
 timerDisplay.prototype.display = function (time) {
 
@@ -40,6 +45,4 @@ timerDisplay.prototype.display = function (time) {
 };
 
 timerDisplay.prototype.getLetters = function(){
-
-
 };
