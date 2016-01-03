@@ -15,6 +15,7 @@ XMLscene.prototype.constructor = XMLscene;
 */
 XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
+    this.application = application;
     
     // só para guardar o tipo de peça que é
     this.pieceType = "";
@@ -22,40 +23,14 @@ XMLscene.prototype.init = function(application) {
     // para apagar o log do picking
     this.clearPickRegistration();
     
-    this.undo = function() {
-        if (this.game) {
-            this.game.undo();
-        }
-    }
-    
-    // modo humano vs humano
-    this.hh = function() {
-        if (this.game) {
-            console.log("H&H");
-            this.game.mode = "HumanHuman";
-        }
-    }
-    
-    // modo humano vs bot
-    this.hb = function() {
-        if (this.game) {
-            console.log("H&B");
-            this.game.state = "start";
-            this.game.mode = "HumanMachine";
-        }
-    }
-    
-    // modo bot vs bot
-    this.bb = function() {
-        if (this.game) {
-            console.log("B&B");
-            this.game.mode = "MachineMachine";
-        }
-    }
-    
     this.initCameras();
     
     this.initLights();
+    this.luzesid = [];
+    this.onOff = [false, false, false, false, false, false, false, false];
+
+    this.theme = 'Sea';
+    this.level = 'random';
     
     this.tree = new MyTree();
     
@@ -63,30 +38,8 @@ XMLscene.prototype.init = function(application) {
     this.textures = [];
     this.animations = [];
     
-    this.onOff = [false, false, false, false, false, false, false, false];
-    this.luzesid = [];
     
-    
-    this.interface = new CGFinterface(this,application);
-    this.gui = new dat.GUI();
-    
-    this.gui.add(this, 'undo').name("Undo");
-    
-    this.luzes = this.gui.addFolder("ON/OFF");
-    this.theme = this.gui.addFolder("THEME");
-    this.level = this.gui.addFolder("LEVEL");
-    this.gameMode = this.gui.addFolder("GAME MODE");
-    
-    this.luzes.close();
-    this.level.open();
-    this.gameMode.open();
-    
-    this.levelList = [true, false];
-    
-    this.level.add(this.levelList, 0, true).name('random');
-    this.level.add(this.levelList, 1, false).name('hard');
-    
- /*   if (this.game) {
+    /*   if (this.game) {
         if (this.levelList[0])
             this.game.level = "random";
 
@@ -96,18 +49,6 @@ XMLscene.prototype.init = function(application) {
  
 
     }*/
-
-    
-    
-    this.theme = 'Sea';
-    
-    this.themeList = ['Sea', 'Battlestar Galactica'];
-    this.gui.add(this, 'theme', this.themeList);
-    
-    
-    this.gameMode.add(this, 'hh').name("Human/Human");
-    this.gameMode.add(this, 'hb').name("Human/Bot");
-    this.gameMode.add(this, 'bb').name("Bot/Bot");
     
     this.matrixInitial = mat4.create();
     
@@ -119,7 +60,7 @@ XMLscene.prototype.init = function(application) {
     
     this.game = new Game(this);
     this.menu = new menu(this);
-     this.game.level = "hard";
+    this.game.level = "hard";
     
     //this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
     
@@ -172,6 +113,35 @@ XMLscene.prototype.init = function(application) {
 }
 ;
 
+XMLscene.prototype.undo = function() {
+    if (this.game) {
+        this.game.undo();
+    }
+}
+
+XMLscene.prototype.hh = function() {
+    if (this.game) {
+        console.log("H&H");
+        this.game.mode = "HumanHuman";
+    }
+}
+
+XMLscene.prototype.hb = function() {
+    if (this.game) {
+        console.log("H&B");
+        this.game.state = "start";
+        this.game.mode = "HumanMachine";
+    }
+}
+
+XMLscene.prototype.bb = function() {
+    if (this.game) {
+        console.log("B&B");
+        this.game.mode = "MachineMachine";
+    }
+}
+
+
 XMLscene.prototype.update = function(currTime) {
     if (this.game.time == -1) {
         this.game.time = currTime;
@@ -192,12 +162,14 @@ XMLscene.prototype.initLights = function() {
 }
 ;
 
+
 /**
 * Method that initiates the cameras
 * @constructor
 */
 XMLscene.prototype.initCameras = function() {
     this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(5, 30, 30),vec3.fromValues(5, 0, 5));
+
 }
 ;
 
@@ -219,10 +191,9 @@ XMLscene.prototype.setDefaultAppearance = function() {
 * @constructor
 */
 XMLscene.prototype.onGraphLoaded = function() {
-    for (var j = 0; j < this.luzesid.length; j++) {
-        this.luzes.add(this.onOff, j, this.onOff[j]).name(this.luzesid[j]);
-    }
-    //this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
+
+    this.application.interface.updateLights();
+//this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
 }
 ;
 

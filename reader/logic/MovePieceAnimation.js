@@ -6,9 +6,9 @@ function MovePieceAnimation(scene, posInit, posFinal, initTime) {
     
     this.vecMovimento = [posFinal[0] - posInit[0] , posFinal[1]  - posInit[1]];
     //[xf-xi, yf- yi]
-    this.maxHight = 5;
+    this.maxHight = 2;
     
-    this.totalTime = 10;
+    this.totalTime = 5;
     this.t0;
     
     this.totalTime /= 1000;

@@ -2,21 +2,25 @@ function Game(scene) {
     this.connection = new Connection();
     this.scene = scene;
     this.initTabuleiro = new Board(scene);
-    this.newTabuleiro = new Board(scene);
     this.newPiece;
     
     this.state = "start";
     this.mode;
+    this.animFlag = false;
     this.level;
     this.selectedObj;
     this.costLeft = 2;
     this.history = new MyHistory();
     this.boardHistory = [];
     
-    this.player = 1;
+    this.player = 0;
     this.possibleMoves = [];
     this.movesCost = [];
     this.animations = [];
+    
+    this.currTime = Date.now() / 1000;
+    
+    this.cameraAnimation;
     
     this.init();
     
@@ -59,7 +63,8 @@ Game.prototype.getMoves = function(posX, posY) {
         }
         
         self.initTabuleiro.celulas[self.selectedObj.posX][self.selectedObj.posY].highlighted = true;
-    
+        
+        self.state = "select";
     });
 }
 
@@ -67,26 +72,22 @@ Game.prototype.applyDifferences = function(newBoard) {
     
     var diff = this.history.findDiferences(newBoard);
     
-    if (diff["move"]["new"].length == 0) {
-        var oldPiece = this.initTabuleiro.celulas[diff["capture"]["old"][1]][diff["capture"]["old"][0]];
-        var newPiece = this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]];
-    }
-    var newpiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
-    newpiece.posX = diff["move"]["new"][0];
-    newpiece.posY = diff["move"]["new"][1];
-    
-    
+    var piece = this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]];
+    var newpiece = this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]];
+    piece.posX = diff["move"]["new"][0];
+    piece.posY = diff["move"]["new"][1];
+    piece.highlighted = false;
+    newpiece.posX = diff["move"]["old"][0];
+    newpiece.posY = diff["move"]["old"][1];
     newpiece.highlighted = false;
+    this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]] = newpiece;
+    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]] = piece;
     
-    this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = 0;
+    var newlogicPiece = this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]];
+    var oldlogicPiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
     
-    if (diff["move"]["new"].length == 0) {
-        this.initTabuleiro.board[diff["capture"]["new"][1]][diff["capture"]["new"][0]] = newpiece;
-    } 
-    else
-        this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = newpiece;
-    
-    this.initTabuleiro.initCelulas();
+    this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = newlogicPiece;
+    this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = oldlogicPiece;
     
     
     if (diff["move"]["new"].length != 0) {
@@ -97,7 +98,7 @@ Game.prototype.applyDifferences = function(newBoard) {
         var animMove = new MovePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
         var captMove = new CapturePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
         
-        this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+        this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]].animation = animMove;
         oldPiece.captured = true;
         oldPiece.animation = captMove;
         this.initTabuleiro.captured.push(oldPiece);
@@ -126,12 +127,18 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
             self.initTabuleiro.floor[self.possibleMoves[i][1]][self.possibleMoves[i][0]].highlighted = false;
             if (self.possibleMoves[i][0] == posXFinal && self.possibleMoves[i][1] == posYFinal) 
             {
-                self.costLeft -= self.movesCost[i];
-                console.log("cost left " + self.costLeft);
+                self.costLeft = self.movesCost[i];
+                console.log("costLeft : " + self.costLeft + " " + self.movesCost[i]);
+                self.movesCost = [];
             }
         }
         self.initTabuleiro.celulas[self.selectedObj.posX][self.selectedObj.posY].highlighted = false;
         self.possibleMoves = [];
+        
+        if (self.costLeft == 0) {
+            self.cameraAnimation = new CameraAnimation(self.scene,self.currTime);
+        }
+        self.state = "analyse";
     });
 
 }
@@ -171,7 +178,6 @@ Game.prototype.playRandom = function() {
         self.applyDifferences(res[0]);
         self.costLeft = res[1];
     
-    
     });
 }
 
@@ -199,6 +205,10 @@ Game.prototype.display = function() {
             this.animations[i].update;
         }
     }
+    if (this.cameraAnimation != undefined && !this.cameraAnimation.done) {
+        
+        this.cameraAnimation.update(this.scene.game.currTime);
+    }
     this.initTabuleiro.display();
     this.scene.popMatrix();
     
@@ -218,16 +228,15 @@ Game.prototype.clickEvent = function(id, obj) {
     
     if (this.mode == "HumanHuman") {
         
-        
         if (this.state == "start") {
             if (id > 500 && obj.player == this.player) {
                 this.selectedObj = obj;
                 this.selectedObj.selected = true;
                 this.getMoves(obj.posX, obj.posY);
-                this.state = "select";
+                this.animFlag = false;
             }
-        } 
-        else 
+        }
+        
         if (this.state == "select") 
         {
             if (this.selectedObj == obj) {
@@ -237,7 +246,6 @@ Game.prototype.clickEvent = function(id, obj) {
             else {
                 if (obj.highlighted) {
                     this.movePiece(this.selectedObj.posX, this.selectedObj.posY, obj.posX, obj.posY);
-                    this.state = "analyse";
                 } 
                 else {
                     this.deselect();
@@ -245,16 +253,17 @@ Game.prototype.clickEvent = function(id, obj) {
                 }
             }
         
-        } 
+        }
         
-        else 
         if (this.state == "analyse") {
             if (this.costLeft == 0) {
                 if (this.player == 1)
                     this.player = 0;
                 else
                     this.player = 1;
+                
                 this.costLeft = 2;
+                
                 this.state = "start";
             } 
             else if (this.continueGame()) {
@@ -268,7 +277,6 @@ Game.prototype.clickEvent = function(id, obj) {
                     this.selectedObj = obj;
                     this.selectedObj.selected = true;
                     this.getMoves(obj.posX, obj.posY);
-                    this.state = "select";
                 }
             }
         
@@ -279,12 +287,16 @@ Game.prototype.clickEvent = function(id, obj) {
         
         if (this.costLeft == 0) {
             
-            if (this.player == 1)
+            if (this.player == 1) {
                 this.player = 0;
-            else
+            } 
+            else {
                 this.player = 1;
+            }
+            
             
             this.costLeft = 2;
+        
         } 
         else if (this.continueGame()) {
             alert("The player who won was: \n" + this.player + " END!!");
@@ -296,6 +308,8 @@ Game.prototype.clickEvent = function(id, obj) {
                 this.playRandom();
             else
                 this.playHard();
+            
+            // this.animFlag = false;
         }
     } 
     
