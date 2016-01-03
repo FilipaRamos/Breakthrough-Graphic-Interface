@@ -38,18 +38,8 @@ XMLscene.prototype.init = function(application) {
     this.textures = [];
     this.animations = [];
     
-    
-    /*   if (this.game) {
-        if (this.levelList[0])
-            this.game.level = "random";
-
-        else
-            this.game.level = "hard";
-
- 
-
-    }*/
-    
+    this.pointsDisplay = new timerDisplay(this);
+   
     this.matrixInitial = mat4.create();
     
     this.materialDefault = new CGFappearance(this);
@@ -262,6 +252,7 @@ XMLscene.prototype.display = function() {
         this.clearPickRegistration();
         
         this.game.display();
+       // this.pointsDisplay.display(this.game.points1);
         //this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
     }
     

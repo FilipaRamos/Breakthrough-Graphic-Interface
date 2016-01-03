@@ -6,7 +6,8 @@ MyHistory.prototype.constructor = MyHistory;
 
 MyHistory.prototype.push = function(board) {
     if (board instanceof Array) {
-        this.boardHistory.push(board);
+        var clone = JSON.parse(JSON.stringify(board));
+        this.boardHistory.push(clone);
         return true;
     } else {
         return false;
@@ -26,7 +27,7 @@ MyHistory.prototype.top = function() {
 }
 
 MyHistory.prototype.findDiferences = function(newTab) {
-    var oldTab = this.boardHistory[this.boardHistory.length - 2];
+    var oldTab = this.top();
     var newPos = [];
     // 0 - X, 1 - Y
     var oldPos = [];

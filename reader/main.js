@@ -60,7 +60,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js',
 'LinearAnimation.js', 'CircularAnimation.js', 'Primitives/Terrain.js', 'Primitives/MyVehicle.js', 'ListAnimations.js', 'Primitives/Cube.js', 
 'logic/Board.js', 'Primitives/Piece.js', 'logic/Celula.js', 'logic/connection.js', 'logic/Game.js', 'Primitives/MyBoat.js', 'menu.js', 
 'Letters.js', 'MyHistory.js', 'logic/CapturePieceAnimation.js', 'logic/AnimationGroup.js', 'logic/MovePieceAnimation.js', 'MyInterface.js', 
-'logic/CameraAnimation.js',
+'logic/CameraAnimation.js', 'timerDisplay.js',
 
 
 /**
