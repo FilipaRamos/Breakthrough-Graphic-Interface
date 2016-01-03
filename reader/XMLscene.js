@@ -28,7 +28,7 @@ XMLscene.prototype.init = function(application) {
     this.initLights();
     this.luzesid = [];
     this.onOff = [false, false, false, false, false, false, false, false];
-
+    
     this.theme = 'Sea';
     this.level = 'random';
     
@@ -39,7 +39,7 @@ XMLscene.prototype.init = function(application) {
     this.animations = [];
     
     this.pointsDisplay = new timerDisplay(this);
- 
+    
     this.matrixInitial = mat4.create();
     
     this.materialDefault = new CGFappearance(this);
@@ -50,7 +50,7 @@ XMLscene.prototype.init = function(application) {
     
     this.game = new Game(this);
     this.menu = new menu(this);
-    this.game.level = "hard";
+    this.game.level = "random";
     
     //this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
     
@@ -115,14 +115,15 @@ XMLscene.prototype.hh = function() {
     if (this.game) {
         console.log("H&H");
         this.game.mode = "HumanHuman";
+        this.game.level = this.application.interface.level;
     }
 }
 
 XMLscene.prototype.hb = function() {
     if (this.game) {
         console.log("H&B");
-        this.game.state = "start";
         this.game.mode = "HumanMachine";
+         this.game.level = this.application.interface.level;
     }
 }
 
@@ -130,6 +131,7 @@ XMLscene.prototype.bb = function() {
     if (this.game) {
         console.log("B&B");
         this.game.mode = "MachineMachine";
+         this.game.level = this.application.interface.level;
     }
 }
 
@@ -160,7 +162,7 @@ XMLscene.prototype.initLights = function() {
 * @constructor
 */
 XMLscene.prototype.initCameras = function() {
-    this.camera = new CGFcamera(0.4,0.1,500,vec3.fromValues(5, 30, 30),vec3.fromValues(5, 0, 5));
+    this.camera = new CGFcamera(0.6,0.1,500,vec3.fromValues(9, 15, 15),vec3.fromValues(9, 3, 9));
 
 }
 ;
@@ -183,9 +185,9 @@ XMLscene.prototype.setDefaultAppearance = function() {
 * @constructor
 */
 XMLscene.prototype.onGraphLoaded = function() {
-
+    
     this.application.interface.updateLights();
-//this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
+    //this.gl.clearColor(this.graph.background[0],this.graph.background[1],this.graph.background[2],this.graph.background[3]);
 }
 ;
 
@@ -253,16 +255,15 @@ XMLscene.prototype.display = function() {
         this.logPicking();
         this.clearPickRegistration();
         
+        this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
+        this.scale(0.25, 0.25, 0.25);
+        this.translate(35,11,34);
         this.game.display();
-       // this.pointsDisplay.display(this.game.points1);
-        //this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
+    
     }
     
     this.setActiveShaderSimple(this.textShader);
     this.appearance.apply();
-    //AQUI É FEITO O DISPLAY DE LETRAS!!
-    //this.timerDisplay.display(12);
-    //this.displayPlayer(2);
     this.setActiveShaderSimple(this.defaultShader);
 
 }
@@ -279,8 +280,6 @@ XMLscene.prototype.displayNode = function(nodeID, textID, materialID) {
     var nextTextureID, nextMaterialID;
     var matrixAnimation = mat4.create();
     mat4.identity(matrixAnimation);
-    
-    console.log("DISPLAY NODES");
     
     //encontrar o node ou leave com esse id e depois chamar a funcao de novo
     
@@ -312,8 +311,6 @@ XMLscene.prototype.displayNode = function(nodeID, textID, materialID) {
         for (var l = 0; l < this.textures.length; l++) {
             if (this.textures[l].id === textID)
                 var texture = this.textures[l];
-            console.log("NODES TEXTURES");
-            console.log(texture);
         }
         
         if (material !== undefined) {
@@ -362,6 +359,7 @@ XMLscene.prototype.displayNode = function(nodeID, textID, materialID) {
         for (var i = 0; i < node.descendants.length; i++) {
             this.pushMatrix();
             //Adicionar animações
+            //this.multMatrix(matrixAnimation);
             this.multMatrix(node.transformation);
             
             this.displayNode(node.descendants[i], nextTextureID, nextMaterialID);
@@ -369,8 +367,10 @@ XMLscene.prototype.displayNode = function(nodeID, textID, materialID) {
         
         }
     }
+
 }
 ;
+
 
 XMLscene.prototype.logPicking = function() {
     if (this.pickMode == false) {
@@ -398,38 +398,53 @@ XMLscene.prototype.resartPiking = function(obj) {
 }
 
 XMLscene.prototype.displayPlayer = function(nrPlayer) {
-
+    
     this.pushMatrix();
-
-    this.scale(2,2,2);
-
-    this.activeShader.setUniformsValues({'charCoords': [0,5]});
+    
+    this.scale(2, 2, 2);
+    
+    this.activeShader.setUniformsValues({
+        'charCoords': [0, 5]
+    });
     this.player.display();
-
-    this.translate(1,0,0);
-    this.activeShader.setUniformsValues({'charCoords': [12,4]});
+    
+    this.translate(1, 0, 0);
+    this.activeShader.setUniformsValues({
+        'charCoords': [12, 4]
+    });
     this.player.display();
-
-    this.translate(1,0,0);
-    this.activeShader.setUniformsValues({'charCoords': [1,4]});
+    
+    this.translate(1, 0, 0);
+    this.activeShader.setUniformsValues({
+        'charCoords': [1, 4]
+    });
     this.player.display();
-
-    this.translate(1,0,0);
-    this.activeShader.setUniformsValues({'charCoords': [9,5]});
+    
+    this.translate(1, 0, 0);
+    this.activeShader.setUniformsValues({
+        'charCoords': [9, 5]
+    });
     this.player.display();
-
-    this.translate(1,0,0);
-    this.activeShader.setUniformsValues({'charCoords': [5,4]});
+    
+    this.translate(1, 0, 0);
+    this.activeShader.setUniformsValues({
+        'charCoords': [5, 4]
+    });
     this.player.display();
-
-    this.translate(1,0,0);
-    this.activeShader.setUniformsValues({'charCoords': [2,5]});
+    
+    this.translate(1, 0, 0);
+    this.activeShader.setUniformsValues({
+        'charCoords': [2, 5]
+    });
     this.player.display();
-
-    this.translate(1,0,0);
-    this.activeShader.setUniformsValues({'charCoords': [nrPlayer,3]});
+    
+    this.translate(1, 0, 0);
+    this.activeShader.setUniformsValues({
+        'charCoords': [nrPlayer, 3]
+    });
     this.player.display();
-
+    
     this.popMatrix();
 
-};
+}
+;

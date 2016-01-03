@@ -60,7 +60,7 @@ Celula.prototype.display = function() {
         this.scene.rotate(Math.PI / 2, 0, 1, 0);
     } 
     else 
-        if (this.captured && this.player == 0) {
+        if (this.captured && this.player == 0 ) {
             this.scene.translate(0 , 0.5, 1 + 1.2 * 11);
             this.scene.scale(1, 0.5, 0.5);
             this.scene.rotate(Math.PI / 2, 0, 1, 0);

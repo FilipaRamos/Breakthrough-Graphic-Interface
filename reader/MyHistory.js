@@ -46,9 +46,8 @@ MyHistory.prototype.findDiferences = function(newTab) {
                 newPos = [x, y];
             } 
             else if (oldTab[y][x] != newTab[y][x]) {
-                oldCapture.push(x, y, oldTab[y][x]);
-                newCapture.push(x, y, newTab[y][x]);
-
+                oldCapture.push(oldTab[y][x]);
+                newPos = [x,y];
             }
         }
     }
@@ -58,10 +57,7 @@ MyHistory.prototype.findDiferences = function(newTab) {
             "new": newPos,
             "old": oldPos
         },
-        "capture": {
-            "old" : oldCapture,
-            "new" : newCapture
-        }
+        "capture": oldCapture
     }
 
 }

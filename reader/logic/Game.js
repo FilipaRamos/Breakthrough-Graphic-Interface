@@ -20,7 +20,7 @@ function Game(scene) {
     this.animations = [];
     this.points1 = 0;
     this.points2 = 0;
-    this.time ;
+    this.time;
     
     this.currTime = Date.now() / 1000;
     
@@ -75,70 +75,49 @@ Game.prototype.getMoves = function(posX, posY) {
 Game.prototype.applyDifferences = function(newBoard) {
     
     var diff = this.history.findDiferences(newBoard);
-
-    var oPiece = this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]];
-
-    if(diff["capture"]["new"].length != 0){
-        if(this.player == 0)
+     
+    if (diff["capture"].length != 0) {
+        if (this.player == 0)
             this.points1 += 2;
-        else this.points2 += 2;
+        else
+            this.points2 += 2;
     }
     
-    if (diff["move"]["new"].length != 0) {
-        var piece = this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]];
-        var newpiece = this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]];
-        piece.posX = diff["move"]["new"][0];
-        piece.posY = diff["move"]["new"][1];
-        
-        piece.highlighted = false;
-        newpiece.posX = diff["move"]["old"][0];
-        newpiece.posY = diff["move"]["old"][1];
-        newpiece.highlighted = false;
-        this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]] = newpiece;
-        this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]] = piece;
-        
-        var newlogicPiece = this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]];
-        var oldlogicPiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
-        
-        this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = newlogicPiece;
-        this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = oldlogicPiece;
-        
-        var animMove = new MovePieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"],this.scene.game.currTime / 1000);
-        this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+    var piece = this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]];
+    var newpiece = this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]];
+    piece.posX = diff["move"]["new"][0];
+    piece.posY = diff["move"]["new"][1];
+    piece.highlighted = false;
+
+    newpiece.posX = diff["move"]["old"][0];
+    newpiece.posY = diff["move"]["old"][1];
+    newpiece.highlighted = false;
+
+    this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]] = newpiece;
+    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]] = piece;
     
-    } 
-    else {
-        
-        var piece = this.initTabuleiro.celulas[diff["capture"]["old"][1]][diff["capture"]["old"][0]];
-        oPiece.posX = diff["capture"]["new"][0];
-        oPiece.posY = diff["capture"]["new"][1];
-        oPiece.highlighted = false;
-        
-        this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]] = oPiece;
-        
-        var newpiece = this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]];
-        newpiece.posX = diff["move"]["new"][0];
-        newpiece.posY = diff["move"]["new"][1];
-        newpiece.highlighted = false;
-        
-        this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = 0;
-       // this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = this.initTabuleiro.board[diff["capture"]["new"][1]][diff["capture"]["new"][0]];
-        
-        var animMove = new MovePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
-        var captMove = new CapturePieceAnimation(this.scene,diff["capture"]["new"],this.scene.game.currTime / 1000);
-        
-        this.initTabuleiro.celulas[diff["capture"]["new"][1]][diff["capture"]["new"][0]].animation = animMove;
-        piece.captured = true;
-        piece.animation = captMove;
+
+    var newlogicPiece = this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]];
+    var oldlogicPiece = this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]];
+    
+    if (diff["capture"].length != 0) {
+
+        var captMove = new CapturePieceAnimation(this.scene,[diff["move"]["new"][0], diff["move"]["new"][1]],this.scene.game.currTime / 1000);
+        newpiece.animation = captMove;
+        newpiece.captured = true;
         this.initTabuleiro.captured.push(newpiece);
-    
+
+        newlogicPiece = 0;
+        //this.initTabuleiro.celulas[diff["move"]["old"][1]][diff["move"]["old"][0]].primitive = undefined; 
     }
     
-    this.animations.push(animMove);
-
-
-
-
+    
+    this.initTabuleiro.board[diff["move"]["old"][1]][diff["move"]["old"][0]] = newlogicPiece;
+    this.initTabuleiro.board[diff["move"]["new"][1]][diff["move"]["new"][0]] = oldlogicPiece;
+    
+    var animMove = new MovePieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"],this.scene.game.currTime / 1000);
+    this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
+    
 }
 
 Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
@@ -157,7 +136,7 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
             {
                 self.usedCost = self.costLeft - self.movesCost[i];
                 self.costLeft = self.movesCost[i];
-
+                
                 console.log("costLeft : " + self.costLeft + " " + self.movesCost[i]);
                 self.movesCost = [];
             }

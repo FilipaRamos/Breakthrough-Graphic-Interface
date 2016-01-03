@@ -19,7 +19,7 @@
     <rotation axis="y" angle="0" />                  <!-- initial rotation 2 -->
     <rotation axis="z" angle="0" />                  <!-- initial rotation 3 -->
     <scale sx="1" sy="1" sz="1" />                  <!-- initial scaling -->
-    <reference length="1" />                          <!-- axis length; "0" means no axis-->
+    <reference length="0" />                          <!-- axis length; "0" means no axis-->
 </INITIALS>
 
  <!-- INITIALIZE THE ILUMINATION -->
@@ -36,7 +36,7 @@
 <LIGHTS>
     <LIGHT id="light0">                                    <!-- light identifier -->
         <enable value="1" />                         <!-- enable/disable -->
-        <position x="3.0" y="6.0" z="3.0" w="1.0" />       <!-- light position -->
+        <position x="8.0" y="6.0" z="13.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="1.0" g="1.0" b="0" a="1.0" />       <!-- specular component -->
@@ -44,7 +44,7 @@
 
      <LIGHT id="light1">                                    <!-- light identifier -->
         <enable value="0" />                         <!-- enable/disable -->
-        <position x="8.5" y="6.0" z="3.0" w="1.0" />       <!-- light position -->
+        <position x="12.5" y="6.0" z="13.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="0.0" g="0.0" b="0" a="0.0" />       <!-- specular component -->
@@ -52,7 +52,7 @@
 
      <LIGHT id="light2">                                    <!-- light identifier -->
         <enable value="1" />                         <!-- enable/disable -->
-        <position x="8.5" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
+        <position x="12.5" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="1.0" g="1.0" b="1.0" a="1.0" />       <!-- specular component -->
@@ -60,7 +60,7 @@
 
      <LIGHT id="light3">                                    <!-- light identifier -->
         <enable value="1" />                         <!-- enable/disable -->
-        <position x="3.0" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
+        <position x="8.0" y="6.0" z="8.0" w="1.0" />       <!-- light position -->
         <ambient r="0" g="0" b="0" a="1.0" />        <!-- ambient component -->
         <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />        <!-- diffuse component -->
         <specular r="0.0" g="0.0" b="0" a="0.0" />       <!-- specular component -->
@@ -76,21 +76,50 @@
   <TEXTURE id="wallAppearance">
         <file path="texture/wall.jpg" />                             <!-- path to file -->
         <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-   </TEXTURE>
+    </TEXTURE>
 
 
-   <TEXTURE id="tableAppearance">
-       <file path="texture/wood.jpg" />                             <!-- path to file -->
-       <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-   </TEXTURE>
+    <TEXTURE id="tableAppearance">
+        <file path="texture/wood.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
 
-   <TEXTURE id="floorAppearance">
+    <TEXTURE id="floorAppearance">
         <file path="texture/floor.jpg" />                             <!-- path to file -->
-       <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
-    </TEXTURE> 
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
     
-</TEXTURES>
+    <TEXTURE id="bancoAppearance">
+        <file path="texture/floor.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
 
+    <TEXTURE id="costasAppearance">
+        <file path="texture/wood.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <TEXTURE id="rockAppearance">
+        <file path="texture/fireplace.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <TEXTURE id="fireAppearance">
+        <file path="texture/fire.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE> 
+
+    <TEXTURE id="trunkAppearance">
+        <file path="texture/trunk.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+    <TEXTURE id="treeAppearance">
+        <file path="texture/tree.jpg" />                             <!-- path to file -->
+        <amplif_factor s="1" t="1" />                <!-- x/s, y/t -->
+    </TEXTURE>
+
+</TEXTURES>
 
 <!-- INITIALIZE THE MATERIALS -->
     <!-- attribute id to material, set shininess value and specular, diffuse and ambient reflection, attribute emission component -->
@@ -110,6 +139,38 @@
         <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
         <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
         <ambient r="0" g="0" b="0" a="0" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL>
+
+     <MATERIAL id="firematerial">                                  
+        <shininess value="120" />
+        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="0.3" />         <!-- ambient reflection -->
+        <emission r="1" g="1" b="1" a="1" />        <!-- emission component -->
+     </MATERIAL>
+
+    <MATERIAL id="materialB">                                  
+        <shininess value="120" />
+        <specular r="0.8" g="0.8" b="0.8" a="1" />        <!-- specular reflection -->
+        <diffuse r="1" g="1" b="1" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL>   
+
+    <MATERIAL id="blackMaterial">                                  
+        <shininess value="120" />
+        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
+        <diffuse r="0" g="0" b="0" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
+        <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
+     </MATERIAL> 
+
+    <MATERIAL id="greenMaterial">                                  
+        <shininess value="120" />
+        <specular r="0" g="0" b="0" a="1" />        <!-- specular reflection -->
+        <diffuse r="0" g="1" b="0" a="1" />         <!-- diffuse reflection -->
+        <ambient r="0.3" g="0.3" b="0.3" a="1" />         <!-- ambient reflection -->
         <emission r="0" g="0" b="0" a="1" />        <!-- emission component -->
      </MATERIAL>
 
@@ -138,14 +199,14 @@
     <LEAF id="sph" type="sphere" args="0.5 50 50" />            <!-- radius, parts along radius, parts per section -->
     <LEAF id="tri" type="triangle" args="-0.5 -0.5 0  0.5 -0.5 0  0 0.5 0" />   <!-- coordinates of each vertex -->
     <LEAF id="plane" type="plane" parts="20"/>
-    <LEAF id="patch" type="patch" order="1" partsU="20" partsV="20">
-            <controlpoint x= "-0.5" y="0.0" z="0.5" />
-            <controlpoint x= "-0.5" y="0.0" z="-0.5" />
-            <controlpoint x= "0.5" y="0.0" z="0.5" />
-            <controlpoint x= "0.5" y="0.0" z="-0.5" />
-        </LEAF>
-        <LEAF id="vehicle" type="vehicle"/> 
-        <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
+   <LEAF id="patch" type="patch" order="1" partsU="20" partsV="20">
+        <controlpoint x= "-0.5" y="0.0" z="0.5" />
+        <controlpoint x= "-0.5" y="0.0" z="-0.5" />
+        <controlpoint x= "0.5" y="0.0" z="0.5" />
+        <controlpoint x= "0.5" y="0.0" z="-0.5" />
+    </LEAF>
+    <LEAF id="vehicle" type="vehicle"/> 
+    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
@@ -159,14 +220,14 @@
         <MATERIAL id="null" />    
         <TEXTURE id="null" />    
         <DESCENDANTS>
-          <!--  <DESCENDANT id="planet" /> 
-            <DESCENDANT id="battleship" />
-           <DESCENDANT id="mesa" /> 
+          <!--   <DESCENDANT id="planet" /> 
+            <DESCENDANT id="battleship" /> -->
+          <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
             <DESCENDANT id="paredeEsquerda" /> 
             <DESCENDANT id="chao" />
             <DESCENDANT id="arvore" />
-            <DESCENDANT id="lareira" />  --> 
+            <DESCENDANT id="lareira" />  
 
         </DESCENDANTS>
 
@@ -189,7 +250,7 @@
     <NODE id="planet">      
         <MATERIAL id="null" />    
         <TEXTURE id="null" />      
-        <SCALE sx="1" sy="1" sz="1" />
+        <SCALE sx="5" sy="5" sz="5" />
         <DESCENDANTS>
             <DESCENDANT id="terrain" /> 
         </DESCENDANTS>
