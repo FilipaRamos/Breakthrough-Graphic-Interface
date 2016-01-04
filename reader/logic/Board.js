@@ -22,7 +22,10 @@ function Board(scene) {
 
 Board.prototype.constructor = Board;
 
-
+/**
+* Initiates the Board
+* @method
+*/
 Board.prototype.initFloor = function() {
     
     var row = [];
@@ -38,6 +41,10 @@ Board.prototype.initFloor = function() {
 
 }
 
+/**
+* Initiates the pieces
+* @method
+*/
 Board.prototype.initCelulas = function() {
     var row = [];
     
@@ -58,8 +65,8 @@ Board.prototype.initCelulas = function() {
 }
 
 /**
- * draw the vehicle
- * @constructor
+ * Display everything and apply the textures
+ * @method
  */
 Board.prototype.display = function() {
     var i;

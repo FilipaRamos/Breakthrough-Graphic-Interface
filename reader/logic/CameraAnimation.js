@@ -1,3 +1,7 @@
+/**
+* Constructor for the Camera Animation
+* @constructor
+*/
 function CameraAnimation(scene, initTime) {
     
     this.startang = 0;
@@ -17,12 +21,16 @@ function CameraAnimation(scene, initTime) {
 
 CameraAnimation.prototype.constructor = CameraAnimation;
 
+/**
+* Updates the Camera Animation
+* @method
+*/
 CameraAnimation.prototype.update = function(currentTime) {
     
     var move = (currentTime - this.initTime) / (this.totalTime);
     var ang = (Math.PI * move);
 
-    currAng=ang-this.currAng;
+    currAng = ang-this.currAng;
     
     if (ang >= Math.PI) {
         this.done = true;

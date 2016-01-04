@@ -1,3 +1,7 @@
+/**
+* Constructor for the game
+* @constructor
+*/
 function Game(scene) {
     this.connection = new Connection();
     this.scene = scene;
@@ -35,7 +39,10 @@ function Game(scene) {
 
 Game.prototype.constructor = Game;
 
-
+/**
+* Initiate the game attributes
+* @method
+*/
 Game.prototype.init = function() {
     var self = this;
     this.connection.initBoard(function(board) {
@@ -46,6 +53,10 @@ Game.prototype.init = function() {
 
 }
 
+/**
+* Get the list of possible moves
+* @method
+*/
 Game.prototype.getMoves = function(posX, posY) {
     var self = this;
     this.connection.getMoves(this.initTabuleiro.board, this.player, this.costLeft, function(arr) {
@@ -72,6 +83,10 @@ Game.prototype.getMoves = function(posX, posY) {
     });
 }
 
+/**
+* Refresh the board
+* @method
+*/
 Game.prototype.applyDifferences = function(newBoard) {
     
     var diff = this.history.findDiferences(newBoard);
@@ -118,8 +133,13 @@ Game.prototype.applyDifferences = function(newBoard) {
     var animMove = new MovePieceAnimation(this.scene,diff["move"]["old"],diff["move"]["new"],this.scene.game.currTime / 1000);
     this.initTabuleiro.celulas[diff["move"]["new"][1]][diff["move"]["new"][0]].animation = animMove;
     
+
 }
 
+/**
+* Move a piece
+* @method
+*/
 Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
     //movePiece(Board,X,Y,XF,YF,NewBoard2)
     var self = this;
@@ -152,6 +172,10 @@ Game.prototype.movePiece = function(posX, posY, posXFinal, posYFinal) {
 
 }
 
+/**
+* Undo a move
+* @method
+*/
 Game.prototype.undo = function() {
     console.log(this.history.boardHistory);
     var diff = this.history.undo();
@@ -201,6 +225,10 @@ Game.prototype.undo = function() {
 
 }
 
+/**
+* Continue the game
+* @method
+*/
 Game.prototype.continueGame = function() {
     var self = this;
     this.connection.continueGame(this.initTabuleiro.board, function(res) {
@@ -213,6 +241,10 @@ Game.prototype.continueGame = function() {
     });
 }
 
+/**
+* Random level of difficulty
+* @method
+*/
 Game.prototype.playRandom = function() {
     var self = this;
     this.connection.playRandom(this.initTabuleiro.board, this.player, this.costLeft, function(res) {
@@ -229,6 +261,10 @@ Game.prototype.playRandom = function() {
     });
 }
 
+/**
+* Hard bot level
+* @method
+*/
 Game.prototype.playHard = function() {
     var self = this;
     this.connection.playHard(this.initTabuleiro.board, this.player, this.costLeft, function(res) {
@@ -246,6 +282,10 @@ Game.prototype.playHard = function() {
     });
 }
 
+/**
+* Display all the components
+* @method
+*/
 Game.prototype.display = function() {
     
     this.scene.pushMatrix();
@@ -264,6 +304,10 @@ Game.prototype.display = function() {
     this.animations = [];
 }
 
+/**
+* Turn a board tile from highlighted to normal
+* @method
+*/
 Game.prototype.deselect = function() {
     for (i = 0; i < this.possibleMoves.length; i++) {
         this.initTabuleiro.floor[this.possibleMoves[i][1]][this.possibleMoves[i][0]].highlighted = false;
@@ -273,6 +317,10 @@ Game.prototype.deselect = function() {
     this.possibleMoves = [];
 }
 
+/**
+* State machine that regulates the game progression
+* @method
+*/
 Game.prototype.clickEvent = function(id, obj) {
     
     if (this.mode == "HumanHuman") {

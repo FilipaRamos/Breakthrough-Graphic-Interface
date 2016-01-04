@@ -1,3 +1,7 @@
+/**
+* MyInterface Constructor
+* @constructor
+*/
 function MyInterface() {
     
     CGFinterface.call(this);
@@ -67,6 +71,10 @@ MyInterface.prototype.init = function(application) {
     return true;
 };
 
+/**
+* Initiate the lights
+* @method
+*/
 MyInterface.prototype.updateLights = function(){
 
     this.removeFolder("ON/OFF");
@@ -78,6 +86,10 @@ MyInterface.prototype.updateLights = function(){
     
 }
 
+/**
+* Process mouse activity
+* @method
+*/
 MyInterface.prototype.processMouse = function() {
 };
 

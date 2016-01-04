@@ -1,5 +1,7 @@
-
-/** Represents a plane with nrDivs divisions along both axis, with center at (0,0) */
+/**
+* Constructor for a plane to be written
+* @constructor
+*/
 function Letters(scene, nrDivs, minS, maxS, minT, maxT) {
 	CGFobject.call(this,scene);
 
@@ -24,6 +26,10 @@ function Letters(scene, nrDivs, minS, maxS, minT, maxT) {
 Letters.prototype = Object.create(CGFobject.prototype);
 Letters.prototype.constructor = Letters;
 
+/**
+* Represents a plane with nrDivs divisions along both axis, with center at (0,0) 
+* @method
+*/
 Letters.prototype.initBuffers = function() {
 	// Generate vertices, normals, and texCoords
 	this.vertices = [];

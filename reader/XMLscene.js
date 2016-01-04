@@ -38,8 +38,11 @@ XMLscene.prototype.init = function(application) {
     this.textures = [];
     this.animations = [];
     
-    this.pointsDisplay = new timerDisplay(this);
-    
+
+
+    this.timerDisplay = new timerDisplay(this);
+    this.timerDisplayBack = new timerDisplay(this);
+
     this.matrixInitial = mat4.create();
     
     this.materialDefault = new CGFappearance(this);
@@ -255,15 +258,17 @@ XMLscene.prototype.display = function() {
         this.logPicking();
         this.clearPickRegistration();
         
+
         this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
         this.scale(0.25, 0.25, 0.25);
         this.translate(35,11,34);
         this.game.display();
     
+
     }
     
-    this.setActiveShaderSimple(this.textShader);
-    this.appearance.apply();
+    //AQUI É FEITO O DISPLAY DE LETRAS!!
+    this.timerDisplay.display(this.game.points1);
     this.setActiveShaderSimple(this.defaultShader);
 
 }

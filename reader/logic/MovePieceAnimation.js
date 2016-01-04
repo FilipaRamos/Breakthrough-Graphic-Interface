@@ -1,3 +1,7 @@
+/**
+* Constructor for the MovePieceAnimation
+* @constructor
+*/
 function MovePieceAnimation(scene, posInit, posFinal, initTime) {
     
     this.posFinal = posFinal;
@@ -20,6 +24,10 @@ function MovePieceAnimation(scene, posInit, posFinal, initTime) {
 
 MovePieceAnimation.prototype.constructor = MovePieceAnimation;
 
+/**
+* Update the animation
+* @method
+*/
 MovePieceAnimation.prototype.update = function(currentTime) {
     
     var time = (currentTime/1000 - this.initTime);
