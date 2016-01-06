@@ -226,6 +226,21 @@ Game.prototype.undo = function() {
 }
 
 /**
+* Show the moves that were played up until now
+* @method
+*/
+Game.prototype.gameMovie = function(){
+    var i = 1;
+    console.log("BOARD HISTORY --> " + this.history.boardHistory.length);
+    if(this.history.boardHistory.length > 1){
+        while (this.history.boardHistory.length != 1){
+            this.undo();
+        }
+    }
+    console.log(this.history.boardHistory);
+}
+
+/**
 * Continue the game
 * @method
 */

@@ -104,6 +104,12 @@ XMLscene.prototype.undo = function() {
     }
 }
 
+XMLscene.prototype.gameMovie = function(){
+	if(this.game){
+		this.game.gameMovie();
+	}
+}
+
 XMLscene.prototype.hh = function() {
     if (this.game) {
         console.log("H&H");

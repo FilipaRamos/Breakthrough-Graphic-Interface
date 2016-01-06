@@ -20,15 +20,15 @@ MyInterface.prototype.init = function(application) {
     
     this.gui = new dat.GUI();
 
-    this.scene=application.scene;
+    this.scene = application.scene;
     
     this.gui.add(this.scene, 'undo').name("Undo");
     
-    
+    this.gui.add(this.scene, 'gameMovie').name("Game Movie");
+
     this.luzes = this.gui.addFolder("ON/OFF");
 
     this.gameMode = this.gui.addFolder("GAME MODE");
-
 
     this.luzes.close();
     this.gameMode.open();
@@ -37,7 +37,6 @@ MyInterface.prototype.init = function(application) {
     this.level="random";
     
     this.gui.add(this.scene, 'level', this.levelList);
-    
     
     this.themeList = ['Sea', 'Battlestar Galactica'];
     this.theme="Sea";
@@ -59,7 +58,6 @@ MyInterface.prototype.init = function(application) {
 
             new MySceneGraph(filename,interface.scene);
 
-        
     });
     
     
