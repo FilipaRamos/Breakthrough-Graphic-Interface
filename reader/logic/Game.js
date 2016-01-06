@@ -298,9 +298,8 @@ Game.prototype.display = function() {
         this.cameraAnimation.update(this.scene.game.currTime);
     }
     this.initTabuleiro.display();
-    console.log("PLAYEERRRRRRRR!!!!!!!" + this.player);
     if(this.player == 0){
-        this.scene.translate(0.5, 0.5, -1.5);
+        this.scene.translate(0.2, 0.5, -1.5);
         this.scene.displayPlayer(1);
     }
     if (this.player == 1){

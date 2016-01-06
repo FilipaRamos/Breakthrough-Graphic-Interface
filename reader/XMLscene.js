@@ -64,6 +64,8 @@ XMLscene.prototype.init = function(application) {
     this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
     this.appearance.setSpecular(0.0, 0.0, 0.0, 1);
     this.appearance.setShininess(120);
+
+    this.floorTexture = new CGFtexture(this, "texture/floor.jpg");
     
     // font texture: 16 x 16 characters
     // http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
@@ -247,7 +249,7 @@ XMLscene.prototype.display = function() {
         this.clearPickRegistration();
         
 
-        //this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
+        this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
         this.scale(0.25, 0.25, 0.25);
         this.translate(35,11,34);
         this.game.display();
