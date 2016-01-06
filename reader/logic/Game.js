@@ -294,11 +294,20 @@ Game.prototype.display = function() {
             this.animations[i].update;
         }
     }
-    if (this.cameraAnimation != undefined && !this.cameraAnimation.done) {
-        
+    if (this.cameraAnimation != undefined && !this.cameraAnimation.done){
         this.cameraAnimation.update(this.scene.game.currTime);
     }
     this.initTabuleiro.display();
+    console.log("PLAYEERRRRRRRR!!!!!!!" + this.player);
+    if(this.player == 0){
+        this.scene.translate(0.5, 0.5, -1.5);
+        this.scene.displayPlayer(1);
+    }
+    if (this.player == 1){
+        this.scene.rotate(3.14, 0, 1, 0);
+        this.scene.translate(-11.8, 0.5, -13.5);
+        this.scene.displayPlayer(2);
+    }
     this.scene.popMatrix();
     
     this.animations = [];
@@ -322,9 +331,18 @@ Game.prototype.deselect = function() {
 * @method
 */
 Game.prototype.clickEvent = function(id, obj) {
+
+    var player = this.player;
     
     if (this.mode == "HumanHuman") {
-        
+        /*if(player == 0){
+            this.scene.translate(9, 0.5, 4);
+            this.scene.displayPlayer(1);
+        }
+        else if (player == 1){
+            this.scene.translate(9, 0.5, 4);
+            this.scene.displayPlayer(2);
+        }*/
         if (this.state == "start") {
             if (id > 500 && obj.player == this.player) {
                 this.selectedObj = obj;
@@ -511,3 +529,56 @@ Game.prototype.clickEvent = function(id, obj) {
         }
     }
 }
+
+Game.prototype.displayPlayer = function(nrPlayer) {
+    
+    this.scene.pushMatrix();
+
+    this.scene.translate(15, 0.5, 4);
+    
+    this.scene.scale(2, 2, 2);
+    
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [0, 5]
+    });
+    this.scene.player.display();
+    
+    this.scene.translate(1, 0, 0);
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [12, 4]
+    });
+    this.scene.player.display();
+    
+    this.scene.translate(1, 0, 0);
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [1, 4]
+    });
+    this.scene.player.display();
+    
+    this.scene.translate(1, 0, 0);
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [9, 5]
+    });
+    this.scene.player.display();
+    
+    this.scene.translate(1, 0, 0);
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [5, 4]
+    });
+    this.scene.player.display();
+    
+    this.scene.translate(1, 0, 0);
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [2, 5]
+    });
+    this.scene.player.display();
+    
+    this.scene.translate(1, 0, 0);
+    this.scene.activeShader.setUniformsValues({
+        'charCoords': [nrPlayer, 3]
+    });
+    this.scene.player.display();
+    
+    this.scene.popMatrix();
+
+};

@@ -6,7 +6,6 @@ function timerDisplay(scene) {
 
   CGFobject.call(this, scene);
 
-
 };
 
 timerDisplay.prototype = Object.create(CGFobject.prototype);

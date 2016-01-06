@@ -17,9 +17,6 @@ XMLscene.prototype.init = function(application) {
     CGFscene.prototype.init.call(this, application);
     this.application = application;
     
-    // só para guardar o tipo de peça que é
-    this.pieceType = "";
-    
     // para apagar o log do picking
     this.clearPickRegistration();
     
@@ -37,11 +34,8 @@ XMLscene.prototype.init = function(application) {
     this.materials = [];
     this.textures = [];
     this.animations = [];
-    
-
 
     this.timerDisplay = new timerDisplay(this);
-    this.timerDisplayBack = new timerDisplay(this);
 
     this.matrixInitial = mat4.create();
     
@@ -54,8 +48,6 @@ XMLscene.prototype.init = function(application) {
     this.game = new Game(this);
     this.menu = new menu(this);
     this.game.level = "random";
-    
-    //this.seaBoard = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg", "shaders/s_mascara.jpg");
     
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     this.test = new CGFtexture(this,"texture/floor.jpg");
@@ -72,8 +64,6 @@ XMLscene.prototype.init = function(application) {
     this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
     this.appearance.setSpecular(0.0, 0.0, 0.0, 1);
     this.appearance.setShininess(120);
-    
-    console.log("LETRAS TEXTURA");
     
     // font texture: 16 x 16 characters
     // http://jens.ayton.se/oolite/files/font-tests/rgba/oolite-font.png
@@ -94,7 +84,6 @@ XMLscene.prototype.init = function(application) {
         'dims': [16, 16]
     });
     
-    
     this.silverTexture = new CGFtexture(this,"images/sea/ship.jpg");
     console.log(this.silverTexture);
     this.goldenTexture = new CGFtexture(this,"images/sea/goldenShip.png");
@@ -105,8 +94,7 @@ XMLscene.prototype.init = function(application) {
     this.setUpdatePeriod(50);
     this.setPickEnabled(true);
 
-}
-;
+};
 
 XMLscene.prototype.undo = function() {
     if (this.game) {
@@ -126,7 +114,7 @@ XMLscene.prototype.hb = function() {
     if (this.game) {
         console.log("H&B");
         this.game.mode = "HumanMachine";
-         this.game.level = this.application.interface.level;
+        this.game.level = this.application.interface.level;
     }
 }
 
@@ -134,7 +122,7 @@ XMLscene.prototype.bb = function() {
     if (this.game) {
         console.log("B&B");
         this.game.mode = "MachineMachine";
-         this.game.level = this.application.interface.level;
+        this.game.level = this.application.interface.level;
     }
 }
 
@@ -259,20 +247,19 @@ XMLscene.prototype.display = function() {
         this.clearPickRegistration();
         
 
-        this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
+        //this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
         this.scale(0.25, 0.25, 0.25);
         this.translate(35,11,34);
         this.game.display();
     
-
     }
     
-    //AQUI É FEITO O DISPLAY DE LETRAS!!
-    this.timerDisplay.display(this.game.points1);
+    this.setActiveShaderSimple(this.textShader);
+    this.appearance.apply();
+    this.timerDisplay.display(this.game.points1);		
     this.setActiveShaderSimple(this.defaultShader);
 
-}
-;
+};
 
 /**
 * Method that displays the nodes
@@ -402,10 +389,20 @@ XMLscene.prototype.resartPiking = function(obj) {
     obj.selected = false;
 }
 
-XMLscene.prototype.displayPlayer = function(nrPlayer) {
+XMLscene.prototype.displayPlayer = function(nrPlayer){
+
+	this.setActiveShaderSimple(this.textShader);
+    this.appearance.apply();
+    this.displayOnePlayer(nrPlayer);		
+    this.setActiveShaderSimple(this.defaultShader);
+
+};
+
+XMLscene.prototype.displayOnePlayer = function(nrPlayer) {
     
     this.pushMatrix();
-    
+
+	this.rotate(-1.5, 1,0,0);
     this.scale(2, 2, 2);
     
     this.activeShader.setUniformsValues({
@@ -451,5 +448,4 @@ XMLscene.prototype.displayPlayer = function(nrPlayer) {
     
     this.popMatrix();
 
-}
-;
+};
