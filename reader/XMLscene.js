@@ -21,6 +21,8 @@ XMLscene.prototype.init = function(application) {
     this.clearPickRegistration();
     
     this.initCameras();
+
+    this.starWars = false;
     
     this.initLights();
     this.luzesid = [];

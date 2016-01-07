@@ -38,8 +38,8 @@ MyInterface.prototype.init = function(application) {
     
     this.gui.add(this.scene, 'level', this.levelList);
     
-    this.themeList = ['Sea', 'Battlestar Galactica'];
-    this.theme="Sea";
+    this.themeList = ['Dining Room', 'Battlestar Galactica', 'Star Wars'];
+    this.theme="Dining Room";
     var themeDP=this.gui.add(this.scene, 'theme', this.themeList);
 
     var interface=this;
@@ -47,12 +47,16 @@ MyInterface.prototype.init = function(application) {
     themeDP.onChange(function(e){
        var filename="";
             switch(e){
-                case "Sea":
+                case "Dining Room":
                     filename="LAIG_TP1_LSX_T06_G06_v1.lsx";
                 break;
 
                 case "Battlestar Galactica":
-                    filename="seaTheme.lsx"
+                    filename="seaTheme.lsx";
+                break;
+
+                case "Star Wars":
+                    filename="LAIG_TP1_LSX_T01_G01_v1.lsx";
                 break;
             }
 
