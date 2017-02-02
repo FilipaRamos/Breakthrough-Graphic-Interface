@@ -1,6 +1,6 @@
 # Breakthrough-Graphic-Interface
 
-Graphic interface for the game Breakthrough developed in PROLOG by [Pedro Castro](https://github.com/F0lha). The communication between languages was achieved through sockets. The graphic interface is a WebGL based software using JavaScript and xml for scene definition and rendering. 
+Graphic interface for the game [Breakthrough](https://en.wikipedia.org/wiki/Breakthrough_(board_game)) developed in PROLOG by [Pedro Castro](https://github.com/F0lha). The communication between languages was achieved through sockets. The graphic interface is a WebGL based software using JavaScript and XML for scene definition and rendering. 
 
 ## Rules of the Game
 
@@ -31,7 +31,7 @@ In order to have the system running on your local machine for development and te
 To run the simulation you must have the following software:
 
 + [SICStus Prolog](https://sicstus.sics.se/) (take into consideration that this software needs a license) - to run the game's logic in prolog
-+ [Mongoose](https://www.cesanta.com/) - web server to connect
++ [Mongoose](https://www.cesanta.com/) - web server to connect - Save the .exe file in your project folder
 
 ### Installing
 
