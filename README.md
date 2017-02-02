@@ -30,11 +30,8 @@ In order to have the system running on your local machine for development and te
 
 To run the simulation you must have the following software:
 
-```
-[SICStus Prolog](https://sicstus.sics.se/) (take into consideration that this software needs a license) - to run the game's logic in prolog
-[Mongoose](https://www.cesanta.com/) - web server to connect
-
-```
++ [SICStus Prolog](https://sicstus.sics.se/) (take into consideration that this software needs a license) - to run the game's logic in prolog
++ [Mongoose](https://www.cesanta.com/) - web server to connect
 
 ### Installing
 
@@ -50,8 +47,8 @@ To get the game up and running follow these steps:
 
 ## Authors
 
-* **Inês Santos** - *Initial work* - [IneSantos](https://github.com/IneSantos)
-* **Filipa Ramos** - *Initial work* - [FilipaRamos](https://github.com/FilipaRamos)
+* **Inês Santos** - [IneSantos](https://github.com/IneSantos)
+* **Filipa Ramos** - [FilipaRamos](https://github.com/FilipaRamos)
 
 ## Acknowledgments
 
